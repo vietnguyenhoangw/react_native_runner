@@ -1,5 +1,5 @@
 import {all, put, takeEvery} from 'redux-saga/effects';
-import * as actionTypes from '@actions/actionTypes';
+import * as actionTypes from '@redux/actions/actionTypes';
 import * as api from '@api';
 import {UserModel} from '@models';
 

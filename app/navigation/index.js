@@ -8,7 +8,7 @@ import SplashScreen from 'react-native-splash-screen';
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import {useSelector} from 'react-redux';
-import {languageSelect} from '@selectors';
+import {languageSelect} from '@redux/selectors';
 
 /* Main Stack Navigator */
 import Main from 'app/navigation/main';
