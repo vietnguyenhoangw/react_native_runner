@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {ActivityIndicator, View, Alert} from 'react-native';
-import {Images, useTheme, BaseSetting} from '@config';
+import {Images, useTheme, Settings} from '@config';
 import {Image, Text} from '@components';
 
 import styles from './styles';
@@ -33,7 +33,7 @@ export default function Loading({navigation}) {
       <View style={{alignItems: 'center'}}>
         <Image source={Images.logo} style={styles.logo} resizeMode="contain" />
         <Text title1 style={{marginTop: 8}}>
-          {BaseSetting.displayName}
+          {Settings.displayName}
         </Text>
         <Text headline primaryColor style={{marginTop: 8}}>
           LIST DIRECTORY

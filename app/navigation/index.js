@@ -3,7 +3,7 @@ import {StatusBar, Platform} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
-import {useTheme, BaseSetting} from '@config';
+import {useTheme, Settings} from '@config';
 import SplashScreen from 'react-native-splash-screen';
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
@@ -25,9 +25,9 @@ export default function Navigator() {
 
   useEffect(() => {
     i18n.use(initReactI18next).init({
-      resources: BaseSetting.resourcesLanguage,
-      lng: BaseSetting.defaultLanguage,
-      fallbackLng: BaseSetting.defaultLanguage,
+      resources: Settings.resourcesLanguage,
+      lng: Settings.defaultLanguage,
+      fallbackLng: Settings.defaultLanguage,
     });
     SplashScreen.hide();
   }, []);

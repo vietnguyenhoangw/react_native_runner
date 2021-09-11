@@ -1,7 +1,7 @@
 /**
  * Basic Setting Variables Define
  */
-export const BaseSetting = {
+export const Settings = {
   name: 'Runner',
   displayName: 'Listar',
   appVersion: '1.1.1',

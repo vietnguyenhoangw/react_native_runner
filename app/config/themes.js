@@ -1,6 +1,6 @@
 import {useSelector} from 'react-redux';
 import {useColorScheme} from 'react-native-appearance';
-import {BaseSetting} from './setting';
+import {Settings} from './settings';
 
 /**
  * export theme and colors for application
@@ -10,10 +10,10 @@ export const useTheme = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const forceDark = useSelector(state => state.application.force_dark);
   const themeStorage = useSelector(state => state.application.theme);
-  const listTheme = BaseSetting.themeSupport.filter(
+  const listTheme = Settings.themeSupport.filter(
     item => item.theme === themeStorage,
   );
-  const theme = listTheme.length > 0 ? listTheme[0] : BaseSetting.defaultTheme;
+  const theme = listTheme.length > 0 ? listTheme[0] : Settings.defaultTheme;
 
   if (forceDark) {
     return {theme: theme.dark, colors: theme.dark.colors};
@@ -32,5 +32,5 @@ export const useTheme = () => {
  */
 export const useFont = () => {
   const font = useSelector(state => state.application.font);
-  return font ?? BaseSetting.defaultFont;
+  return font ?? Settings.defaultFont;
 };
