@@ -9,7 +9,7 @@
     "test": "jest",
     "lint": "eslint .",
     "sync_url": "git submodule sync --recursive",
-    "update_submodule": "git submodule update"
+    "update_sm": "git submodule update"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.7",
