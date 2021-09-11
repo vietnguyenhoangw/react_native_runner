@@ -1,0 +1,3 @@
+[submodule "app/components"]
+	path = app/components
+	url = git@github.com:wem2017/react_native_components.git
