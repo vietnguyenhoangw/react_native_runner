@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {BaseColor, useTheme, useFont} from '@config';
+import {Colors, useTheme, useFont} from '@config';
 import {useTranslation} from 'react-i18next';
 import {Icon} from '@components';
 
@@ -37,7 +37,7 @@ function BottomTabNavigator() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.primary,
-        inactiveTintColor: BaseColor.grayColor,
+        inactiveTintColor: Colors.warning,
         tabBarShowLabel: true,
         tabBarShowIcon: true,
         tabBarLabelStyle: {
