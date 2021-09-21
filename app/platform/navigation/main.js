@@ -4,24 +4,27 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Colors, useTheme, useFont} from '@config';
 import {useTranslation} from 'react-i18next';
 import {Icon} from '@components';
-
-/* Bottom Screen */
-import Home from '@screens/Home';
+import Mini1 from '@mini/app1/navigation';
+import Mini2 from '@mini/app2/navigation';
+import Home from '@platform/screens/Home';
 
 const MainStack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
 export default function Main() {
+  const {t} = useTranslation();
+  const {colors} = useTheme();
+  const font = useFont();
+
   return (
     <MainStack.Navigator
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="BottomTabNavigator">
-      <MainStack.Screen
-        name="BottomTabNavigator"
-        component={BottomTabNavigator}
-      />
+      initialRouteName="BottomTab">
+      <MainStack.Screen name="BottomTab" component={BottomTabNavigator} />
+      <MainStack.Screen name="Mini1" component={Mini1} />
+      <MainStack.Screen name="Mini2" component={Mini2} />
     </MainStack.Navigator>
   );
 }

@@ -3,8 +3,8 @@
  */
 export const Settings = {
   name: 'Runner',
-  displayName: 'Listar',
-  appVersion: '1.1.1',
+  displayName: 'Mobile Service',
+  appVersion: '1.0.0',
   domain: 'listar.passionui.com',
   protocol: 'http',
   defaultLanguage: 'en',

@@ -1,26 +1,12 @@
 import React, {useEffect} from 'react';
-import {ActivityIndicator, View, Alert} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 import {Images, useTheme, Settings} from '@config';
 import {Image, Text} from '@components';
 
 import styles from './styles';
 
-export default function Loading({navigation}) {
+export default function Splash({navigation}) {
   const {colors} = useTheme();
-
-  /**
-   *
-   * Override Alert
-   */
-  Alert.alert = ({title, message, action, option, type}) => {
-    navigation.navigate('Alert', {
-      type: type ?? 'warning',
-      title: title ?? '',
-      message: message ?? '',
-      action,
-      option: option ?? {cancelable: true},
-    });
-  };
 
   useEffect(() => {
     setTimeout(() => {

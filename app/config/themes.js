@@ -1,5 +1,5 @@
 import {useSelector} from 'react-redux';
-import {useColorScheme} from 'react-native-appearance';
+import {Appearance} from 'react-native';
 import {Settings} from './settings';
 
 /**
@@ -7,7 +7,7 @@ import {Settings} from './settings';
  * @returns theme,colors
  */
 export const useTheme = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = Appearance.getColorScheme() === 'dark';
   const forceDark = useSelector(state => state.application.force_dark);
   const themeStorage = useSelector(state => state.application.theme);
   const listTheme = Settings.themeSupport.filter(

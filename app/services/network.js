@@ -1,5 +1,4 @@
 import axios from 'axios';
-import url from 'url';
 import {store} from '@redux/store';
 
 const getUrl = () => store.getState().config?.url;
@@ -33,9 +32,6 @@ class Api {
     api.interceptors.request.use(
       config => {
         const token = getToken();
-        if (!config.url.startsWith('http')) {
-          config.url = url.format(getUrl()) + config.url;
-        }
         console.log('Before Request >>>', config);
         // Add more config before request
         if (token) {
