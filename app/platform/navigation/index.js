@@ -1,58 +1,27 @@
 import React, {useEffect} from 'react';
-import {StatusBar, Platform, Appearance, Animated} from 'react-native';
-
+import {StatusBar, Platform} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   createStackNavigator,
   CardStyleInterpolators,
   TransitionPresets,
 } from '@react-navigation/stack';
-import {useTheme, Settings} from '@config';
+import {useTheme, Settings} from '@configs';
 import SplashScreen from 'react-native-splash-screen';
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import {useSelector} from 'react-redux';
 import {languageSelect} from '@redux/selectors';
-import Navigator from '@platform/navigator';
+import Navigator from '@platform/navigation/navigator';
 import Main from '@platform/navigation/main';
-
+import {UtilsNavigation} from '@utils';
 import {Splash, Loading, Modal, BottomSheet} from '@platform/screens';
 
 const RootStack = createStackNavigator();
 
-function forBottomSheet({current, inverted, layouts: {screen}, closing}) {
-  const translateY = Animated.multiply(
-    current.progress.interpolate({
-      inputRange: [0, 1],
-      outputRange: [screen.height * 0.8, 0],
-      extrapolate: 'clamp',
-    }),
-    inverted,
-  );
-
-  return {
-    cardStyle: {
-      opacity: current.progress.interpolate({
-        inputRange: [0, 0.5, 0.98, 1],
-        outputRange: [0, 0.01, 0.02, 1],
-      }),
-      transform: [{translateY}],
-    },
-    overlayStyle: {
-      opacity: current.progress.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, 0.5],
-        extrapolate: 'clamp',
-      }),
-    },
-  };
-}
-
 export default function App() {
   const language = useSelector(languageSelect);
-
-  const {theme, colors} = useTheme();
-  const isDarkMode = Appearance.getColorScheme() === 'dark';
+  const {theme} = useTheme();
 
   useEffect(() => {
     i18n.use(initReactI18next).init({
@@ -69,24 +38,24 @@ export default function App() {
 
   useEffect(() => {
     if (Platform.OS === 'android') {
-      StatusBar.setBackgroundColor(colors.primary, true);
+      StatusBar.setBackgroundColor(theme.colors.primary, true);
     }
-    StatusBar.setBarStyle(isDarkMode ? 'light-content' : 'dark-content', true);
-  }, [colors.primary, isDarkMode]);
+    StatusBar.setBarStyle(theme.dark ? 'light-content' : 'dark-content', true);
+  }, [theme]);
 
   return (
     <NavigationContainer theme={theme} ref={Navigator.navigationRef}>
-      <RootStack.Navigator initialRouteName="Splash">
+      <RootStack.Navigator
+        initialRouteName="Splash"
+        screenOptions={{
+          headerShown: false,
+        }}>
         <RootStack.Screen
           name="Splash"
           component={Splash}
-          options={{gestureEnabled: false, headerShown: false}}
+          options={{gestureEnabled: false}}
         />
-        <RootStack.Screen
-          name="Main"
-          component={Main}
-          options={{headerShown: false}}
-        />
+        <RootStack.Screen name="Main" component={Main} />
         <RootStack.Screen
           name="Modal"
           component={Modal}
@@ -95,7 +64,6 @@ export default function App() {
             cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
             cardStyle: {backgroundColor: 'rgba(0, 0, 0, 0.2)'},
             gestureEnabled: false,
-            headerShown: false,
           }}
         />
         <RootStack.Screen
@@ -104,10 +72,9 @@ export default function App() {
           options={{
             presentation: 'transparentModal',
             ...TransitionPresets.BottomSheetAndroid,
-            cardStyleInterpolator: forBottomSheet,
+            cardStyleInterpolator: UtilsNavigation.forBottomSheet,
             cardStyle: {backgroundColor: 'rgba(0, 0, 0, 0.2)'},
             gestureEnabled: false,
-            headerShown: false,
           }}
         />
       </RootStack.Navigator>

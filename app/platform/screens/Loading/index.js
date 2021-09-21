@@ -5,7 +5,7 @@ import React, {
   useEffect,
 } from 'react';
 import {ActivityIndicator, View, BackHandler} from 'react-native';
-import {useTheme} from '@config';
+import {useTheme} from '@configs';
 
 import styles from './styles';
 

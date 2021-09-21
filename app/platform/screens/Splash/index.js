@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {ActivityIndicator, View} from 'react-native';
-import {Images, useTheme, Settings} from '@config';
+import {Images, useTheme, Settings} from '@configs';
 import {Image, Text} from '@components';
 
 import styles from './styles';

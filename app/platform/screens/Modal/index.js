@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, View, TouchableHighlight} from 'react-native';
-import {useTheme} from '@config';
+import {useTheme} from '@configs';
 
 import styles from './styles';
 

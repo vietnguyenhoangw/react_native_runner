@@ -2,7 +2,7 @@ import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {useTheme} from '@config';
+import {useTheme} from '@configs';
 import {Home} from '@mini//app1/screens';
 
 const RootStack = createStackNavigator();
