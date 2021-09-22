@@ -53,14 +53,6 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Merriweather-Black.ttf</string>
-		<string>Merriweather-BlackItalic.ttf</string>
-		<string>Merriweather-Bold.ttf</string>
-		<string>Merriweather-BoldItalic.ttf</string>
-		<string>Merriweather-Italic.ttf</string>
-		<string>Merriweather-Light.ttf</string>
-		<string>Merriweather-LightItalic.ttf</string>
-		<string>Merriweather-Regular.ttf</string>
 		<string>Raleway-Black.ttf</string>
 		<string>Raleway-BlackItalic.ttf</string>
 		<string>Raleway-Bold.ttf</string>
@@ -79,18 +71,6 @@
 		<string>Raleway-SemiBoldItalic.ttf</string>
 		<string>Raleway-Thin.ttf</string>
 		<string>Raleway-ThinItalic.ttf</string>
-		<string>Roboto-Black.ttf</string>
-		<string>Roboto-BlackItalic.ttf</string>
-		<string>Roboto-Bold.ttf</string>
-		<string>Roboto-BoldItalic.ttf</string>
-		<string>Roboto-Italic.ttf</string>
-		<string>Roboto-Light.ttf</string>
-		<string>Roboto-LightItalic.ttf</string>
-		<string>Roboto-Medium.ttf</string>
-		<string>Roboto-MediumItalic.ttf</string>
-		<string>Roboto-Regular.ttf</string>
-		<string>Roboto-Thin.ttf</string>
-		<string>Roboto-ThinItalic.ttf</string>
 		<string>AntDesign.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>EvilIcons.ttf</string>
@@ -107,6 +87,18 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>SFProText-Black.otf</string>
+		<string>SFProText-Black.ttf</string>
+		<string>SFProText-Bold.ttf</string>
+		<string>SFProText-Heavy.ttf</string>
+		<string>SFProText-Light.ttf</string>
+		<string>SFProText-Medium.ttf</string>
+		<string>SFProText-Regular.ttf</string>
+		<string>SFProText-Semibold.ttf</string>
+		<string>SFProText-Thin.otf</string>
+		<string>SFProText-Thin.ttf</string>
+		<string>SFProText-Ultralight.otf</string>
+		<string>SFProText-Ultralight.ttf</string>
 	</array>
 </dict>
 </plist>
