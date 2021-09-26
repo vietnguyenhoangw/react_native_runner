@@ -6,9 +6,14 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  contentLogo: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   logo: {
     width: 120,
     height: 120,
+    marginBottom: 16,
   },
   loading: {
     position: 'absolute',
