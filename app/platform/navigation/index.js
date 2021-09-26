@@ -14,6 +14,7 @@ import {useSelector} from 'react-redux';
 import {languageSelect} from '@redux/selectors';
 import Navigator from '@platform/navigation/navigator';
 import Main from '@platform/navigation/main';
+import Auth from '@platform/navigation/auth';
 import {UtilsNavigation} from '@utils';
 import {Splash, Loading, Modal, BottomSheet, OnBoard} from '@platform/screens';
 
@@ -55,12 +56,14 @@ export default function App() {
           component={Splash}
           options={{gestureEnabled: false}}
         />
+        <RootStack.Screen name="Main" component={Main} />
+        <RootStack.Screen name="Auth" component={Auth} />
         <RootStack.Screen
           name="OnBoard"
           component={OnBoard}
           options={{presentation: 'transparentModal'}}
         />
-        <RootStack.Screen name="Main" component={Main} />
+
         <RootStack.Screen
           name="Modal"
           component={Modal}

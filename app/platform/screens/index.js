@@ -4,5 +4,6 @@ import Loading from './Loading';
 import Modal from './Modal';
 import BottomSheet from './BottomSheet';
 import OnBoard from './OnBoard';
+import SignIn from './SignIn';
 
-export {Home, Splash, Loading, Modal, OnBoard, BottomSheet};
+export {Home, Splash, SignIn, Loading, Modal, OnBoard, BottomSheet};

@@ -4,4 +4,5 @@ export const Images = {
   onboard1: require('@assets/images/onboard1.png'),
   onboard2: require('@assets/images/onboard2.png'),
   onboard3: require('@assets/images/onboard3.png'),
+  signin: require('@assets/images/signin.png'),
 };
