@@ -15,21 +15,12 @@ export default function Home({navigation}) {
 
   return (
     <ScrollView contentContainerStyle={{alignItems: 'center', padding: 16}}>
-      <IconButton shape="rectangle" />
-      <SizedBox height={8} />
-      <IconButton type="secondary" />
-      <SizedBox height={8} />
-      <IconButton type="outline" />
-      <SizedBox height={8} />
-      <IconButton type="disable" />
-      <SizedBox height={8} />
-      <IconButton size="small" />
-      <SizedBox height={8} />
-      <IconButton type="secondary" size="small" />
-      <SizedBox height={8} />
-      <IconButton type="outline" size="small" />
-      <SizedBox height={8} />
-      <IconButton type="disable" size="small" />
+      <Button
+        onPress={() => {
+          navigation.navigate('OnBoard');
+        }}>
+        OnBoard
+      </Button>
     </ScrollView>
   );
 }

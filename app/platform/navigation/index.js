@@ -6,7 +6,7 @@ import {
   CardStyleInterpolators,
   TransitionPresets,
 } from '@react-navigation/stack';
-import {useTheme, Setting} from '@configs';
+import {useTheme, Setting, Colors} from '@configs';
 import SplashScreen from 'react-native-splash-screen';
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
@@ -15,7 +15,7 @@ import {languageSelect} from '@redux/selectors';
 import Navigator from '@platform/navigation/navigator';
 import Main from '@platform/navigation/main';
 import {UtilsNavigation} from '@utils';
-import {Splash, Loading, Modal, BottomSheet} from '@platform/screens';
+import {Splash, Loading, Modal, BottomSheet, OnBoard} from '@platform/screens';
 
 const RootStack = createStackNavigator();
 
@@ -55,6 +55,11 @@ export default function App() {
           component={Splash}
           options={{gestureEnabled: false}}
         />
+        <RootStack.Screen
+          name="OnBoard"
+          component={OnBoard}
+          options={{presentation: 'transparentModal'}}
+        />
         <RootStack.Screen name="Main" component={Main} />
         <RootStack.Screen
           name="Modal"
@@ -62,7 +67,7 @@ export default function App() {
           options={{
             presentation: 'transparentModal',
             cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
-            cardStyle: {backgroundColor: 'rgba(0, 0, 0, 0.2)'},
+            cardStyle: {backgroundColor: Colors.modal},
             gestureEnabled: false,
           }}
         />
@@ -73,7 +78,7 @@ export default function App() {
             presentation: 'transparentModal',
             ...TransitionPresets.BottomSheetAndroid,
             cardStyleInterpolator: UtilsNavigation.forBottomSheet,
-            cardStyle: {backgroundColor: 'rgba(0, 0, 0, 0.2)'},
+            cardStyle: {backgroundColor: Colors.modal},
             gestureEnabled: false,
           }}
         />

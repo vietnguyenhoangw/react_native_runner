@@ -1,4 +1,5 @@
 export const Colors = {
+  modal: 'rgba(0, 0, 0, 0.2)',
   white: '#ffffff',
   red: '#f44336',
   pink: '#e91e63',
