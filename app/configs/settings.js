@@ -1,9 +1,8 @@
 /**
  * Basic Setting Variables Define
  */
-export const Settings = {
-  name: 'Runner',
-  displayName: 'Mobile Service',
+export const Setting = {
+  name: 'Mobile Service',
   appVersion: '1.0.0',
   domain: 'listar.passionui.com',
   protocol: 'http',

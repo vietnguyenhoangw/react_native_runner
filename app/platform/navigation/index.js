@@ -6,7 +6,7 @@ import {
   CardStyleInterpolators,
   TransitionPresets,
 } from '@react-navigation/stack';
-import {useTheme, Settings} from '@configs';
+import {useTheme, Setting} from '@configs';
 import SplashScreen from 'react-native-splash-screen';
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
@@ -25,9 +25,9 @@ export default function App() {
 
   useEffect(() => {
     i18n.use(initReactI18next).init({
-      resources: Settings.resourcesLanguage,
-      lng: Settings.defaultLanguage,
-      fallbackLng: Settings.defaultLanguage,
+      resources: Setting.resourcesLanguage,
+      lng: Setting.defaultLanguage,
+      fallbackLng: Setting.defaultLanguage,
     });
     SplashScreen.hide();
   }, []);

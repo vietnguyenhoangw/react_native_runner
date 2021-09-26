@@ -4,6 +4,7 @@ import {Images, useTheme, Settings} from '@configs';
 import {Image, Text} from '@components';
 
 import styles from './styles';
+import {Setting} from '@configs';
 
 export default function Splash({navigation}) {
   const {colors} = useTheme();
@@ -15,14 +16,11 @@ export default function Splash({navigation}) {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: colors.primaryLight}]}>
       <View style={{alignItems: 'center'}}>
         <Image source={Images.logo} style={styles.logo} resizeMode="contain" />
         <Text title1 style={{marginTop: 8}}>
-          {Settings.displayName}
-        </Text>
-        <Text headline primaryColor style={{marginTop: 8}}>
-          LIST DIRECTORY
+          {Setting.name}
         </Text>
       </View>
       <ActivityIndicator
