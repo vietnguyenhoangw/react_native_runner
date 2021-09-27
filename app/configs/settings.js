@@ -2,7 +2,7 @@
  * Basic Setting Variables Define
  */
 export const Setting = {
-  name: 'Mobile Service',
+  name: "I'm-Wallet",
   appVersion: '1.0.0',
   domain: 'listar.passionui.com',
   protocol: 'http',

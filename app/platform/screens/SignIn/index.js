@@ -1,8 +1,8 @@
 import React, {useState, useRef} from 'react';
-import {View, KeyboardAvoidingView, Animated} from 'react-native';
+import {View, KeyboardAvoidingView, Animated, Keyboard} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Text, Button, TextInput, SafeAreaView, Image} from '@components';
-import {Colors, useTheme, Images} from '@configs';
+import {useTheme, Images} from '@configs';
 import styles from './styles';
 export default function SignIn({navigation}) {
   const {colors} = useTheme();
@@ -13,9 +13,17 @@ export default function SignIn({navigation}) {
     setPhone(text);
   };
 
+  const onNext = () => {
+    Keyboard.dismiss();
+  };
+
   return (
-    <LinearGradient colors={[colors.primary, Colors.white]} style={styles.flex}>
-      <SafeAreaView style={styles.flex}>
+    <SafeAreaView
+      style={[styles.flex, {backgroundColor: colors.card}]}
+      edges={['bottom']}>
+      <LinearGradient
+        colors={[colors.primary, colors.card]}
+        style={styles.flex}>
         <View style={styles.imageContent}>
           <Image source={Images.signin} style={styles.flex} />
         </View>
@@ -37,16 +45,17 @@ export default function SignIn({navigation}) {
                 label="Số điện thoại"
                 placeholder="VD: 0990909090"
                 onChangeText={onChangeText}
+                keyboardType="number-pad"
                 onFocus={() => {
                   Animated.timing(marginTop, {
-                    toValue: 50,
+                    toValue: 70,
                     duration: 250,
                     useNativeDriver: false,
                   }).start();
                 }}
                 onBlur={() => {
                   Animated.timing(marginTop, {
-                    toValue: 250,
+                    toValue: 300,
                     duration: 250,
                     useNativeDriver: false,
                   }).start();
@@ -55,11 +64,11 @@ export default function SignIn({navigation}) {
               />
             </View>
             <View style={styles.buttonContent}>
-              <Button>Tiếp tục</Button>
+              <Button onPress={onNext}>Tiếp tục</Button>
             </View>
           </Animated.View>
         </KeyboardAvoidingView>
-      </SafeAreaView>
-    </LinearGradient>
+      </LinearGradient>
+    </SafeAreaView>
   );
 }
