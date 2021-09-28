@@ -3,18 +3,26 @@ import {View, KeyboardAvoidingView, Animated, Keyboard} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Text, Button, TextInput, SafeAreaView, Image} from '@components';
 import {useTheme, Images} from '@configs';
+import messaging from '@react-native-firebase/messaging';
 import styles from './styles';
+
 export default function SignIn({navigation}) {
   const {colors} = useTheme();
-  const marginTop = useRef(new Animated.Value(250)).current;
+  const marginTop = useRef(new Animated.Value(260)).current;
   const [phone, setPhone] = useState();
 
   const onChangeText = text => {
     setPhone(text);
   };
 
-  const onNext = () => {
+  const onNext = async () => {
     Keyboard.dismiss();
+    const authStatus = await messaging().requestPermission();
+    console.log('Authorization status:', authStatus);
+    const token = await messaging().getToken();
+    const getAPNSToken = await messaging().getAPNSToken();
+    console.log('token', token);
+    console.log('getAPNSToken', getAPNSToken);
   };
 
   return (
@@ -27,7 +35,7 @@ export default function SignIn({navigation}) {
         <View style={styles.imageContent}>
           <Image source={Images.signin} style={styles.flex} />
         </View>
-        <KeyboardAvoidingView style={styles.flex} behavior="padding">
+        <KeyboardAvoidingView style={styles.flex} behavior="height">
           <Animated.View
             style={[
               styles.content,
@@ -55,7 +63,7 @@ export default function SignIn({navigation}) {
                 }}
                 onBlur={() => {
                   Animated.timing(marginTop, {
-                    toValue: 300,
+                    toValue: 260,
                     duration: 250,
                     useNativeDriver: false,
                   }).start();

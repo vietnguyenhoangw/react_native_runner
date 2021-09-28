@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {StatusBar, Platform} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
+
 import {
   createStackNavigator,
   CardStyleInterpolators,

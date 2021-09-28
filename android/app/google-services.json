@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "389433253625",
+    "project_id": "i-m-wallet",
+    "storage_bucket": "i-m-wallet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389433253625:android:b399c79b293314d3684c28",
+        "android_client_info": {
+          "package_name": "com.runner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389433253625-8qnr1i46hsojq1a53bjqogij56dh969a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYpBg6LxQtPq1eNupPyKHa_BPKFQljjEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389433253625-8qnr1i46hsojq1a53bjqogij56dh969a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "389433253625-p8lhga574sgs2gdd8hnekpj8nmlq553g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.huynh.ewallet"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
