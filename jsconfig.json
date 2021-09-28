@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es6",
+      "jsx": "react-native",
+      "baseUrl": "./app",
+      "paths": {
+            "@api": ["api"],
+            "@assets": ["assets"],
+            "@components": ["components"],
+            "@configs": ["configs"],
+            "@models": ["models"],
+            "@platform": ["platform"],
+            "@redux": ["redux"],
+            "@services": ["services"],
+            "@utils": ["utils"],
+      }
+    },
+    "include": ["app"],
+    "exclude": ["node_modules"]
+  }

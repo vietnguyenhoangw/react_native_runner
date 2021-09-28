@@ -4,14 +4,13 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['.'],
+        root: ['./src'],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
         alias: {
           '@api': './app/api',
           '@assets': './app/assets',
           '@components': './app/components',
           '@configs': './app/configs',
-          '@localization': './app/localization',
-          '@mini': './app/mini',
           '@models': './app/models',
           '@platform': './app/platform',
           '@redux': './app/redux',
