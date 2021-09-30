@@ -18,7 +18,7 @@ const persistConfig = {
 const sagaMiddleware = createSagaMiddleware();
 
 let middleware = [sagaMiddleware];
-if (process.env.NODE_ENV === `development`) {
+if (process.env.NODE_ENV === 'development') {
   middleware.push(logger);
 }
 

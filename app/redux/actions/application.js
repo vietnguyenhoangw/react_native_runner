@@ -27,3 +27,16 @@ export const changeLanguge = language => {
     language,
   };
 };
+
+export const saveOnBoard = name => {
+  return {
+    type: actionTypes.SAVE_ONBOARD,
+    name,
+  };
+};
+
+export const clearStorage = () => {
+  return {
+    type: actionTypes.CLEAR_REDUCER,
+  };
+};

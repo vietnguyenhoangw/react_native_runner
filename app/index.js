@@ -3,7 +3,7 @@ import {LogBox} from 'react-native';
 import {store, persistor} from '@redux/store';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
-import Navigation from '@platform/navigation';
+import Navigation from '@navigation';
 
 LogBox.ignoreLogs([
   'Non-serializable values were found in the navigation state',

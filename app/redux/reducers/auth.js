@@ -1,27 +1,15 @@
-import * as actionTypes from '@redux/actions/actionTypes';
+import * as actionTypes from '../actions/actionTypes';
+
 const initialState = {
   user: null,
 };
 
-export default (state = initialState, action = {}) => {
-  switch (action.type) {
-    case actionTypes.LOGIN_SUCCESS:
+export default (state = initialState, action) => {
+  switch (action?.type) {
+    case actionTypes.LOGIN:
       return {
         ...state,
-        user: action.user,
-      };
-    case actionTypes.UPDATE_USER:
-      return {
-        ...state,
-        user: {
-          ...action.user,
-          token: state.user.token,
-        },
-      };
-    case actionTypes.LOGOUT:
-      return {
-        ...state,
-        user: null,
+        user: action?.user,
       };
     default:
       return state;
