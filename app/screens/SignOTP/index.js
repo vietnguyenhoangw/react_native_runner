@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {Text, Button, SafeAreaView, OTPInput} from '@components';
 import {Styles, useTheme} from '@configs';
@@ -38,9 +38,9 @@ export default function Empty({navigation, route}) {
    * on change otp
    * @param {*} value
    */
-  const handleChange = value => {
+  const handleChange = useCallback(value => {
     setOTP(value);
-  };
+  }, []);
 
   const onChangePhone = () => {
     navigation.pop();
