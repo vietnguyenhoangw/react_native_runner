@@ -3,11 +3,13 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {SignIn, SignOTP} from '@screens';
 import {Text} from '@components';
 import {useTheme} from '@configs';
+import {useTranslation} from 'react-i18next';
 
 const AuthStack = createStackNavigator();
 
 export default function Auth() {
   const {colors} = useTheme();
+  const {t} = useTranslation();
   return (
     <AuthStack.Navigator
       initialRouteName="SignIn"
@@ -15,9 +17,13 @@ export default function Auth() {
         headerStyle: {
           backgroundColor: colors.primary,
         },
-        headerTitle: props => (
-          <Text {...props} typography="h4" weight="bold" color="white" />
-        ),
+        headerTitle: props => {
+          return (
+            <Text {...props} typography="h4" weight="bold" color="white">
+              {t(props.children)}
+            </Text>
+          );
+        },
         headerTitleAlign: 'center',
       }}>
       <AuthStack.Screen

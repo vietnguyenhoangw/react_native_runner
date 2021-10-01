@@ -1,17 +1,10 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {
-  View,
-  KeyboardAvoidingView,
-  Animated,
-  Keyboard,
-  Platform,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import {View, Animated, Keyboard, TouchableWithoutFeedback} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Text, Button, TextInput, SafeAreaView, Image} from '@components';
 import {Styles, useTheme, Images} from '@configs';
 import Navigator from '@navigator';
-import {UtilsValidate} from '@utils';
+import {validPhone, delay} from '@utils';
 import {onBoardSelect} from '@selectors';
 import styles from './styles';
 import {useSelector} from 'react-redux';
@@ -50,7 +43,17 @@ export default function SignIn({navigation}) {
   const onChangeText = value => {
     const trimPhone = value?.trim?.();
     setPhone(trimPhone);
-    setError(UtilsValidate.validPhone(trimPhone));
+    setError(validPhone(trimPhone));
+  };
+
+  /**
+   * on clear phone
+   *
+   */
+  const onClearPhone = async () => {
+    setPhone();
+    await delay(500);
+    phoneRef?.current?.focus?.();
   };
 
   /**
@@ -61,7 +64,7 @@ export default function SignIn({navigation}) {
     Keyboard.dismiss();
     Navigator.showLoading(true);
     setTimeout(() => {
-      navigation.push('SignOTP', {phone});
+      navigation.push('SignOTP', {phone, onClearPhone});
       Navigator.showLoading(false);
     }, 1000);
   };

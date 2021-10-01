@@ -1,7 +1,11 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-  otpContain: {
-    width: 200,
+  otpContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 24,
+    paddingBottom: 16,
   },
 });

@@ -6,7 +6,7 @@ export const Setting = {
   appVersion: '1.0.0',
   domain: 'listar.passionui.com',
   protocol: 'http',
-  defaultLanguage: 'en',
+  defaultLanguage: 'vi',
   defaultFont: 'SFProText',
   defaultTheme: {
     theme: 'deeporange',

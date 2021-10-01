@@ -11,7 +11,7 @@ import i18n from 'i18next';
 import {useSelector} from 'react-redux';
 import {languageSelect} from '@redux/selectors';
 import Navigator from '@navigator';
-import {UtilsNavigation} from '@utils';
+import {forBottomSheet} from '@utils';
 import {Splash, Loading, Modal, BottomSheet, OnBoard} from '@screens';
 import Main from './main';
 import Auth from './auth';
@@ -69,7 +69,7 @@ export default function App() {
           options={{
             presentation: 'transparentModal',
             ...TransitionPresets.BottomSheetAndroid,
-            cardStyleInterpolator: UtilsNavigation.forBottomSheet,
+            cardStyleInterpolator: forBottomSheet,
             cardStyle: {backgroundColor: Colors.modal},
             gestureEnabled: false,
           }}
