@@ -77,67 +77,61 @@ export default function SignIn({navigation}) {
   };
 
   return (
-    <SafeAreaView
-      style={[Styles.flex, {backgroundColor: colors.card}]}
-      edges={['bottom']}>
+    <SafeAreaView style={{backgroundColor: colors.card}}>
       <LinearGradient
         colors={[colors.primary, colors.card]}
         style={Styles.flex}>
         <View style={styles.imageContent}>
           <Image source={Images.signin} style={Styles.flex} />
         </View>
-        <KeyboardAvoidingView
-          style={Styles.flex}
-          behavior={Platform.select({ios: 'padding', android: null})}>
-          <Animated.View
-            style={[
-              styles.content,
-              {backgroundColor: colors.card, marginTop: marginTop},
-            ]}>
-            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-              <View style={[Styles.flex, Styles.padding24]}>
-                <Text typography="h3" weight="bold">
-                  Xin chào!
-                </Text>
-                <Text typography="title" style={styles.subTitle}>
-                  Nhập số điện thoại để đăng ký hoặc đăng nhập
-                </Text>
-                <TextInput
-                  ref={phoneRef}
-                  value={phone}
-                  label="Số điện thoại"
-                  placeholder="VD: 0990909090"
-                  onChangeText={onChangeText}
-                  keyboardType="number-pad"
-                  maxLength={PHONE_LENGTH}
-                  autoCapitalize="none"
-                  textContentType="telephoneNumber"
-                  error={error}
-                  onFocus={() => {
-                    Animated.timing(marginTop, {
-                      toValue: MIN_HEIGHT_FORM,
-                      duration: 250,
-                      useNativeDriver: false,
-                    }).start();
-                  }}
-                  onBlur={() => {
-                    Animated.timing(marginTop, {
-                      toValue: MAX_HEIGHT_FORM,
-                      duration: 250,
-                      useNativeDriver: false,
-                    }).start();
-                  }}
-                  style={styles.textInput}
-                />
-              </View>
-            </TouchableWithoutFeedback>
-            <View style={styles.buttonContent}>
-              <Button onPress={onNext} disabled={disableNext()}>
-                Tiếp tục
-              </Button>
+        <Animated.View
+          style={[
+            styles.content,
+            {backgroundColor: colors.card, marginTop: marginTop},
+          ]}>
+          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <View style={[Styles.flex, Styles.padding24]}>
+              <Text typography="h3" weight="bold">
+                Xin chào!
+              </Text>
+              <Text typography="title" style={styles.subTitle}>
+                Nhập số điện thoại để đăng ký hoặc đăng nhập
+              </Text>
+              <TextInput
+                ref={phoneRef}
+                value={phone}
+                label="Số điện thoại"
+                placeholder="VD: 0990909090"
+                onChangeText={onChangeText}
+                keyboardType="number-pad"
+                maxLength={PHONE_LENGTH}
+                autoCapitalize="none"
+                textContentType="telephoneNumber"
+                error={error}
+                onFocus={() => {
+                  Animated.timing(marginTop, {
+                    toValue: MIN_HEIGHT_FORM,
+                    duration: 250,
+                    useNativeDriver: false,
+                  }).start();
+                }}
+                onBlur={() => {
+                  Animated.timing(marginTop, {
+                    toValue: MAX_HEIGHT_FORM,
+                    duration: 250,
+                    useNativeDriver: false,
+                  }).start();
+                }}
+                style={styles.textInput}
+              />
             </View>
-          </Animated.View>
-        </KeyboardAvoidingView>
+          </TouchableWithoutFeedback>
+          <View style={styles.buttonContent}>
+            <Button onPress={onNext} disabled={disableNext()}>
+              Tiếp tục
+            </Button>
+          </View>
+        </Animated.View>
       </LinearGradient>
     </SafeAreaView>
   );

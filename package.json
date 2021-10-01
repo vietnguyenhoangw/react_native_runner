@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.15.7",
+    "@react-native-clipboard/clipboard": "^1.8.4",
     "@react-native-community/masked-view": "0.1.11",
     "@react-native-firebase/app": "^12.8.0",
     "@react-native-firebase/messaging": "^12.8.0",
@@ -28,6 +29,7 @@
     "react-native-fast-image": "8.5.8",
     "react-native-gesture-handler": "1.10.3",
     "react-native-linear-gradient": "^2.5.6",
+    "react-native-otp-inputs": "^7.0.3",
     "react-native-progress": "^5.0.0",
     "react-native-reanimated": "2.2.2",
     "react-native-restart": "0.0.22",

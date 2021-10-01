@@ -1,5 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import {Styles, Images, useTheme, Colors} from '@configs';
 import {Image, Text, Icon} from '@components';
@@ -50,7 +51,8 @@ export default function OnBoard({navigation, route}) {
    */
   const renderNextButton = () => {
     return (
-      <View style={[styles.buttonCircle, {backgroundColor: colors.border}]}>
+      <View
+        style={[styles.buttonCircle, {backgroundColor: colors.textSecondary}]}>
         <Icon name="arrow-right" color={Colors.white} size={24} />
       </View>
     );
@@ -62,8 +64,7 @@ export default function OnBoard({navigation, route}) {
    */
   const renderDoneButton = () => {
     return (
-      <View
-        style={[styles.buttonCircle, {backgroundColor: colors.primaryLight}]}>
+      <View style={[styles.buttonCircle, {backgroundColor: colors.primary}]}>
         <Icon name="check" color={Colors.white} size={24} />
       </View>
     );
@@ -90,17 +91,19 @@ export default function OnBoard({navigation, route}) {
   };
 
   return (
-    <View style={[Styles.flex, {backgroundColor: colors.card}]}>
+    <LinearGradient
+      colors={[colors.primaryLight, colors.background, colors.background]}
+      style={Styles.flex}>
       <AppIntroSlider
         data={slides}
-        activeDotStyle={{backgroundColor: colors.primaryLight}}
-        dotStyle={{backgroundColor: colors.border}}
+        activeDotStyle={{backgroundColor: colors.primary}}
+        dotStyle={{backgroundColor: colors.textSecondary}}
         renderItem={renderItem}
         renderDoneButton={renderDoneButton}
         renderNextButton={renderNextButton}
         onDone={() => onDone(true)}
         onSkip={() => onDone(false)}
       />
-    </View>
+    </LinearGradient>
   );
 }

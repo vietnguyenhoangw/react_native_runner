@@ -12,26 +12,25 @@ export default function Auth() {
     <AuthStack.Navigator
       initialRouteName="SignIn"
       screenOptions={{
-        headerTitle: props => <Text {...props} typography="h4" weight="bold" />,
+        headerStyle: {
+          backgroundColor: colors.primary,
+        },
+        headerTitle: props => (
+          <Text {...props} typography="h4" weight="bold" color="white" />
+        ),
+        headerTitleAlign: 'center',
       }}>
       <AuthStack.Screen
         name="SignIn"
+        headerTitle
         component={SignIn}
-        options={{headerShown: false}}
+        options={{headerShown: false, headerTitleAlign: 'center'}}
       />
       <AuthStack.Screen
         name="SignOTP"
         component={SignOTP}
         options={{
           headerLeft: null,
-          headerStyle: {
-            backgroundColor: colors.primary,
-          },
-          headerTitle: () => (
-            <Text typography="h4" weight="bold" color="white">
-              Nhập OTP
-            </Text>
-          ),
         }}
       />
     </AuthStack.Navigator>
