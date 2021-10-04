@@ -16,10 +16,6 @@ function showModal(params) {
   push('Modal', params);
 }
 
-function showBottomSheet(params) {
-  push('BottomSheet', params);
-}
-
 function push(name, params) {
   if (navigationRef.isReady()) {
     navigationRef.dispatch(StackActions.push(name, params));
@@ -38,6 +34,5 @@ export default {
   loadingRef,
   showLoading,
   showModal,
-  showBottomSheet,
   onBoard,
 };

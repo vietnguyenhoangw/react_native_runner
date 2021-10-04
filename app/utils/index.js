@@ -1,5 +1,6 @@
 import {Animated} from 'react-native';
 import {useEffect, useRef} from 'react';
+const {multiply} = Animated;
 
 export function useInterval(callback, ms) {
   const savedCallback = useRef();
@@ -19,16 +20,11 @@ export function useInterval(callback, ms) {
   }, [ms]);
 }
 
-export function forBottomSheet({
-  current,
-  inverted,
-  layouts: {screen},
-  closing,
-}) {
-  const translateY = Animated.multiply(
+export function forVerticalIOS({current, inverted, layouts: {screen}}) {
+  const translateY = multiply(
     current.progress.interpolate({
       inputRange: [0, 1],
-      outputRange: [screen.height * 0.8, 0],
+      outputRange: [screen.height, 0],
       extrapolate: 'clamp',
     }),
     inverted,
@@ -36,17 +32,11 @@ export function forBottomSheet({
 
   return {
     cardStyle: {
-      opacity: current.progress.interpolate({
-        inputRange: [0, 0.5, 0.98, 1],
-        outputRange: [0, 0.01, 0.02, 1],
-      }),
       transform: [{translateY}],
-    },
-    overlayStyle: {
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
       opacity: current.progress.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, 0.5],
-        extrapolate: 'clamp',
+        inputRange: [0, 0.5, 0.99, 1],
+        outputRange: [0, 0.01, 0.01, 1],
       }),
     },
   };

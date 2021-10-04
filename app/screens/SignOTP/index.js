@@ -1,27 +1,26 @@
 import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {TouchableOpacity, View} from 'react-native';
-import {Text, Button, SafeAreaView, OTPInput} from '@components';
+import {
+  Text,
+  Button,
+  SafeAreaView,
+  OTPInput,
+  BottomSheetModal,
+} from '@components';
 import {Styles, useTheme} from '@configs';
 import Navigator from '@navigator';
-import {delay, useInterval} from '@utils';
+import {delay} from '@utils';
 import styles from './styles';
 
-export default function Empty({navigation, route}) {
+export default function SignOTP({navigation, route}) {
   const {colors} = useTheme();
   const otpRef = useRef();
   const phone = route.params?.phone ?? '0999999999';
+  const bottomSheetRef = useRef(null);
 
   const [otpError, setOTPError] = useState();
   const [otp, setOTP] = useState('');
   const [time, setTime] = useState(60);
-
-  useInterval(() => {
-    if (time > 0) {
-      setTime(time - 1);
-    } else {
-      setTime(0);
-    }
-  }, 1000);
 
   useEffect(() => {
     setTimeout(() => {
@@ -29,6 +28,18 @@ export default function Empty({navigation, route}) {
     }, 500);
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (time > 0) {
+        setTime(time - 1);
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  });
+
+  /**
+   * focus OTP
+   */
   const focusOTP = () => {
     setOTPError(null);
     otpRef.current.focus();
@@ -42,6 +53,9 @@ export default function Empty({navigation, route}) {
     setOTP(value);
   }, []);
 
+  /**
+   * on change phone
+   */
   const onChangePhone = () => {
     navigation.pop();
     route.params?.onClearPhone();
@@ -50,7 +64,9 @@ export default function Empty({navigation, route}) {
   /**
    * resend otp
    */
-  const onResendOTP = () => {};
+  const onResendOTP = () => {
+    setTime(60);
+  };
 
   /**
    * on next
@@ -62,6 +78,7 @@ export default function Empty({navigation, route}) {
     if (otp !== '0000') {
       setOTPError('Mã xác nhận không chính xác');
     } else {
+      bottomSheetRef.current?.present();
     }
   };
 
@@ -119,6 +136,9 @@ export default function Empty({navigation, route}) {
           Tiếp tục
         </Button>
       </View>
+      <BottomSheetModal ref={bottomSheetRef}>
+        <View style={{height: 500, backgroundColor: 'red'}}></View>
+      </BottomSheetModal>
     </SafeAreaView>
   );
 }

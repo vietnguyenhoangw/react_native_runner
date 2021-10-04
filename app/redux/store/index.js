@@ -12,7 +12,7 @@ import rootSagas from '@redux/sagas';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  blacklist: ['application'],
+  blacklist: [],
   timeout: 100000,
 };
 const sagaMiddleware = createSagaMiddleware();
