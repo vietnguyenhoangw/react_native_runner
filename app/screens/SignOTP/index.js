@@ -1,12 +1,6 @@
 import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {TouchableOpacity, View} from 'react-native';
-import {
-  Text,
-  Button,
-  SafeAreaView,
-  OTPInput,
-  BottomSheetModal,
-} from '@components';
+import {Text, Button, Container, OTPInput} from '@components';
 import {Styles, useTheme} from '@configs';
 import Navigator from '@navigator';
 import {delay} from '@utils';
@@ -16,7 +10,6 @@ export default function SignOTP({navigation, route}) {
   const {colors} = useTheme();
   const otpRef = useRef();
   const phone = route.params?.phone ?? '0999999999';
-  const bottomSheetRef = useRef(null);
 
   const [otpError, setOTPError] = useState();
   const [otp, setOTP] = useState('');
@@ -78,7 +71,6 @@ export default function SignOTP({navigation, route}) {
     if (otp !== '0000') {
       setOTPError('Mã xác nhận không chính xác');
     } else {
-      bottomSheetRef.current?.present();
     }
   };
 
@@ -104,7 +96,7 @@ export default function SignOTP({navigation, route}) {
   };
 
   return (
-    <SafeAreaView style={{backgroundColor: colors.card}}>
+    <Container style={{backgroundColor: colors.card}}>
       <View style={[Styles.flex, Styles.padding24]}>
         <Text typography="h4" weight="bold">
           Nhập mã xác thực OTP
@@ -136,9 +128,6 @@ export default function SignOTP({navigation, route}) {
           Tiếp tục
         </Button>
       </View>
-      <BottomSheetModal ref={bottomSheetRef}>
-        <View style={{height: 500, backgroundColor: 'red'}}></View>
-      </BottomSheetModal>
-    </SafeAreaView>
+    </Container>
   );
 }

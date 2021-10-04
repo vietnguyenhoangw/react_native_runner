@@ -1,35 +1,42 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import {Styles, Images, useTheme, Colors} from '@configs';
-import {Image, Text, Icon} from '@components';
+import {
+  Image,
+  Text,
+  Icon,
+  IconButton,
+  SafeAreaView,
+  BottomSheetModal,
+  BottomSheetPicker,
+} from '@components';
 import {applicationActions} from '@actions';
 import {useDispatch} from 'react-redux';
 import styles from './styles';
 
 const DEFAULT = [
   {
-    title: 'Đa dạng nguồn tiền/tài khoản',
-    subtitle:
-      'Túi Thần Tài, Ví Trả Sau… có thể dùng thanh toán dịch vụ liên kết (Apple, Lazada, Tiki…).',
+    title: 'Thanh toán tiện lợi\nNhanh Chóng',
+    subtitle: 'Đảm bảo thanh toán tự động thành công.',
     image: Images.onboard1,
   },
   {
-    title: 'Thanh toán thuận lợi',
-    subtitle: 'Đảm bảo thanh toán tự động thành công.',
+    title: 'Thanh toán đúng hạn',
+    subtitle: 'Tự động nhắc hoá đơn khi đến hạn thanh toán',
     image: Images.onboard2,
   },
   {
-    title: 'Cá nhân hoá',
-    subtitle:
-      'Tùy ý sắp xếp thứ tự và bật/tắt nguồn tiền/tài khoản để sử dụng thanh toán.',
+    title: 'Ưu đãi hấp dẫn',
+    subtitle: 'Vô vàn ưu đãi áp dụng ngay trên hoá đơn & cửa hàng.',
     image: Images.onboard3,
   },
 ];
 
 export default function OnBoard({navigation, route}) {
   const {colors} = useTheme();
+  const bottomSheetRef = useRef(null);
   const slides = route.params?.slides ?? DEFAULT;
   const dispatch = useDispatch();
 
@@ -80,12 +87,34 @@ export default function OnBoard({navigation, route}) {
     return (
       <View style={[Styles.flexCenter, Styles.padding16]}>
         <Image source={item.image} style={styles.image} resizeMode="contain" />
-        <Text typography="h3" weight="bold">
+        <Text typography="h3" weight="bold" style={styles.textTitle}>
           {item.title}
         </Text>
         <Text typography="title" style={styles.textSubtitle}>
           {item.subtitle}
         </Text>
+      </View>
+    );
+  };
+
+  /**
+   * render change language
+   * @return {*}
+   */
+  const renderLanguage = () => {
+    return (
+      <View style={styles.localization}>
+        <SafeAreaView>
+          <IconButton
+            size="small"
+            name="web"
+            style={{backgroundColor: colors.primaryLight}}
+            onPress={() => bottomSheetRef.current?.present()}
+          />
+        </SafeAreaView>
+        <BottomSheetModal ref={bottomSheetRef}>
+          <BottomSheetPicker />
+        </BottomSheetModal>
       </View>
     );
   };
@@ -104,6 +133,7 @@ export default function OnBoard({navigation, route}) {
         onDone={() => onDone(true)}
         onSkip={() => onDone(false)}
       />
+      {renderLanguage()}
     </LinearGradient>
   );
 }

@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {View, Animated, Keyboard, TouchableWithoutFeedback} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {Text, Button, TextInput, SafeAreaView, Image} from '@components';
+import {Text, Button, TextInput, Container, Image} from '@components';
 import {Styles, useTheme, Images} from '@configs';
 import Navigator from '@navigator';
 import {validPhone, delay} from '@utils';
@@ -80,7 +80,7 @@ export default function SignIn({navigation}) {
   };
 
   return (
-    <SafeAreaView style={{backgroundColor: colors.card}}>
+    <Container style={{backgroundColor: colors.card}}>
       <LinearGradient
         colors={[colors.primary, colors.card]}
         style={Styles.flex}>
@@ -136,6 +136,6 @@ export default function SignIn({navigation}) {
           </View>
         </Animated.View>
       </LinearGradient>
-    </SafeAreaView>
+    </Container>
   );
 }

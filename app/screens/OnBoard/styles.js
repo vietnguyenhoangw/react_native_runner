@@ -2,9 +2,9 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   buttonCircle: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -17,4 +17,8 @@ export default StyleSheet.create({
     textAlign: 'center',
     marginTop: 8,
   },
+  textTitle: {
+    textAlign: 'center',
+  },
+  localization: {position: 'absolute', top: 16, right: 16},
 });
