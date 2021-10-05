@@ -1,5 +1,5 @@
-import React, {useRef} from 'react';
-import {View} from 'react-native';
+import React, {useRef, useEffect} from 'react';
+import {View, StatusBar} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import {Styles, Images, useTheme, Colors} from '@configs';
@@ -39,6 +39,13 @@ export default function OnBoard({navigation, route}) {
   const bottomSheetRef = useRef(null);
   const slides = route.params?.slides ?? DEFAULT;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    StatusBar.setBackgroundColor(colors.primaryLight, true);
+    return () => {
+      StatusBar.setBackgroundColor(colors.primary, true);
+    };
+  }, [colors]);
 
   /**
    * save onboard storage
