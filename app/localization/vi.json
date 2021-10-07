@@ -1,3 +1,12 @@
 {
-  "SignOTP": "Xác thực OTP"
+  "SignOTP": "Xác thực OTP",
+  "cancel": "Huỷ",
+  "save": "Lưu",
+  "choose_language": "Chọn ngôn ngữ",
+  "onboard_title_1": "Thanh toán tiện lợi\nNhanh Chóng",
+  "onboard_message_1": "Đảm bảo thanh toán tự động thành công",
+  "onboard_title_2": "Thanh toán đúng hạn",
+  "onboard_message_2": "Tự động nhắc hoá đơn khi đến hạn thanh toán",
+  "onboard_title_3": "Ưu đãi hấp dẫn",
+  "onboard_message_3": "Vô vàn ưu đãi áp dụng ngay trên hoá đơn & cửa hàng"
 }

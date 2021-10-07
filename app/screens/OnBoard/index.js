@@ -1,35 +1,36 @@
 import React, {useRef, useEffect} from 'react';
-import {View, StatusBar} from 'react-native';
+import {View, StatusBar, Platform} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import {Styles, Images, useTheme, Colors} from '@configs';
+import {useDispatch} from 'react-redux';
+import {useTranslation} from 'react-i18next';
+import {Styles, Images, useTheme, Colors, Setting} from '@configs';
 import {
   Image,
   Text,
   Icon,
   IconButton,
   SafeAreaView,
-  BottomSheetModal,
   BottomSheetPicker,
 } from '@components';
+import {getNational} from '@utils';
 import {applicationActions} from '@actions';
-import {useDispatch} from 'react-redux';
 import styles from './styles';
 
 const DEFAULT = [
   {
-    title: 'Thanh toán tiện lợi\nNhanh Chóng',
-    subtitle: 'Đảm bảo thanh toán tự động thành công.',
+    title: 'onboard_title_1',
+    subtitle: 'onboard_message_1',
     image: Images.onboard1,
   },
   {
-    title: 'Thanh toán đúng hạn',
-    subtitle: 'Tự động nhắc hoá đơn khi đến hạn thanh toán',
+    title: 'onboard_title_2',
+    subtitle: 'onboard_message_2',
     image: Images.onboard2,
   },
   {
-    title: 'Ưu đãi hấp dẫn',
-    subtitle: 'Vô vàn ưu đãi áp dụng ngay trên hoá đơn & cửa hàng.',
+    title: 'onboard_title_3',
+    subtitle: 'onboard_message_3',
     image: Images.onboard3,
   },
 ];
@@ -39,24 +40,35 @@ export default function OnBoard({navigation, route}) {
   const bottomSheetRef = useRef(null);
   const slides = route.params?.slides ?? DEFAULT;
   const dispatch = useDispatch();
+  const {t} = useTranslation();
 
   useEffect(() => {
-    StatusBar.setBackgroundColor(colors.primaryLight, true);
-    return () => {
-      StatusBar.setBackgroundColor(colors.primary, true);
-    };
+    if (Platform.OS === 'android') {
+      StatusBar.setBackgroundColor(colors.primaryLight, true);
+      return () => {
+        StatusBar.setBackgroundColor(colors.primary, true);
+      };
+    }
   }, [colors]);
 
   /**
    * save onboard storage
-   * @param {*} done
+   * @param {*} value
    */
-  const onDone = done => {
+  const onDone = value => {
     navigation.pop?.();
-    route.params?.callback(done);
-    if (done) {
+    route.params?.callback(value);
+    if (value) {
       dispatch(applicationActions.saveOnBoard(route.params?.name));
     }
+  };
+
+  /**
+   * on change language
+   * @param {*} item
+   */
+  const onChangeLanguage = item => {
+    dispatch(applicationActions.changeLanguge(item.value));
   };
 
   /**
@@ -95,10 +107,10 @@ export default function OnBoard({navigation, route}) {
       <View style={[Styles.flexCenter, Styles.padding16]}>
         <Image source={item.image} style={styles.image} resizeMode="contain" />
         <Text typography="h3" weight="bold" style={styles.textTitle}>
-          {item.title}
+          {t(item.title)}
         </Text>
         <Text typography="title" style={styles.textSubtitle}>
-          {item.subtitle}
+          {t(item.subtitle)}
         </Text>
       </View>
     );
@@ -119,9 +131,12 @@ export default function OnBoard({navigation, route}) {
             onPress={() => bottomSheetRef.current?.present()}
           />
         </SafeAreaView>
-        <BottomSheetModal ref={bottomSheetRef}>
-          <BottomSheetPicker />
-        </BottomSheetModal>
+        <BottomSheetPicker
+          ref={bottomSheetRef}
+          title={t('choose_language')}
+          onSelect={onChangeLanguage}
+          data={Setting.languageSupport.map(item => getNational(item))}
+        />
       </View>
     );
   };

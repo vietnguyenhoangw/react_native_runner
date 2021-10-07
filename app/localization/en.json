@@ -1,3 +1,12 @@
 {
-  "SignOTP": "Xác thực OTP"
+  "SignOTP": "Verify OTP",
+  "cancel": "Cancel",
+  "save": "Save",
+  "choose_language": "Choose Language",
+  "onboard_title_1": "Convenient\nFast Payment",
+  "onboard_message_1": "Make sure the automatic payment is successful",
+  "onboard_title_2": "Timely payments",
+  "onboard_message_2": "Automatically remind invoices when payment is due",
+  "onboard_title_3": "Hot deals",
+  "onboard_message_3": "Lots of offers applied right on the bill & store"
 }
