@@ -72,10 +72,10 @@ export default function OnBoard({navigation, route}) {
   };
 
   /**
-   * render next button
+   * build next button
    * @return {*}
    */
-  const renderNextButton = () => {
+  const buildNextButton = () => {
     return (
       <View
         style={[styles.buttonCircle, {backgroundColor: colors.textSecondary}]}>
@@ -85,10 +85,10 @@ export default function OnBoard({navigation, route}) {
   };
 
   /**
-   * render done button
+   * build done button
    * @return {*}
    */
-  const renderDoneButton = () => {
+  const buildDoneButton = () => {
     return (
       <View style={[styles.buttonCircle, {backgroundColor: colors.primary}]}>
         <Icon name="check" color={Colors.white} size={24} />
@@ -97,12 +97,12 @@ export default function OnBoard({navigation, route}) {
   };
 
   /**
-   * render item of slides
+   * build item of slides
    *
    * @param {*} {item}
    * @return {*}
    */
-  const renderItem = ({item}) => {
+  const buildItem = ({item}) => {
     return (
       <View style={[Styles.flexCenter, Styles.padding16]}>
         <Image source={item.image} style={styles.image} resizeMode="contain" />
@@ -117,10 +117,10 @@ export default function OnBoard({navigation, route}) {
   };
 
   /**
-   * render change language
+   * build change language
    * @return {*}
    */
-  const renderLanguage = () => {
+  const buildLanguage = () => {
     return (
       <View style={styles.localization}>
         <SafeAreaView>
@@ -149,13 +149,13 @@ export default function OnBoard({navigation, route}) {
         data={slides}
         activeDotStyle={{backgroundColor: colors.primary}}
         dotStyle={{backgroundColor: colors.textSecondary}}
-        renderItem={renderItem}
-        renderDoneButton={renderDoneButton}
-        renderNextButton={renderNextButton}
+        renderItem={buildItem}
+        renderDoneButton={buildDoneButton}
+        renderNextButton={buildNextButton}
         onDone={() => onDone(true)}
         onSkip={() => onDone(false)}
       />
-      {renderLanguage()}
+      {buildLanguage()}
     </LinearGradient>
   );
 }

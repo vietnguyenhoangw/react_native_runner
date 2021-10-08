@@ -5,7 +5,8 @@ export const Images = {
   onboard2: require('@assets/images/onboard2.png'),
   onboard3: require('@assets/images/onboard3.png'),
   signin: require('@assets/images/signin.png'),
-
+  empty: require('@assets/images/empty.png'),
+  banner: require('@assets/images/banner.jpg'),
   en: require('@assets/images/en.png'),
   vi: require('@assets/images/vi.png'),
   ar: require('@assets/images/ar.png'),

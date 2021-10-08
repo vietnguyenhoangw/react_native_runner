@@ -12,13 +12,19 @@ function showLoading(args) {
   loadingRef?.current?.showLoading(args);
 }
 
-function showModal(params) {
-  push('Modal', params);
+function showPopup({component, cancelable = true}) {
+  push('Modal', {component, cancelable});
 }
 
 function push(name, params) {
   if (navigationRef.isReady()) {
     navigationRef.dispatch(StackActions.push(name, params));
+  }
+}
+
+function pop(count = 1) {
+  if (navigationRef.isReady()) {
+    navigationRef.dispatch(StackActions.pop(count));
   }
 }
 
@@ -33,6 +39,7 @@ export default {
   navigationRef,
   loadingRef,
   showLoading,
-  showModal,
+  showPopup,
+  pop,
   onBoard,
 };

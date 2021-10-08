@@ -1,13 +1,20 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {View, Animated, Keyboard, TouchableWithoutFeedback} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {Text, Button, TextInput, Container, Image} from '@components';
+import {useSelector} from 'react-redux';
+import {
+  Text,
+  Button,
+  TextInput,
+  Container,
+  Image,
+  PopupAlert,
+} from '@components';
 import {Styles, useTheme, Images} from '@configs';
 import Navigator from '@navigator';
 import {validPhone, delay} from '@utils';
 import {onBoardSelect} from '@selectors';
 import styles from './styles';
-import {useSelector} from 'react-redux';
 
 const PHONE_LENGTH = 15;
 const MIN_HEIGHT_FORM = 70;
@@ -37,6 +44,42 @@ export default function SignIn({navigation}) {
   }, [onboard]);
 
   /**
+   * on OTP
+   *
+   */
+  const onOTP = () => {
+    Navigator.showLoading(true);
+    setTimeout(() => {
+      navigation.push('SignOTP', {phone, onClearPhone});
+      Navigator.showLoading(false);
+    }, 1000);
+  };
+
+  /**
+   * on Next
+   *
+   */
+  const onNext = async () => {
+    Keyboard.dismiss();
+    Navigator.showPopup({
+      component: (
+        <PopupAlert
+          title="Xác thực OTP"
+          message={`Chúng tôi sẽ gửi một mã xác thực đến SĐT ${phone} để tiếp tục ?`}
+          primaryButton={{
+            title: 'Đồng ý',
+            onPress: onOTP,
+          }}
+          secondaryButton={{
+            title: 'Đổi SĐT',
+            onPress: onClearPhone,
+          }}
+        />
+      ),
+    });
+  };
+
+  /**
    * on change text
    * @param {*} value
    */
@@ -54,19 +97,6 @@ export default function SignIn({navigation}) {
     setPhone();
     await delay(500);
     phoneRef?.current?.focus?.();
-  };
-
-  /**
-   * on Next
-   *
-   */
-  const onNext = async () => {
-    Keyboard.dismiss();
-    Navigator.showLoading(true);
-    setTimeout(() => {
-      navigation.push('SignOTP', {phone, onClearPhone});
-      Navigator.showLoading(false);
-    }, 1000);
   };
 
   /**

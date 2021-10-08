@@ -75,10 +75,10 @@ export default function SignOTP({navigation, route}) {
   };
 
   /**
-   * render resend otp
+   * build resend otp
    * @return {*}
    */
-  const renderSendOTP = () => {
+  const buildSendOTP = () => {
     if (time > 0) {
       return (
         <Text typography="title" type="secondary">
@@ -115,7 +115,7 @@ export default function SignOTP({navigation, route}) {
           />
         </View>
         <View style={Styles.rowSpace}>
-          {renderSendOTP()}
+          {buildSendOTP()}
           <TouchableOpacity onPress={onChangePhone}>
             <Text typography="title" color="secondary">
               Đổi SĐT
