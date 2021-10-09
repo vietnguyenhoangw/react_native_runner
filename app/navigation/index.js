@@ -21,10 +21,16 @@ export default function App() {
   const language = useSelector(languageSelect);
   const {theme} = useTheme();
 
+  /**
+   * when reducer language change
+   */
   useEffect(() => {
     i18n.changeLanguage(language);
   }, [language]);
 
+  /**
+   * when theme change
+   */
   useEffect(() => {
     if (Platform.OS === 'android') {
       StatusBar.setBackgroundColor(theme.colors.primary, true);

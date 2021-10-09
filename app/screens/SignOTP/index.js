@@ -1,6 +1,13 @@
 import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {TouchableOpacity, View} from 'react-native';
-import {Text, Button, Container, OTPInput} from '@components';
+import {
+  Text,
+  Button,
+  Container,
+  OTPInput,
+  PopupAlert,
+  SizedBox,
+} from '@components';
 import {Styles, useTheme} from '@configs';
 import Navigator from '@navigator';
 import {delay} from '@utils';
@@ -50,8 +57,25 @@ export default function SignOTP({navigation, route}) {
    * on change phone
    */
   const onChangePhone = () => {
-    navigation.pop();
-    route.params?.onClearPhone();
+    Navigator.showPopup({
+      component: (
+        <PopupAlert
+          title="Thay đổi SĐT"
+          message="Bạn muốn đổi sang số điện thoại khác?"
+          primaryButton={{
+            title: 'Đồng ý',
+            onPress: () => {
+              navigation.pop();
+              route.params?.onClearPhone();
+            },
+          }}
+          secondaryButton={{
+            title: 'Không',
+            onPress: () => {},
+          }}
+        />
+      ),
+    });
   };
 
   /**
@@ -71,6 +95,7 @@ export default function SignOTP({navigation, route}) {
     if (otp !== '0000') {
       setOTPError('Mã xác nhận không chính xác');
     } else {
+      navigation.push('SignUp');
     }
   };
 
@@ -101,7 +126,8 @@ export default function SignOTP({navigation, route}) {
         <Text typography="h4" weight="bold">
           Nhập mã xác thực OTP
         </Text>
-        <Text typography="title" type="secondary" style={styles.marginTop2}>
+        <SizedBox height={2} />
+        <Text typography="title" type="secondary">
           Mã xác thực 4 số được gửi đến {phone}
         </Text>
         <View style={styles.otpContainer}>

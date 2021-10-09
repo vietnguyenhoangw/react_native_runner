@@ -72,4 +72,9 @@ export default StyleSheet.create({
   paddingVertical24: {
     paddingVertical: 24,
   },
+  //button
+  buttonContent: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+  },
 });

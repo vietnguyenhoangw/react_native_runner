@@ -6,16 +6,6 @@ export default StyleSheet.create({
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
   },
-  subTitle: {
-    marginTop: 4,
-  },
-  textInput: {
-    marginTop: 24,
-  },
-  buttonContent: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-  },
   imageContent: {
     position: 'absolute',
     width: '100%',

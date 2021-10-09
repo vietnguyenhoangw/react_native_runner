@@ -5,5 +5,17 @@ import Modal from './Modal';
 import OnBoard from './OnBoard';
 import SignIn from './SignIn';
 import SignOTP from './SignOTP';
+import SignUp from './SignUp';
+import SignUpInfo from './SignUpInfo';
 
-export {Home, Splash, SignIn, SignOTP, Loading, Modal, OnBoard};
+export {
+  Home,
+  Splash,
+  SignIn,
+  SignOTP,
+  SignUp,
+  SignUpInfo,
+  Loading,
+  Modal,
+  OnBoard,
+};

@@ -9,6 +9,7 @@ import {
   Container,
   Image,
   PopupAlert,
+  SizedBox,
 } from '@components';
 import {Styles, useTheme, Images} from '@configs';
 import Navigator from '@navigator';
@@ -30,9 +31,7 @@ export default function SignIn({navigation}) {
   const [error, setError] = useState();
 
   useEffect(() => {
-    if (onboard?.signin) {
-      phoneRef?.current?.focus?.();
-    } else {
+    if (!onboard?.signin) {
       Navigator.onBoard({
         name: 'signin',
         slides: null,
@@ -127,9 +126,11 @@ export default function SignIn({navigation}) {
               <Text typography="h3" weight="bold">
                 Xin chào!
               </Text>
-              <Text typography="title" style={styles.subTitle}>
+              <SizedBox height={4} />
+              <Text typography="title">
                 Nhập số điện thoại để đăng ký hoặc đăng nhập
               </Text>
+              <SizedBox height={24} />
               <TextInput
                 ref={phoneRef}
                 value={phone}
@@ -138,7 +139,6 @@ export default function SignIn({navigation}) {
                 onChangeText={onChangeText}
                 keyboardType="number-pad"
                 maxLength={PHONE_LENGTH}
-                autoCapitalize="none"
                 textContentType="telephoneNumber"
                 error={error}
                 onFocus={() => {
@@ -155,11 +155,10 @@ export default function SignIn({navigation}) {
                     useNativeDriver: false,
                   }).start();
                 }}
-                style={styles.textInput}
               />
             </View>
           </TouchableWithoutFeedback>
-          <View style={styles.buttonContent}>
+          <View style={Styles.buttonContent}>
             <Button onPress={onNext} disabled={disableNext()}>
               Tiếp tục
             </Button>

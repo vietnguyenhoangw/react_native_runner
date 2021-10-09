@@ -1,5 +1,5 @@
 import {Animated} from 'react-native';
-import {useEffect, useRef} from 'react';
+
 const {multiply} = Animated;
 
 export function forVerticalIOS({current, inverted, layouts: {screen}}) {
@@ -34,6 +34,42 @@ export function validPhone(value) {
   const isnum = /^\d+$/.test(value);
   if (!isnum) {
     return 'Số điện thoạị chưa chính xác';
+  }
+}
+
+export function validPassword(value, match) {
+  if (!value) {
+    return 'Vui lòng nhập mật khẩu';
+  }
+  if (value.length < 6) {
+    return 'Vui lòng nhập mật khẩu gồm ít nhất 6 số';
+  }
+  if (match && match !== value) {
+    return 'Mật khẩu không trùng khớp';
+  }
+  const isnum = /^\d+$/.test(value);
+  if (!isnum) {
+    return 'Vui lòng nhập mật khẩu số';
+  }
+}
+
+export function validName(value) {
+  if (!value) {
+    return 'Vui lòng nhập tên';
+  }
+  const name = /^[a-zA-Z]+$/.test(value);
+  if (!name) {
+    return 'Định dạng tên chưa chính xác';
+  }
+}
+
+export function validEmail(value) {
+  if (!value) {
+    return 'Vui lòng nhập email';
+  }
+  const email = /\S+@\S+\.\S+/.test(value);
+  if (!email) {
+    return 'Định dạng email chưa chính xác';
   }
 }
 
