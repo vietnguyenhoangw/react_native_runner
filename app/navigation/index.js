@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {StatusBar, Platform} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {
@@ -9,7 +9,7 @@ import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import {useSelector} from 'react-redux';
-import {languageSelect, tokenSelect} from '@selectors';
+import {languageSelect, tokenSelect, userSelect} from '@selectors';
 import Navigator from '@navigator';
 import {Splash, Loading, Modal, OnBoard} from '@screens';
 import {useTheme, Colors, Setting} from '@configs';
@@ -21,6 +21,7 @@ const RootStack = createStackNavigator();
 export default function App() {
   const language = useSelector(languageSelect);
   const token = useSelector(tokenSelect);
+  const user = useRef(useSelector(userSelect));
   const {theme} = useTheme();
 
   /**
@@ -35,14 +36,20 @@ export default function App() {
   }, []);
 
   /**
-   * authenticate check
+   * authenticate flow
    */
   useEffect(() => {
     setTimeout(() => {
+      /* when authenticate success */
       if (token) {
         Navigator.replace('Main');
       } else {
-        Navigator.replace('Auth');
+        /* when phone already login */
+        if (user.current) {
+          Navigator.replace('Auth', {screen: 'SignIn'});
+        } else {
+          Navigator.replace('Auth');
+        }
       }
     }, 500);
   }, [token]);

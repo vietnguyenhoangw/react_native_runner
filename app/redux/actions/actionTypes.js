@@ -1,7 +1,9 @@
 export const CLEAR_REDUCER = 'CLEAR_REDUCER';
+export const ON_PHONE_CHECK = 'ON_PHONE_CHECK';
 export const ON_REGISTER = 'ON_REGISTER';
 export const REGISTER = 'REGISTER';
-export const LOGIN = 'LOGIN';
+export const ON_LOGIN = 'ON_LOGIN';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const CHANGE_THEME = 'CHANGE_THEME';
 export const CHANGE_FONT = 'CHANGE_FONT';

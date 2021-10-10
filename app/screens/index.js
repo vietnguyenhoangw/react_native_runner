@@ -8,6 +8,7 @@ import SignIn from './SignIn';
 import SignOTP from './SignOTP';
 import SignUp from './SignUp';
 import SignUpInfo from './SignUpInfo';
+import ForgotPassword from './ForgotPassword';
 
 export {
   Home,
@@ -20,4 +21,5 @@ export {
   Loading,
   Modal,
   OnBoard,
+  ForgotPassword,
 };

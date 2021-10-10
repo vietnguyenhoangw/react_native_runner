@@ -4,6 +4,7 @@ export default class UserModel {
     this.name = json.name;
     this.gender = json.gender;
     this.email = json.email;
+    this.password = json.password;
   }
 
   toJson() {
@@ -12,6 +13,7 @@ export default class UserModel {
       name: this.name,
       gender: this.gender,
       email: this.email,
+      password: this.password,
     };
   }
 }

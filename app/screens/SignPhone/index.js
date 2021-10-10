@@ -21,37 +21,43 @@ const PHONE_LENGTH = 15;
 const MIN_HEIGHT_FORM = 70;
 const MAX_HEIGHT_FORM = 250;
 
-export default function SignPhone({navigation}) {
+export default function SignPhone({navigation, route}) {
   const {colors} = useTheme();
   const marginTop = useRef(new Animated.Value(MAX_HEIGHT_FORM)).current;
-  const onboard = useRef(useSelector(onBoardSelect)).current;
+  const onboard = useRef(useSelector(onBoardSelect));
+  const focus = useRef(route.params?.focus);
   const phoneRef = useRef();
 
   const [phone, setPhone] = useState();
   const [error, setError] = useState();
 
   useEffect(() => {
-    if (!onboard?.signin) {
+    if (!onboard.current?.SignPhone) {
       Navigator.onBoard({
-        name: 'signin',
+        name: 'SignPhone',
         slides: null,
         callback: status => {
           phoneRef?.current?.focus?.();
         },
       });
+    } else {
+      if (focus.current) {
+        setTimeout(() => {
+          phoneRef?.current?.focus?.();
+        }, 500);
+      }
     }
-  }, [onboard]);
+  }, []);
 
   /**
    * on OTP
    *
    */
-  const onOTP = () => {
+  const onOTP = async () => {
     Navigator.showLoading(true);
-    setTimeout(() => {
-      navigation.push('SignOTP', {phone, onClearPhone});
-      Navigator.showLoading(false);
-    }, 1000);
+    await delay(1000);
+    navigation.push('SignOTP', {phone, onClearPhone});
+    Navigator.showLoading(false);
   };
 
   /**
@@ -64,7 +70,7 @@ export default function SignPhone({navigation}) {
       component: (
         <PopupAlert
           title="Xác thực OTP"
-          message={`Chúng tôi sẽ gửi một mã xác thực đến SĐT ${phone} để tiếp tục ?`}
+          message={`Chúng tôi sẽ gửi một mã xác thực đến SĐT ${phone} để xác thực đăng nhập, Bạn có muốn tiếp tục ?`}
           primaryButton={{
             title: 'Đồng ý',
             onPress: onOTP,

@@ -1,7 +1,14 @@
 import React, {useEffect} from 'react';
 import {BackHandler} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {SignPhone, SignOTP, SignUp, SignUpInfo, SignIn} from '@screens';
+import {
+  SignPhone,
+  SignOTP,
+  SignUp,
+  SignUpInfo,
+  SignIn,
+  ForgotPassword,
+} from '@screens';
 import {Text} from '@components';
 import {useTheme} from '@configs';
 import {useTranslation} from 'react-i18next';
@@ -54,6 +61,7 @@ export default function Auth() {
       <AuthStack.Screen name="SignOTP" component={SignOTP} />
       <AuthStack.Screen name="SignUp" component={SignUp} />
       <AuthStack.Screen name="SignUpInfo" component={SignUpInfo} />
+      <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} />
     </AuthStack.Navigator>
   );
 }

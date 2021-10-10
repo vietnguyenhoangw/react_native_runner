@@ -3,7 +3,6 @@ import {
   StackActions,
 } from '@react-navigation/native';
 import React from 'react';
-import {store} from '@store';
 
 const loadingRef = React.createRef();
 const navigationRef = createNavigationContainerRef();
@@ -52,11 +51,8 @@ function replace(name, params) {
 /**
  * show onboard
  */
-function onBoard({name = 'signin', slides, callback = () => {}}) {
-  const onboard = store.getState().application?.onboard?.[name] || false;
-  if (!onboard) {
-    push('OnBoard', {name, slides, callback});
-  }
+function onBoard({name = '', slides, callback = () => {}}) {
+  push('OnBoard', {name, slides, callback});
 }
 
 export default {

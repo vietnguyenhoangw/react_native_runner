@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {TouchableOpacity, View} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {
   Text,
   Button,
@@ -10,13 +11,14 @@ import {
 } from '@components';
 import {Styles, useTheme} from '@configs';
 import Navigator from '@navigator';
-import {delay} from '@utils';
+import {authActions} from '@actions';
 import styles from './styles';
 
 export default function SignOTP({navigation, route}) {
   const {colors} = useTheme();
   const otpRef = useRef();
   const phone = route.params?.phone ?? '0999999999';
+  const dispatch = useDispatch();
 
   const [otpError, setOTPError] = useState();
   const [otp, setOTP] = useState('');
@@ -90,13 +92,20 @@ export default function SignOTP({navigation, route}) {
    */
   const onNext = async () => {
     Navigator.showLoading(true);
-    await delay(1000);
-    Navigator.showLoading(false);
-    if (otp !== '0000') {
-      setOTPError('Mã xác nhận không chính xác');
-    } else {
-      navigation.replace('SignUp', {phone});
-    }
+    dispatch(
+      authActions.onPhoneCheck({phone, otp}, response => {
+        Navigator.showLoading(false);
+        if (response.success) {
+          if (response.data.user) {
+            navigation.replace('SignIn');
+          } else {
+            navigation.replace('SignUp', {phone});
+          }
+        } else {
+          setOTPError(response.message);
+        }
+      }),
+    );
   };
 
   /**

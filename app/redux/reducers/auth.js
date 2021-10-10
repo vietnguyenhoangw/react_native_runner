@@ -15,6 +15,12 @@ export default (state = initialState, action) => {
         register: state.register.concat(user),
         user,
       };
+
+    case actionTypes.LOGIN_SUCCESS:
+      return {
+        ...state,
+        token: action.token,
+      };
     default:
       return state;
   }

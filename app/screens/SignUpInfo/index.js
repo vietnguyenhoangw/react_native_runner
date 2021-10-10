@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {View, Keyboard, ScrollView} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {Styles, useTheme} from '@configs';
 import {
   Text,
@@ -9,13 +10,15 @@ import {
   SizedBox,
   CheckBox,
 } from '@components';
-import {validName, validEmail, delay} from '@utils';
+import {validName, validEmail} from '@utils';
 import Navigator from '@navigator';
 import {authActions} from '@actions';
 
 export default function SignUpPassword({navigation, route}) {
   const {colors} = useTheme();
   const nameRef = useRef();
+  const dispatch = useDispatch();
+
   const [gender, setGender] = useState();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -51,10 +54,12 @@ export default function SignUpPassword({navigation, route}) {
   const onNext = () => {
     Keyboard.dismiss();
     Navigator.showLoading(true);
-    authActions.onRegister({...route.params, gender, name, email}, result => {
-      Navigator.showLoading(false);
-      console.log('CCC', result);
-    });
+    dispatch(
+      authActions.onRegister({...route.params, gender, name, email}, result => {
+        Navigator.showLoading(false);
+        navigation.replace('SignIn');
+      }),
+    );
   };
 
   /**

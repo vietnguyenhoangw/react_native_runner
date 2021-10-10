@@ -1,16 +1,31 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {View, Keyboard, TouchableOpacity} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {Styles, useTheme} from '@configs';
-import {Text, Button, Container, TextInput, SizedBox, Icon} from '@components';
-import {validPassword} from '@utils';
+import {userSelect} from '@selectors';
+import {
+  Text,
+  Button,
+  Container,
+  TextInput,
+  SizedBox,
+  Icon,
+  PopupAlert,
+  PopupOTP,
+} from '@components';
+import {delay, validPassword} from '@utils';
+import Navigator from '@navigator';
+import {authActions} from '@actions';
 
 export default function SignIn({navigation}) {
   const {colors} = useTheme();
   const passwordRef = useRef();
+  const user = useSelector(userSelect);
+  const dispatch = useDispatch();
 
   const [password, setPassword] = useState('');
-  const [rePassword, setRepassword] = useState('');
-  const [error, setError] = useState({password: null, rePassword: null});
+  const [error, setError] = useState();
+  const [errorResult, setErrorResult] = useState();
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
@@ -25,34 +40,119 @@ export default function SignIn({navigation}) {
    */
   const onChangePassword = value => {
     setPassword(value);
-    setError({...error, password: validPassword(value)});
+    setError(validPassword(value));
   };
 
   /**
-   * on change repassword
-   * @param {*} value
+   * on sign in
    */
-  const onChangeRePassword = value => {
-    setRepassword(value);
-    setError({...error, rePassword: validPassword(value, password)});
-  };
-
-  /**
-   * on next
-   */
-  const onNext = () => {
+  const onSignIn = () => {
     Keyboard.dismiss();
-    navigation.replace('SignUpInfo', {password});
+    Navigator.showLoading(true);
+    dispatch(
+      authActions.onLogin({phone: user.phone, password}, response => {
+        if (!response.success) {
+          setErrorResult(response.message);
+        }
+        Navigator.showLoading(false);
+      }),
+    );
   };
 
   /**
-   * check disable next step
+   * on forgot password
    */
-  const disableNext = () => {
-    if (!password || !rePassword) {
-      return true;
+  const onForgotPassword = () => {
+    Keyboard.dismiss();
+    Navigator.showPopup({
+      component: (
+        <PopupAlert
+          title="Xác thực OTP"
+          message={`Chúng tôi sẽ gửi một mã xác thực đến SĐT ${user.phone} để xác thực khôi phục mật khẩu, Bạn có muốn tiếp tục ?`}
+          primaryButton={{
+            title: 'Đồng ý',
+            onPress: onOTP,
+          }}
+          secondaryButton={{
+            title: 'Đóng',
+          }}
+        />
+      ),
+    });
+  };
+
+  /**
+   * on change phone
+   */
+  const onChangePhone = () => {
+    Keyboard.dismiss();
+    Navigator.showPopup({
+      component: (
+        <PopupAlert
+          title="Thay đổi SĐT"
+          message="Bạn có muốn thay đổi SĐT khác, Bạn có muốn tiếp tục ?"
+          primaryButton={{
+            title: 'Đồng ý',
+            onPress: () => {
+              navigation.replace('SignPhone', {focus: true});
+            },
+          }}
+          secondaryButton={{
+            title: 'Đóng',
+          }}
+        />
+      ),
+    });
+  };
+
+  /**
+   * on OTP
+   *
+   */
+  const onOTP = async () => {
+    Navigator.showLoading(true);
+    await delay(1000);
+    Navigator.showLoading(false);
+    Navigator.showPopup({
+      component: (
+        <PopupOTP
+          title="Xác thực OTP"
+          onOTPCheck={otpCheck}
+          reSendOTP={reSendOTP}
+        />
+      ),
+      cancelable: false,
+    });
+  };
+
+  /**
+   * otp check
+   */
+  const otpCheck = async value => {
+    Navigator.showLoading(true);
+    await delay(1000);
+    Navigator.showLoading(false);
+    if (value !== '0000') {
+      return 'Mã xác thực không chính xác';
+    } else {
+      navigation.replace('ForgotPassword');
     }
-    if (error.password || error.rePassword) {
+  };
+
+  /**
+   * resend otp
+   */
+  const reSendOTP = async () => {
+    Navigator.showLoading(true);
+    await delay(1000);
+    Navigator.showLoading(false);
+  };
+
+  /**
+   * check disable sign in
+   */
+  const disableSignIn = () => {
+    if (!password || error) {
       return true;
     }
     return false;
@@ -62,70 +162,53 @@ export default function SignIn({navigation}) {
     <Container style={{backgroundColor: colors.card}}>
       <View style={[Styles.flex, Styles.padding24]}>
         <Text typography="h4" weight="bold">
-          Tạo mật khẩu dasdasdasdas
+          Xin chào, {user.name}!
         </Text>
         <SizedBox height={2} />
-        <Text typography="title" weight="bold" type="secondary">
-          Gồm 6 số để bảo vệ tài khoản của bạn tốt hơn
+        <Text typography="title" weight="medium" type="secondary">
+          {user.phone}
         </Text>
-        <SizedBox height={32} />
+        <SizedBox height={24} />
         <TextInput
           ref={passwordRef}
           value={password}
-          size="small"
           label="Mật khẩu"
           placeholder="Mật khẩu"
           onChangeText={onChangePassword}
           keyboardType="number-pad"
           secureTextEntry={!showPassword}
           onFocus={() => {
-            setError({...error, password: null});
+            setError(null);
+            setErrorResult(null);
           }}
           trailing={
             <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
               <Icon
                 name={showPassword ? 'eye' : 'eye-off'}
-                size={16}
+                size={24}
                 color={colors.secondary}
               />
             </TouchableOpacity>
           }
-          error={error.password}
-        />
-        <SizedBox height={16} />
-        <TextInput
-          value={rePassword}
-          size="small"
-          label="Xác nhận mật khẩu"
-          placeholder="Mật khẩu"
-          onChangeText={onChangeRePassword}
-          keyboardType="number-pad"
-          secureTextEntry={!showPassword}
-          onFocus={() => {
-            setError({...error, rePassword: null});
-          }}
-          trailing={
-            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-              <Icon
-                name={showPassword ? 'eye' : 'eye-off'}
-                size={16}
-                color={colors.secondary}
-              />
-            </TouchableOpacity>
-          }
-          error={error.rePassword}
+          error={error ?? errorResult}
         />
         <SizedBox height={8} />
-        <Text typography="subtitle" type="secondary">
-          Bằng việc tiếp tục, bạn xác nhận đã đọc và đồng ý với{' '}
-          <Text typography="subtitle" color="secondary">
-            Điều khoản sử dụng
-          </Text>
-        </Text>
+        <View style={Styles.rowSpace}>
+          <TouchableOpacity onPress={onForgotPassword}>
+            <Text typography="title" color="secondary">
+              Quên mật khẩu?
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={onChangePhone}>
+            <Text typography="title" color="secondary">
+              Đổi SĐT
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={Styles.buttonContent}>
-        <Button onPress={onNext} disabled={disableNext()}>
-          Tiếp tục
+        <Button onPress={onSignIn} disabled={disableSignIn()}>
+          Đăng nhập
         </Button>
       </View>
     </Container>
