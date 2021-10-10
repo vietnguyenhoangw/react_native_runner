@@ -9,9 +9,11 @@ import {
   SizedBox,
   CheckBox,
 } from '@components';
-import {validName, validEmail} from '@utils';
+import {validName, validEmail, delay} from '@utils';
+import Navigator from '@navigator';
+import {authActions} from '@actions';
 
-export default function SignUpPassword({navigation}) {
+export default function SignUpPassword({navigation, route}) {
   const {colors} = useTheme();
   const nameRef = useRef();
   const [gender, setGender] = useState();
@@ -48,6 +50,11 @@ export default function SignUpPassword({navigation}) {
    */
   const onNext = () => {
     Keyboard.dismiss();
+    Navigator.showLoading(true);
+    authActions.onRegister({...route.params, gender, name, email}, result => {
+      Navigator.showLoading(false);
+      console.log('CCC', result);
+    });
   };
 
   /**

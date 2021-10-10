@@ -3,7 +3,7 @@ import {
   StackActions,
 } from '@react-navigation/native';
 import React from 'react';
-import {store} from '@redux/store';
+import {store} from '@store';
 
 const loadingRef = React.createRef();
 const navigationRef = createNavigationContainerRef();
@@ -41,6 +41,15 @@ function pop(count = 1) {
 }
 
 /**
+ * root navigator replace
+ */
+function replace(name, params) {
+  if (navigationRef.isReady()) {
+    navigationRef.dispatch(StackActions.replace(name, params));
+  }
+}
+
+/**
  * show onboard
  */
 function onBoard({name = 'signin', slides, callback = () => {}}) {
@@ -56,5 +65,6 @@ export default {
   showLoading,
   showPopup,
   pop,
+  replace,
   onBoard,
 };

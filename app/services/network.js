@@ -1,7 +1,5 @@
 import axios from 'axios';
-import {store} from '@redux/store';
-
-const getUrl = () => store.getState().config?.url;
+import {store} from '@store';
 
 const getToken = () => store.getState().auth?.user?.token;
 
@@ -35,7 +33,7 @@ class Api {
         console.log('Before Request >>>', config);
         // Add more config before request
         if (token) {
-          config.headers['Authorization'] = `Bearer ${token}`;
+          config.headers.Authorization = `Bearer ${token}`;
         }
         config.timeout = 10000;
         return config;
@@ -167,6 +165,4 @@ class Api {
   }
 }
 
-const _API = new Api();
-
-export default _API;
+export default new Api();

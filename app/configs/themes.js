@@ -1,7 +1,7 @@
 import {useSelector} from 'react-redux';
 import {useColorScheme} from 'react-native';
 import {Setting} from './settings';
-import {forceDarkSelect, themeSelect} from '@redux/selectors';
+import {forceDarkSelect, themeSelect} from '@selectors';
 /**
  * export theme and colors for application
  * @returns theme,colors

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {BackHandler} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {SignIn, SignOTP, SignUp, SignUpInfo} from '@screens';
+import {SignPhone, SignOTP, SignUp, SignUpInfo, SignIn} from '@screens';
 import {Text} from '@components';
 import {useTheme} from '@configs';
 import {useTranslation} from 'react-i18next';
@@ -13,7 +13,7 @@ export default function Auth() {
   const {t} = useTranslation();
 
   /**
-   * disable back button on android in stack
+   * disable back button on android in auth stack
    */
   useEffect(() => {
     const backAction = () => {
@@ -28,7 +28,7 @@ export default function Auth() {
 
   return (
     <AuthStack.Navigator
-      initialRouteName="SignIn"
+      initialRouteName="SignPhone"
       screenOptions={{
         gestureEnabled: false,
         headerLeft: null,
@@ -45,11 +45,12 @@ export default function Auth() {
         headerTitleAlign: 'center',
       }}>
       <AuthStack.Screen
-        name="SignIn"
+        name="SignPhone"
         headerTitle
-        component={SignIn}
-        options={{headerShown: false, headerTitleAlign: 'center'}}
+        component={SignPhone}
+        options={{headerShown: false}}
       />
+      <AuthStack.Screen name="SignIn" component={SignIn} />
       <AuthStack.Screen name="SignOTP" component={SignOTP} />
       <AuthStack.Screen name="SignUp" component={SignUp} />
       <AuthStack.Screen name="SignUpInfo" component={SignUpInfo} />

@@ -1,108 +1,58 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {View, Animated, Keyboard, TouchableWithoutFeedback} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import {useSelector} from 'react-redux';
-import {
-  Text,
-  Button,
-  TextInput,
-  Container,
-  Image,
-  PopupAlert,
-  SizedBox,
-} from '@components';
-import {Styles, useTheme, Images} from '@configs';
-import Navigator from '@navigator';
-import {validPhone, delay} from '@utils';
-import {onBoardSelect} from '@selectors';
-import styles from './styles';
-
-const PHONE_LENGTH = 15;
-const MIN_HEIGHT_FORM = 70;
-const MAX_HEIGHT_FORM = 250;
+import React, {useEffect, useRef, useState} from 'react';
+import {View, Keyboard, TouchableOpacity} from 'react-native';
+import {Styles, useTheme} from '@configs';
+import {Text, Button, Container, TextInput, SizedBox, Icon} from '@components';
+import {validPassword} from '@utils';
 
 export default function SignIn({navigation}) {
   const {colors} = useTheme();
-  const marginTop = useRef(new Animated.Value(MAX_HEIGHT_FORM)).current;
-  const onboard = useRef(useSelector(onBoardSelect)).current;
-  const phoneRef = useRef();
+  const passwordRef = useRef();
 
-  const [phone, setPhone] = useState();
-  const [error, setError] = useState();
+  const [password, setPassword] = useState('');
+  const [rePassword, setRepassword] = useState('');
+  const [error, setError] = useState({password: null, rePassword: null});
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-    if (!onboard?.signin) {
-      Navigator.onBoard({
-        name: 'signin',
-        slides: null,
-        callback: status => {
-          phoneRef?.current?.focus?.();
-        },
-      });
-    }
-  }, [onboard]);
-
-  /**
-   * on OTP
-   *
-   */
-  const onOTP = () => {
-    Navigator.showLoading(true);
     setTimeout(() => {
-      navigation.push('SignOTP', {phone, onClearPhone});
-      Navigator.showLoading(false);
-    }, 1000);
-  };
+      passwordRef.current?.focus();
+    }, 500);
+  }, []);
 
   /**
-   * on Next
-   *
-   */
-  const onNext = async () => {
-    Keyboard.dismiss();
-    Navigator.showPopup({
-      component: (
-        <PopupAlert
-          title="Xác thực OTP"
-          message={`Chúng tôi sẽ gửi một mã xác thực đến SĐT ${phone} để tiếp tục ?`}
-          primaryButton={{
-            title: 'Đồng ý',
-            onPress: onOTP,
-          }}
-          secondaryButton={{
-            title: 'Đổi SĐT',
-            onPress: onClearPhone,
-          }}
-        />
-      ),
-    });
-  };
-
-  /**
-   * on change text
+   * on change password
    * @param {*} value
    */
-  const onChangeText = value => {
-    const trimPhone = value?.trim?.();
-    setPhone(trimPhone);
-    setError(validPhone(trimPhone));
+  const onChangePassword = value => {
+    setPassword(value);
+    setError({...error, password: validPassword(value)});
   };
 
   /**
-   * on clear phone
-   *
+   * on change repassword
+   * @param {*} value
    */
-  const onClearPhone = async () => {
-    setPhone();
-    await delay(500);
-    phoneRef?.current?.focus?.();
+  const onChangeRePassword = value => {
+    setRepassword(value);
+    setError({...error, rePassword: validPassword(value, password)});
+  };
+
+  /**
+   * on next
+   */
+  const onNext = () => {
+    Keyboard.dismiss();
+    navigation.replace('SignUpInfo', {password});
   };
 
   /**
    * check disable next step
    */
   const disableNext = () => {
-    if (!phone || error) {
+    if (!password || !rePassword) {
+      return true;
+    }
+    if (error.password || error.rePassword) {
       return true;
     }
     return false;
@@ -110,61 +60,74 @@ export default function SignIn({navigation}) {
 
   return (
     <Container style={{backgroundColor: colors.card}}>
-      <LinearGradient
-        colors={[colors.primary, colors.card]}
-        style={Styles.flex}>
-        <View style={styles.imageContent}>
-          <Image source={Images.signin} style={Styles.flex} />
-        </View>
-        <Animated.View
-          style={[
-            styles.content,
-            {backgroundColor: colors.card, marginTop: marginTop},
-          ]}>
-          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-            <View style={[Styles.flex, Styles.padding24]}>
-              <Text typography="h3" weight="bold">
-                Xin chào!
-              </Text>
-              <SizedBox height={4} />
-              <Text typography="title">
-                Nhập số điện thoại để đăng ký hoặc đăng nhập
-              </Text>
-              <SizedBox height={24} />
-              <TextInput
-                ref={phoneRef}
-                value={phone}
-                label="Số điện thoại"
-                placeholder="VD: 0990909090"
-                onChangeText={onChangeText}
-                keyboardType="number-pad"
-                maxLength={PHONE_LENGTH}
-                textContentType="telephoneNumber"
-                error={error}
-                onFocus={() => {
-                  Animated.timing(marginTop, {
-                    toValue: MIN_HEIGHT_FORM,
-                    duration: 250,
-                    useNativeDriver: false,
-                  }).start();
-                }}
-                onBlur={() => {
-                  Animated.timing(marginTop, {
-                    toValue: MAX_HEIGHT_FORM,
-                    duration: 250,
-                    useNativeDriver: false,
-                  }).start();
-                }}
+      <View style={[Styles.flex, Styles.padding24]}>
+        <Text typography="h4" weight="bold">
+          Tạo mật khẩu dasdasdasdas
+        </Text>
+        <SizedBox height={2} />
+        <Text typography="title" weight="bold" type="secondary">
+          Gồm 6 số để bảo vệ tài khoản của bạn tốt hơn
+        </Text>
+        <SizedBox height={32} />
+        <TextInput
+          ref={passwordRef}
+          value={password}
+          size="small"
+          label="Mật khẩu"
+          placeholder="Mật khẩu"
+          onChangeText={onChangePassword}
+          keyboardType="number-pad"
+          secureTextEntry={!showPassword}
+          onFocus={() => {
+            setError({...error, password: null});
+          }}
+          trailing={
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+              <Icon
+                name={showPassword ? 'eye' : 'eye-off'}
+                size={16}
+                color={colors.secondary}
               />
-            </View>
-          </TouchableWithoutFeedback>
-          <View style={Styles.buttonContent}>
-            <Button onPress={onNext} disabled={disableNext()}>
-              Tiếp tục
-            </Button>
-          </View>
-        </Animated.View>
-      </LinearGradient>
+            </TouchableOpacity>
+          }
+          error={error.password}
+        />
+        <SizedBox height={16} />
+        <TextInput
+          value={rePassword}
+          size="small"
+          label="Xác nhận mật khẩu"
+          placeholder="Mật khẩu"
+          onChangeText={onChangeRePassword}
+          keyboardType="number-pad"
+          secureTextEntry={!showPassword}
+          onFocus={() => {
+            setError({...error, rePassword: null});
+          }}
+          trailing={
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+              <Icon
+                name={showPassword ? 'eye' : 'eye-off'}
+                size={16}
+                color={colors.secondary}
+              />
+            </TouchableOpacity>
+          }
+          error={error.rePassword}
+        />
+        <SizedBox height={8} />
+        <Text typography="subtitle" type="secondary">
+          Bằng việc tiếp tục, bạn xác nhận đã đọc và đồng ý với{' '}
+          <Text typography="subtitle" color="secondary">
+            Điều khoản sử dụng
+          </Text>
+        </Text>
+      </View>
+      <View style={Styles.buttonContent}>
+        <Button onPress={onNext} disabled={disableNext()}>
+          Tiếp tục
+        </Button>
+      </View>
     </Container>
   );
 }

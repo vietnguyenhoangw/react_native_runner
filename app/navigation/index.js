@@ -5,13 +5,14 @@ import {
   createStackNavigator,
   CardStyleInterpolators,
 } from '@react-navigation/stack';
-import {useTheme, Colors} from '@configs';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import i18n from 'i18next';
+import {initReactI18next} from 'react-i18next';
 import {useSelector} from 'react-redux';
-import {languageSelect} from '@redux/selectors';
+import {languageSelect, tokenSelect} from '@selectors';
 import Navigator from '@navigator';
 import {Splash, Loading, Modal, OnBoard} from '@screens';
+import {useTheme, Colors, Setting} from '@configs';
 import Main from './main';
 import Auth from './auth';
 
@@ -19,7 +20,32 @@ const RootStack = createStackNavigator();
 
 export default function App() {
   const language = useSelector(languageSelect);
+  const token = useSelector(tokenSelect);
   const {theme} = useTheme();
+
+  /**
+   * init language
+   */
+  useEffect(() => {
+    i18n.use(initReactI18next).init({
+      resources: Setting.resourcesLanguage,
+      lng: Setting.defaultLanguage,
+      fallbackLng: Setting.defaultLanguage,
+    });
+  }, []);
+
+  /**
+   * authenticate check
+   */
+  useEffect(() => {
+    setTimeout(() => {
+      if (token) {
+        Navigator.replace('Main');
+      } else {
+        Navigator.replace('Auth');
+      }
+    }, 500);
+  }, [token]);
 
   /**
    * when reducer language change

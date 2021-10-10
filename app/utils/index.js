@@ -57,7 +57,7 @@ export function validName(value) {
   if (!value) {
     return 'Vui lòng nhập tên';
   }
-  const name = /^[a-zA-Z]+$/.test(value);
+  const name = /^[a-zA-Z-\s]+$/.test(value);
   if (!name) {
     return 'Định dạng tên chưa chính xác';
   }

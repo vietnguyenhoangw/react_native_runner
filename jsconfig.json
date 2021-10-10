@@ -15,6 +15,7 @@
             "@screens": ["screens"],
             "@navigator": ["navigation/navigator"],
             "@redux": ["redux"],
+            "@store": ["redux/store"],
             "@actions": ["redux/actions"],
             "@selectors": ["redux/selectors"],
             "@services": ["services"],

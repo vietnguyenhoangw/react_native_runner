@@ -1,25 +1,21 @@
 import {all, put, takeEvery} from 'redux-saga/effects';
-import * as actionTypes from '@redux/actions/actionTypes';
-import * as api from '@api';
+import * as actionTypes from '../actions/actionTypes';
 import {UserModel} from '@models';
 
-function* onLogin(action) {
+function* onRegister(action) {
   try {
-    const response = yield api.fetchLogin(action.params);
-    if (response.success) {
-      const user = new UserModel(response.data);
-      yield put({type: actionTypes.LOGIN_SUCCESS, user: user});
-    }
-    action.callback?.(response);
+    const user = new UserModel(action.params);
+    yield put({type: actionTypes.REGISTER, user: user});
+    action.callback?.(true);
   } catch (error) {
-    action.callback?.(error.response ?? error.message);
+    action.callback?.(error);
   }
 }
 
-function* watchLogin() {
-  yield takeEvery(actionTypes.LOGIN, onLogin);
+function* watchRegister() {
+  yield takeEvery(actionTypes.ON_REGISTER, onRegister);
 }
 
 export default function* authSagas() {
-  yield all([watchLogin()]);
+  yield all([watchRegister()]);
 }

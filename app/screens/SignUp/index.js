@@ -4,37 +4,37 @@ import {Styles, useTheme} from '@configs';
 import {Text, Button, Container, TextInput, SizedBox, Icon} from '@components';
 import {validPassword} from '@utils';
 
-export default function SignUpPassword({navigation}) {
+export default function SignUpPassword({navigation, route}) {
   const {colors} = useTheme();
-  const passRef = useRef();
+  const passwordRef = useRef();
 
-  const [pass, setPass] = useState('');
-  const [rePass, setRepass] = useState('');
-  const [error, setError] = useState({pass: null, rePass: null});
-  const [showPass, setShowPass] = useState(false);
+  const [password, setPassword] = useState('');
+  const [rePassword, setRepassword] = useState('');
+  const [error, setError] = useState({password: null, rePassword: null});
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
-      passRef.current?.focus();
+      passwordRef.current?.focus();
     }, 500);
   }, []);
 
   /**
-   * on change pass
+   * on change password
    * @param {*} value
    */
-  const onChangePass = value => {
-    setPass(value);
-    setError({...error, pass: validPassword(value)});
+  const onChangePassword = value => {
+    setPassword(value);
+    setError({...error, password: validPassword(value)});
   };
 
   /**
-   * on change repass
+   * on change repassword
    * @param {*} value
    */
-  const onChangeRePass = value => {
-    setRepass(value);
-    setError({...error, rePass: validPassword(value, pass)});
+  const onChangeRePassword = value => {
+    setRepassword(value);
+    setError({...error, rePassword: validPassword(value, password)});
   };
 
   /**
@@ -42,17 +42,18 @@ export default function SignUpPassword({navigation}) {
    */
   const onNext = () => {
     Keyboard.dismiss();
-    navigation.push('SignUpInfo');
+    const phone = route.params.phone;
+    navigation.replace('SignUpInfo', {phone, password});
   };
 
   /**
    * check disable next step
    */
   const disableNext = () => {
-    if (!pass || !rePass) {
+    if (!password || !rePassword) {
       return true;
     }
-    if (error.pass || error.rePass) {
+    if (error.password || error.rePassword) {
       return true;
     }
     return false;
@@ -70,50 +71,50 @@ export default function SignUpPassword({navigation}) {
         </Text>
         <SizedBox height={32} />
         <TextInput
-          ref={passRef}
-          value={pass}
+          ref={passwordRef}
+          value={password}
           size="small"
           label="Mật khẩu"
           placeholder="Mật khẩu"
-          onChangeText={onChangePass}
+          onChangeText={onChangePassword}
           keyboardType="number-pad"
-          secureTextEntry={!showPass}
+          secureTextEntry={!showPassword}
           onFocus={() => {
-            setError({...error, pass: null});
+            setError({...error, password: null});
           }}
           trailing={
-            <TouchableOpacity onPress={() => setShowPass(!showPass)}>
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
               <Icon
-                name={showPass ? 'eye' : 'eye-off'}
+                name={showPassword ? 'eye' : 'eye-off'}
                 size={16}
                 color={colors.secondary}
               />
             </TouchableOpacity>
           }
-          error={error.pass}
+          error={error.password}
         />
         <SizedBox height={16} />
         <TextInput
-          value={rePass}
+          value={rePassword}
           size="small"
           label="Xác nhận mật khẩu"
           placeholder="Mật khẩu"
-          onChangeText={onChangeRePass}
+          onChangeText={onChangeRePassword}
           keyboardType="number-pad"
-          secureTextEntry={!showPass}
+          secureTextEntry={!showPassword}
           onFocus={() => {
-            setError({...error, rePass: null});
+            setError({...error, rePassword: null});
           }}
           trailing={
-            <TouchableOpacity onPress={() => setShowPass(!showPass)}>
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
               <Icon
-                name={showPass ? 'eye' : 'eye-off'}
+                name={showPassword ? 'eye' : 'eye-off'}
                 size={16}
                 color={colors.secondary}
               />
             </TouchableOpacity>
           }
-          error={error.rePass}
+          error={error.rePassword}
         />
         <SizedBox height={8} />
         <Text typography="subtitle" type="secondary">

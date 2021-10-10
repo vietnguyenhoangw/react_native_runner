@@ -95,7 +95,7 @@ export default function SignOTP({navigation, route}) {
     if (otp !== '0000') {
       setOTPError('Mã xác nhận không chính xác');
     } else {
-      navigation.push('SignUp');
+      navigation.replace('SignUp', {phone});
     }
   };
 
