@@ -23,3 +23,11 @@ export const onPhoneCheck = (params, callback = () => {}) => {
     callback,
   };
 };
+
+export const onForgot = (params, callback = () => {}) => {
+  return {
+    type: actionTypes.ON_FORGOT,
+    params,
+    callback,
+  };
+};

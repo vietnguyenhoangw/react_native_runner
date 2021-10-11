@@ -54,6 +54,24 @@ function* onPhoneCheck(action) {
   }
 }
 
+/**
+ * saga function process forgot password
+ * @param {*} action
+ */
+function* onForgot(action) {
+  try {
+    yield delay(1000);
+    const data = {
+      phone: action.params.phone,
+      password: action.params.password,
+    };
+    yield put({type: actionTypes.UPDATE_USER, user: data});
+    action.callback({success: true});
+  } catch (error) {
+    action.callback({success: false, message: error});
+  }
+}
+
 function* watchRegister() {
   yield takeEvery(actionTypes.ON_REGISTER, onRegister);
 }
@@ -66,6 +84,10 @@ function* watchPhoneCheck() {
   yield takeEvery(actionTypes.ON_PHONE_CHECK, onPhoneCheck);
 }
 
+function* watchForgot() {
+  yield takeEvery(actionTypes.ON_FORGOT, onForgot);
+}
+
 export default function* authSagas() {
-  yield all([watchRegister(), watchLogin(), watchPhoneCheck()]);
+  yield all([watchRegister(), watchLogin(), watchPhoneCheck(), watchForgot()]);
 }

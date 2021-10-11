@@ -135,7 +135,7 @@ export default function SignIn({navigation}) {
     if (value !== '0000') {
       return 'Mã xác thực không chính xác';
     } else {
-      navigation.replace('ForgotPassword');
+      navigation.replace('ForgotPassword', {phone: user.phone});
     }
   };
 

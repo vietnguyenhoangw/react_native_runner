@@ -21,6 +21,22 @@ export default (state = initialState, action) => {
         ...state,
         token: action.token,
       };
+
+    case actionTypes.UPDATE_USER:
+      const update = {
+        ...state.user,
+        ...action.user,
+      };
+      return {
+        ...state,
+        register: state.register.map(item => {
+          if (item.phone === action.user.phone) {
+            return update;
+          }
+          return item;
+        }),
+        user: update,
+      };
     default:
       return state;
   }

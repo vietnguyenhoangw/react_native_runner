@@ -1,13 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {View, Keyboard, TouchableOpacity} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {Styles, useTheme} from '@configs';
 import {Text, Button, Container, TextInput, SizedBox, Icon} from '@components';
-import {validPassword, delay} from '@utils';
+import {validPassword} from '@utils';
 import Navigator from '@navigator';
+import {authActions} from '@actions';
 
 export default function ForgotPassword({navigation, route}) {
   const {colors} = useTheme();
   const passwordRef = useRef();
+  const phone = route.params.phone;
+  const dispatch = useDispatch();
 
   const [password, setPassword] = useState('');
   const [rePassword, setRepassword] = useState('');
@@ -44,9 +48,12 @@ export default function ForgotPassword({navigation, route}) {
   const onNext = async () => {
     Keyboard.dismiss();
     Navigator.showLoading(true);
-    await delay(1000);
-    Navigator.showLoading(false);
-    navigation.replace('SignIn');
+    dispatch(
+      authActions.onForgot({phone, password}, response => {
+        Navigator.showLoading(false);
+        navigation.replace('SignIn');
+      }),
+    );
   };
 
   /**
