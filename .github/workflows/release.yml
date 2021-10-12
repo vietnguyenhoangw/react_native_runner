@@ -18,7 +18,10 @@ jobs:
         run: npm install
 
       - name: Install Pods
-        run: cd ios && pod install && cd ..
+        run: cd ios && pod install 
+
+      - name: NodeJS start
+        run: npm start
 
       - name: iOS Build
         env:
