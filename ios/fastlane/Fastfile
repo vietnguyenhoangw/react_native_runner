@@ -1,0 +1,54 @@
+# MATCH_PASSWORD
+# FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD
+PROJECT_NAME = ENV["PROJECT_NAME"]
+XCODE_WORKSPACE = ENV["XCODE_WORKSPACE"]
+APP_IDENTIFIER = ENV["APP_IDENTIFIER"]
+PROVISIONING_PROFILE = ENV["PROVISIONING_PROFILE"]
+KEYCHAIN_NAME = ENV["KEYCHAIN_NAME"]
+KEYCHAIN_PASSWORD = ENV["KEYCHAIN_PASSWORD"]
+DEVELOPER_APP_ID = ENV["DEVELOPER_APP_ID"]
+GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
+
+lane :release do
+    increment_build_number
+
+    create_keychain(
+        name: KEYCHAIN_NAME,
+        password: KEYCHAIN_PASSWORD,
+        unlock: true,
+        timeout: false
+    )
+
+    match(
+        type: 'appstore',
+        app_identifier: APP_IDENTIFIER,
+        git_basic_authorization: Base64.strict_encode64(GIT_AUTHORIZATION),
+        readonly: true,
+        keychain_name: KEYCHAIN_NAME,
+        keychain_password: KEYCHAIN_PASSWORD 
+    )
+
+    gym(
+        scheme: PROJECT_NAME,
+        workspace: XCODE_WORKSPACE,
+        silent: true,
+        configuration: "Release",
+        export_method: "app-store",
+        export_options: {
+            provisioningProfiles: { 
+                APP_IDENTIFIER => PROVISIONING_PROFILE
+            }
+        }
+    )
+
+    pilot(
+      apple_id: "#{DEVELOPER_APP_ID}",
+      app_identifier: APP_IDENTIFIER,
+      skip_waiting_for_build_processing: true,
+      skip_submission: true,
+      distribute_external: false,
+      notify_external_testers: false,
+      ipa: "./#{PROJECT_NAME}.ipa",
+    )
+
+end

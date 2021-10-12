@@ -1,0 +1,5 @@
+git_url("git@github.com:wem2017/ios_code_signing.git")
+git_branch("master")
+storage_mode("git")
+type("appstore") # The default type, can be: appstore, adhoc, enterprise or development
+

@@ -1,0 +1,45 @@
+name: Release
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install node_modules
+        run: npm install
+
+      - name: Install Pods
+        run: cd ios && pod install
+
+      - name: iOS Build
+        uses: maierj/fastlane-action@v2.0.1
+        with:
+          lane: 'release'
+          subdirectory: 'ios'
+        env:
+          MATCH_PASSWORD: "${{ secrets.MATCH_PASSWORD }}"
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: "${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}"
+          PROJECT_NAME: "${{ secrets.PROJECT_NAME }}"
+          XCODE_WORKSPACE: "${{ secrets.XCODE_WORKSPACE }}"
+          APP_IDENTIFIER: "${{ secrets.APP_IDENTIFIER }}"
+          PROVISIONING_PROFILE: "${{ secrets.PROVISIONING_PROFILE }}"
+          KEYCHAIN_NAME: "${{ secrets.KEYCHAIN_NAME }}"
+          KEYCHAIN_PASSWORD: "${{ secrets.KEYCHAIN_PASSWORD }}"
+          DEVELOPER_APP_ID: "${{ secrets.DEVELOPER_APP_ID }}"
+          GIT_AUTHORIZATION: "${{ secrets.GIT_AUTHORIZATION }}"
+
+
