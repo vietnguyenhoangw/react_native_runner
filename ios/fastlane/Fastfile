@@ -16,7 +16,7 @@ lane :release do
         name: KEYCHAIN_NAME,
         password: KEYCHAIN_PASSWORD,
         unlock: true,
-        timeout: false
+        timeout: 3600
     )
 
     match(

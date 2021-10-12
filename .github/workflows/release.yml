@@ -14,22 +14,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup NodeJS
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
       - name: Install node_modules
         run: npm install
 
       - name: Install Pods
-        run: cd ios && pod install
+        run: cd ios && pod install && cd ..
 
       - name: iOS Build
-        uses: maierj/fastlane-action@v2.0.1
-        with:
-          lane: 'release'
-          subdirectory: 'ios'
         env:
           MATCH_PASSWORD: "${{ secrets.MATCH_PASSWORD }}"
           FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: "${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}"
@@ -41,5 +32,8 @@ jobs:
           KEYCHAIN_PASSWORD: "${{ secrets.KEYCHAIN_PASSWORD }}"
           DEVELOPER_APP_ID: "${{ secrets.DEVELOPER_APP_ID }}"
           GIT_AUTHORIZATION: "${{ secrets.GIT_AUTHORIZATION }}"
+        
+        run: cd ios && fastlane release
+        
 
 
