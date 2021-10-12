@@ -10,6 +10,7 @@ DEVELOPER_APP_ID = ENV["DEVELOPER_APP_ID"]
 GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
 
 lane :release do
+
     increment_build_number
 
     create_keychain(
