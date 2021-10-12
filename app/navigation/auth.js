@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {BackHandler} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {useTranslation} from 'react-i18next';
 import {
   SignPhone,
   SignOTP,
@@ -11,7 +12,6 @@ import {
 } from '@screens';
 import {Text} from '@components';
 import {useTheme} from '@configs';
-import {useTranslation} from 'react-i18next';
 
 const AuthStack = createStackNavigator();
 

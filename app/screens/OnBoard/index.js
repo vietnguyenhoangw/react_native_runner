@@ -40,7 +40,7 @@ export default function OnBoard({navigation, route}) {
   const bottomSheetRef = useRef(null);
   const slides = route.params?.slides ?? DEFAULT;
   const dispatch = useDispatch();
-  const {t} = useTranslation();
+  const {t, i18n} = useTranslation();
 
   useEffect(() => {
     if (Platform.OS === 'android') {
@@ -135,6 +135,7 @@ export default function OnBoard({navigation, route}) {
           ref={bottomSheetRef}
           title={t('choose_language')}
           onSelect={onChangeLanguage}
+          selected={getNational(i18n.language)}
           data={Setting.languageSupport.map(item => getNational(item))}
         />
       </View>
