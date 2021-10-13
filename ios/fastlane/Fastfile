@@ -5,8 +5,6 @@ PROJECT_NAME = ENV["PROJECT_NAME"]
 XCODE_WORKSPACE = ENV["XCODE_WORKSPACE"]
 APP_IDENTIFIER = ENV["APP_IDENTIFIER"]
 PROVISIONING_PROFILE = ENV["PROVISIONING_PROFILE"]
-KEYCHAIN_NAME = ENV["KEYCHAIN_NAME"]
-KEYCHAIN_PASSWORD = ENV["KEYCHAIN_PASSWORD"]
 CONNECT_APP_ID = ENV["CONNECT_APP_ID"]
 GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
 
@@ -15,8 +13,8 @@ lane :release do
     increment_build_number
 
     create_keychain(
-        name: KEYCHAIN_NAME,
-        password: KEYCHAIN_PASSWORD,
+        name: "name",
+        password: "password",
         unlock: true,
         timeout: 3600
     )
@@ -26,8 +24,8 @@ lane :release do
         app_identifier: APP_IDENTIFIER,
         git_basic_authorization: Base64.strict_encode64(GIT_AUTHORIZATION),
         readonly: true,
-        keychain_name: KEYCHAIN_NAME,
-        keychain_password: KEYCHAIN_PASSWORD 
+        keychain_name: "name",
+        keychain_password: "password" 
     )
 
     gym(
