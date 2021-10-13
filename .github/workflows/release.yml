@@ -20,9 +20,6 @@ jobs:
       - name: Install Pods
         run: cd ios && pod install 
 
-      - name: NodeJS start
-        run: npm start
-
       - name: iOS Build
         env:
           MATCH_PASSWORD: "${{ secrets.MATCH_PASSWORD }}"
@@ -36,7 +33,7 @@ jobs:
           DEVELOPER_APP_ID: "${{ secrets.DEVELOPER_APP_ID }}"
           GIT_AUTHORIZATION: "${{ secrets.GIT_AUTHORIZATION }}"
         
-        run: cd ios && fastlane release
+        run: fastlane release
         
 
 
