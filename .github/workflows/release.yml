@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
+          token: ${{ secrets.GIT_AUTHORIZATION }}
 
       - name: Install node_modules
         run: npm install
