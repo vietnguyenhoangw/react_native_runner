@@ -2,6 +2,7 @@ PROJECT_NAME = ENV["PROJECT_NAME"]
 XCODE_WORKSPACE = ENV["XCODE_WORKSPACE"]
 APP_IDENTIFIER = ENV["APP_IDENTIFIER"]
 PROVISIONING_PROFILE = ENV["PROVISIONING_PROFILE"]
+CONNECT_APP_ID = ENV["CONNECT_APP_ID"]
 GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
 
 lane :release do
@@ -37,10 +38,12 @@ lane :release do
     )
 
     pilot(
+        apple_id: CONNECT_APP_ID,
         skip_waiting_for_build_processing: true,
         skip_submission: true,
         distribute_external: false,
         notify_external_testers: false,
+        ipa: "./#{PROJECT_NAME}.ipa",
     )
 
 end
