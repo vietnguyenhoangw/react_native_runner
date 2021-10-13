@@ -6,7 +6,7 @@ APP_IDENTIFIER = ENV["APP_IDENTIFIER"]
 PROVISIONING_PROFILE = ENV["PROVISIONING_PROFILE"]
 KEYCHAIN_NAME = ENV["KEYCHAIN_NAME"]
 KEYCHAIN_PASSWORD = ENV["KEYCHAIN_PASSWORD"]
-DEVELOPER_APP_ID = ENV["DEVELOPER_APP_ID"]
+CONNECT_APP_ID = ENV["CONNECT_APP_ID"]
 GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
 
 lane :release do
@@ -43,7 +43,7 @@ lane :release do
     )
 
     pilot(
-        apple_id: DEVELOPER_APP_ID,
+        apple_id: CONNECT_APP_ID,
         app_identifier: APP_IDENTIFIER,
         skip_waiting_for_build_processing: true,
         skip_submission: true,
