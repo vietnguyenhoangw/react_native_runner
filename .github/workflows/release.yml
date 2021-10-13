@@ -33,7 +33,7 @@ jobs:
           DEVELOPER_APP_ID: "${{ secrets.DEVELOPER_APP_ID }}"
           GIT_AUTHORIZATION: "${{ secrets.GIT_AUTHORIZATION }}"
         
-        run: cd fastlane && fastlane release
+        run: cd ios/fastlane && fastlane release
         
 
 
