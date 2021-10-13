@@ -1,11 +1,7 @@
-# MATCH_PASSWORD
-# FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD
-DEVELOPER_APPLE_ID = ENV["DEVELOPER_APPLE_ID"]
 PROJECT_NAME = ENV["PROJECT_NAME"]
 XCODE_WORKSPACE = ENV["XCODE_WORKSPACE"]
 APP_IDENTIFIER = ENV["APP_IDENTIFIER"]
 PROVISIONING_PROFILE = ENV["PROVISIONING_PROFILE"]
-CONNECT_APP_ID = ENV["CONNECT_APP_ID"]
 GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
 
 lane :release do
@@ -21,7 +17,6 @@ lane :release do
 
     match(
         type: 'appstore',
-        app_identifier: APP_IDENTIFIER,
         git_basic_authorization: Base64.strict_encode64(GIT_AUTHORIZATION),
         readonly: true,
         keychain_name: "name",
@@ -42,13 +37,10 @@ lane :release do
     )
 
     pilot(
-        apple_id: CONNECT_APP_ID,
-        app_identifier: APP_IDENTIFIER,
         skip_waiting_for_build_processing: true,
         skip_submission: true,
         distribute_external: false,
         notify_external_testers: false,
-        ipa: "./#{PROJECT_NAME}.ipa",
     )
 
 end
