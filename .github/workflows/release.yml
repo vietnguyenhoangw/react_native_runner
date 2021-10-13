@@ -26,13 +26,12 @@ jobs:
         env:
           MATCH_PASSWORD: "${{ secrets.MATCH_PASSWORD }}"
           FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: "${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}"
+          DEVELOPER_APPLE_ID: "${{ secrets.DEVELOPER_APPLE_ID }}"
           PROJECT_NAME: "${{ secrets.PROJECT_NAME }}"
           XCODE_WORKSPACE: "${{ secrets.XCODE_WORKSPACE }}"
           APP_IDENTIFIER: "${{ secrets.APP_IDENTIFIER }}"
           PROVISIONING_PROFILE: "${{ secrets.PROVISIONING_PROFILE }}"
-          KEYCHAIN_NAME: "${{ secrets.KEYCHAIN_NAME }}"
-          KEYCHAIN_PASSWORD: "${{ secrets.KEYCHAIN_PASSWORD }}"
-          DEVELOPER_APP_ID: "${{ secrets.DEVELOPER_APP_ID }}"
+          CONNECT_APP_ID: "${{ secrets.CONNECT_APP_ID }}"
           GIT_AUTHORIZATION: "${{ secrets.GIT_AUTHORIZATION }}"
         
         run: cd ios/fastlane && fastlane release
