@@ -42,7 +42,7 @@ lane :release do
     )
 
     pilot(
-        username: DEVELOPER_APPLE_ID
+        username: DEVELOPER_APPLE_ID,
         apple_id: CONNECT_APP_ID,
         app_identifier: APP_IDENTIFIER,
         skip_waiting_for_build_processing: true,
