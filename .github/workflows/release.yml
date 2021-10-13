@@ -13,6 +13,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Install node_modules
         run: npm install
