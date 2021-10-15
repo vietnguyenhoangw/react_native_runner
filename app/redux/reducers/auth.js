@@ -37,6 +37,19 @@ export default (state = initialState, action) => {
         }),
         user: update,
       };
+
+    case actionTypes.LOGOUT_SUCCESS:
+      if (action.clear) {
+        return {
+          ...state,
+          user: null,
+          token: null,
+        };
+      }
+      return {
+        ...state,
+        token: null,
+      };
     default:
       return state;
   }

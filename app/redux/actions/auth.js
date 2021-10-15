@@ -31,3 +31,11 @@ export const onForgot = (params, callback = () => {}) => {
     callback,
   };
 };
+
+export const onLogout = (params, callback = () => {}) => {
+  return {
+    type: actionTypes.ON_LOGOUT,
+    params,
+    callback,
+  };
+};

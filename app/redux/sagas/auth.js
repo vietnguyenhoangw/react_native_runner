@@ -72,6 +72,20 @@ function* onForgot(action) {
   }
 }
 
+/**
+ * saga function process logout
+ * @param {*} action
+ */
+function* onLogout(action) {
+  try {
+    yield delay(1000);
+    yield put({type: actionTypes.LOGOUT_SUCCESS, clear: action.params?.clear});
+    action.callback({success: true});
+  } catch (error) {
+    action.callback({success: false, message: error});
+  }
+}
+
 function* watchRegister() {
   yield takeEvery(actionTypes.ON_REGISTER, onRegister);
 }
@@ -88,6 +102,16 @@ function* watchForgot() {
   yield takeEvery(actionTypes.ON_FORGOT, onForgot);
 }
 
+function* watchLogout() {
+  yield takeEvery(actionTypes.ON_LOGOUT, onLogout);
+}
+
 export default function* authSagas() {
-  yield all([watchRegister(), watchLogin(), watchPhoneCheck(), watchForgot()]);
+  yield all([
+    watchRegister(),
+    watchLogin(),
+    watchPhoneCheck(),
+    watchForgot(),
+    watchLogout(),
+  ]);
 }
