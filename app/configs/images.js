@@ -7,6 +7,7 @@ export const Images = {
   signin: require('@assets/images/signin.png'),
   empty: require('@assets/images/empty.png'),
   banner: require('@assets/images/banner.jpg'),
+  avatar1: require('@assets/images/avatar1.jpg'),
   en: require('@assets/images/en.png'),
   vi: require('@assets/images/vi.png'),
   ar: require('@assets/images/ar.png'),

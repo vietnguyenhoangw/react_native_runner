@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {Button, Text} from '@components';
+import {Button, PopupAlert} from '@components';
 import {useTheme, Styles} from '@configs';
 import Navigator from '@navigator';
 import {authActions} from '@actions';
@@ -12,12 +12,28 @@ export default function Wallet({navigation}) {
   const dispatch = useDispatch();
 
   const onLogout = async () => {
-    Navigator.showLoading(true);
-    dispatch(
-      authActions.onLogout({}, () => {
-        Navigator.showLoading(false);
-      }),
-    );
+    Navigator.showPopup({
+      component: (
+        <PopupAlert
+          title="Thoát tài khoản"
+          message="Bạn có muốn kết thúc phiên đăng nhập này không?"
+          primaryButton={{
+            title: 'Đồng ý',
+            onPress: () => {
+              Navigator.showLoading(true);
+              dispatch(
+                authActions.onLogout({}, () => {
+                  Navigator.showLoading(false);
+                }),
+              );
+            },
+          }}
+          secondaryButton={{
+            title: 'Đóng',
+          }}
+        />
+      ),
+    });
   };
 
   return (

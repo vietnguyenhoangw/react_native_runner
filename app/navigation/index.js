@@ -33,6 +33,7 @@ export default function App() {
       lng: Setting.defaultLanguage,
       fallbackLng: Setting.defaultLanguage,
     });
+    StatusBar.setBarStyle('light-content', true);
   }, []);
 
   /**
@@ -44,11 +45,13 @@ export default function App() {
       Navigator.replace('Main');
     } else {
       /* when phone already login */
-      if (user.current) {
-        Navigator.replace('Auth', {screen: 'SignIn'});
-      } else {
-        Navigator.replace('Auth');
-      }
+      setTimeout(() => {
+        if (user.current) {
+          Navigator.replace('Auth', {screen: 'SignIn'});
+        } else {
+          Navigator.replace('Auth');
+        }
+      }, 500);
     }
   }, [token]);
 
@@ -66,7 +69,6 @@ export default function App() {
     if (Platform.OS === 'android') {
       StatusBar.setBackgroundColor(theme.colors.primary, true);
     }
-    StatusBar.setBarStyle(theme.dark ? 'light-content' : 'dark-content', true);
   }, [theme]);
 
   return (

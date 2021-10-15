@@ -63,7 +63,7 @@ function BottomTab() {
         options={{
           title: t('home'),
           tabBarIcon: ({color}) => {
-            return <Icon color={color} name="home-outline" size={28} solid />;
+            return <Icon color={color} name="home-outline" size={24} />;
           },
         }}
       />
@@ -73,9 +73,7 @@ function BottomTab() {
         options={{
           title: t('promotion'),
           tabBarIcon: ({color}) => {
-            return (
-              <Icon color={color} name="tag-heart-outline" size={28} solid />
-            );
+            return <Icon color={color} name="tag-heart-outline" size={24} />;
           },
         }}
       />
@@ -85,7 +83,7 @@ function BottomTab() {
         options={{
           title: t('transaction'),
           tabBarIcon: ({color}) => {
-            return <Icon color={color} name="history" size={28} solid />;
+            return <Icon color={color} name="history" size={24} />;
           },
         }}
       />
@@ -96,12 +94,7 @@ function BottomTab() {
           title: t('chat'),
           tabBarIcon: ({color}) => {
             return (
-              <Icon
-                color={color}
-                name="chat-processing-outline"
-                size={28}
-                solid
-              />
+              <Icon color={color} name="chat-processing-outline" size={24} />
             );
           },
         }}
@@ -112,7 +105,7 @@ function BottomTab() {
         options={{
           title: t('wallet'),
           tabBarIcon: ({color}) => {
-            return <Icon color={color} name="wallet-outline" size={28} solid />;
+            return <Icon color={color} name="wallet-outline" size={24} />;
           },
         }}
       />
