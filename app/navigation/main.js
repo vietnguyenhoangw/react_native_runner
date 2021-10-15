@@ -1,10 +1,12 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useTranslation} from 'react-i18next';
 import {Home} from '@screens';
 import {Text} from '@components';
 import {useTheme} from '@configs';
 
+const BottomTab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
 
 export default function Main() {

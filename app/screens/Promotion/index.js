@@ -4,12 +4,12 @@ import {Container, Text} from '@components';
 import {useTheme, Styles} from '@configs';
 import styles from './styles';
 
-export default function Empty({navigation}) {
+export default function Promotion({navigation}) {
   const {colors} = useTheme();
   useEffect(() => {}, []);
   return (
     <Container style={{backgroundColor: colors.card}}>
-      <Text>Empty</Text>
+      <Text>Promotion</Text>
     </Container>
   );
 }
