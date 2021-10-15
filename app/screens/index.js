@@ -1,4 +1,3 @@
-import Home from './Home';
 import Splash from './Splash';
 import Loading from './Loading';
 import Modal from './Modal';
@@ -10,8 +9,13 @@ import SignUp from './SignUp';
 import SignUpInfo from './SignUpInfo';
 import ForgotPassword from './ForgotPassword';
 
+import Home from './Home';
+import Promotion from './Promotion';
+import Transaction from './Transaction';
+import Chat from './Chat';
+import Wallet from './Wallet';
+
 export {
-  Home,
   Splash,
   SignPhone,
   SignIn,
@@ -22,4 +26,9 @@ export {
   Modal,
   OnBoard,
   ForgotPassword,
+  Home,
+  Promotion,
+  Transaction,
+  Chat,
+  Wallet,
 };

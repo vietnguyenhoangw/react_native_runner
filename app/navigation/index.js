@@ -39,19 +39,17 @@ export default function App() {
    * authenticate flow
    */
   useEffect(() => {
-    setTimeout(() => {
-      /* when authenticate success */
-      if (token) {
-        Navigator.replace('Main');
+    /* when authenticate success */
+    if (token) {
+      Navigator.replace('Main');
+    } else {
+      /* when phone already login */
+      if (user.current) {
+        Navigator.replace('Auth', {screen: 'SignIn'});
       } else {
-        /* when phone already login */
-        if (user.current) {
-          Navigator.replace('Auth', {screen: 'SignIn'});
-        } else {
-          Navigator.replace('Auth');
-        }
+        Navigator.replace('Auth');
       }
-    }, 500);
+    }
   }, [token]);
 
   /**

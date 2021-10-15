@@ -2,11 +2,11 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useTranslation} from 'react-i18next';
-import {Home} from '@screens';
-import {Text} from '@components';
-import {useTheme} from '@configs';
+import {Home, Promotion, Transaction, Chat, Wallet} from '@screens';
+import {Text, getFontFamily, Icon} from '@components';
+import {Styles, useFont, useTheme} from '@configs';
 
-const BottomTab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
 
 export default function Main() {
@@ -14,9 +14,8 @@ export default function Main() {
   const {t} = useTranslation();
   return (
     <MainStack.Navigator
-      initialRouteName="Home"
+      initialRouteName="BottomTab"
       screenOptions={{
-        headerLeft: null,
         headerStyle: {
           backgroundColor: colors.primary,
         },
@@ -29,7 +28,94 @@ export default function Main() {
         },
         headerTitleAlign: 'center',
       }}>
-      <MainStack.Screen name="Mobile" component={Home} />
+      <MainStack.Screen
+        name="BottomTab"
+        component={BottomTab}
+        options={{
+          headerShown: false,
+        }}
+      />
     </MainStack.Navigator>
+  );
+}
+
+function BottomTab() {
+  const {colors} = useTheme();
+  const font = useFont();
+  const {t} = useTranslation();
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        tabBarInactiveTintColor: colors.textSecondary,
+        tabBarActiveTintColor: colors.primary,
+        headerShown: false,
+      }}
+      tabBarLabelStyle={[
+        Styles.bottomTitle,
+        {
+          fontFamily: getFontFamily({fontFamily: font, fontWeight: '600'}),
+        },
+      ]}>
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          title: t('home'),
+          tabBarIcon: ({color}) => {
+            return <Icon color={color} name="home-outline" size={28} solid />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Promotion"
+        component={Promotion}
+        options={{
+          title: t('promotion'),
+          tabBarIcon: ({color}) => {
+            return (
+              <Icon color={color} name="tag-heart-outline" size={28} solid />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Transaction"
+        component={Transaction}
+        options={{
+          title: t('transaction'),
+          tabBarIcon: ({color}) => {
+            return <Icon color={color} name="history" size={28} solid />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Chat"
+        component={Chat}
+        options={{
+          title: t('chat'),
+          tabBarIcon: ({color}) => {
+            return (
+              <Icon
+                color={color}
+                name="chat-processing-outline"
+                size={28}
+                solid
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Wallet"
+        component={Wallet}
+        options={{
+          title: t('wallet'),
+          tabBarIcon: ({color}) => {
+            return <Icon color={color} name="wallet-outline" size={28} solid />;
+          },
+        }}
+      />
+    </Tab.Navigator>
   );
 }

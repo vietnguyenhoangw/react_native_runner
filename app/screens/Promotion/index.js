@@ -7,9 +7,10 @@ import styles from './styles';
 export default function Promotion({navigation}) {
   const {colors} = useTheme();
   useEffect(() => {}, []);
+
   return (
-    <Container style={{backgroundColor: colors.card}}>
+    <View style={Styles.flexCenter}>
       <Text>Promotion</Text>
-    </Container>
+    </View>
   );
 }

@@ -57,11 +57,31 @@ export default function Auth() {
         component={SignPhone}
         options={{headerShown: false}}
       />
-      <AuthStack.Screen name="SignIn" component={SignIn} />
-      <AuthStack.Screen name="SignOTP" component={SignOTP} />
-      <AuthStack.Screen name="SignUp" component={SignUp} />
-      <AuthStack.Screen name="SignUpInfo" component={SignUpInfo} />
-      <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} />
+      <AuthStack.Screen
+        name="SignIn"
+        component={SignIn}
+        options={{title: 'signin'}}
+      />
+      <AuthStack.Screen
+        name="SignOTP"
+        component={SignOTP}
+        options={{title: 'sign_otp'}}
+      />
+      <AuthStack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{title: 'signup'}}
+      />
+      <AuthStack.Screen
+        name="SignUpInfo"
+        component={SignUpInfo}
+        options={{title: 'signup'}}
+      />
+      <AuthStack.Screen
+        name="ForgotPassword"
+        component={ForgotPassword}
+        options={{title: 'forgot_password'}}
+      />
     </AuthStack.Navigator>
   );
 }
