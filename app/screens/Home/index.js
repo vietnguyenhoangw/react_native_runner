@@ -1,73 +1,121 @@
-import React, {useEffect} from 'react';
-import {View} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {View, RefreshControl, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {
-  Text,
-  Button,
-  Container,
-  Icon,
-  SafeAreaView,
-  SizedBox,
-  Image,
-} from '@components';
-import {Colors, Styles, Images, useTheme} from '@configs';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  useAnimatedScrollHandler,
+} from 'react-native-reanimated';
+import {SafeAreaView} from '@components';
+import {delay} from '@utils';
+import {Styles, useTheme} from '@configs';
+import Header from './components/header';
+import Banner from './components/banner';
+import Action from './components/action';
 import styles from './styles';
+
+const HEIGHT_BANNER = 100;
+const HEIGHT_ACTION = HEIGHT_BANNER + 54;
 
 export default function Home({navigation}) {
   const {colors} = useTheme();
-  useEffect(() => {}, []);
+  const translationY = useSharedValue(0);
+  const scrollHandler = useAnimatedScrollHandler(event => {
+    translationY.value = event.contentOffset.y;
+  });
+
+  const [color, setColor] = useState(colors.primary);
+  const [refreshing, setRefreshing] = useState(false);
+
+  /**
+   * on refresh
+   */
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await delay(1000);
+    setRefreshing(false);
+  };
+
+  const actionStyle = useAnimatedStyle(() => {
+    let height = HEIGHT_ACTION - translationY.value;
+    let marginTop = HEIGHT_BANNER + 12 - translationY.value;
+    if (height < HEIGHT_BANNER) {
+      height = HEIGHT_BANNER;
+    }
+    if (marginTop < 0) {
+      marginTop = 0;
+    }
+    if (height > HEIGHT_ACTION) {
+      height = HEIGHT_ACTION;
+    }
+    if (marginTop > HEIGHT_BANNER + 12) {
+      marginTop = HEIGHT_BANNER + 12;
+    }
+
+    return {
+      height,
+      marginTop,
+      overflow: 'hidden',
+    };
+  });
 
   return (
     <View style={[Styles.flex, {backgroundColor: colors.background}]}>
       <LinearGradient
         colors={[
-          colors.primary,
-          colors.primary + 'E6',
-          colors.primary + 'CC',
-          colors.primary + 'B3',
-          colors.primary + '99',
-          colors.primary + '80',
+          color,
+          color + 'F2',
+          color + 'E6',
+          color + 'D9',
+          color + 'CC',
+          color + 'BF',
+          color + 'B3',
+          color + 'A6',
+          color + '99',
           colors.card,
-        ]}
-        style={{height: 300}}>
+          colors.card,
+          colors.background,
+        ]}>
         <SafeAreaView edges={['top']}>
+          <Header notification={100} maximumCount={20} />
+        </SafeAreaView>
+        <View>
           <View
             style={[
-              Styles.row,
-              Styles.paddingHorizontal16,
-              Styles.paddingVertical8,
+              styles.bannerContainer,
+              {
+                height: HEIGHT_BANNER,
+              },
             ]}>
-            <View style={styles.headerIcon}>
-              <Icon color={Colors.white} name="qrcode-scan" size={16} />
-            </View>
-            <SizedBox width={12} />
-            <View
-              style={{
-                flex: 1,
-                height: 32,
-                backgroundColor: colors.card,
-                borderRadius: 16,
-              }}></View>
-            <SizedBox width={12} />
-            <View style={styles.headerIcon}>
-              <Icon color={Colors.white} name="bell-outline" size={18} />
-              <View
-                style={[
-                  styles.notificationBadge,
-                  {
-                    backgroundColor: colors.error,
-                  },
-                ]}>
-                <Text typography="caption" color="white" weight="bold">
-                  9
-                </Text>
-              </View>
-            </View>
-            <SizedBox width={12} />
-            <Image source={Images.avatar1} style={styles.headerIcon} />
+            <Banner
+              onChange={item => {
+                setColor(item.color);
+              }}
+            />
           </View>
-        </SafeAreaView>
+        </View>
+        <Animated.View style={actionStyle}>
+          <View style={styles.actionContainer}>
+            <Action minHeight={HEIGHT_BANNER} />
+          </View>
+        </Animated.View>
       </LinearGradient>
+      <Animated.ScrollView
+        onScroll={scrollHandler}
+        scrollEventThrottle={8}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor={colors.text}
+            title="Cập nhật"
+            titleColor={colors.text}
+            colors={[colors.text, colors.textSecondary]}
+            progressBackgroundColor={colors.text}
+          />
+        }>
+        <View style={{height: 1000}}></View>
+      </Animated.ScrollView>
     </View>
   );
 }

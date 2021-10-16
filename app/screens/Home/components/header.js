@@ -1,0 +1,113 @@
+import React from 'react';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import {View} from 'react-native';
+import {Text, Icon, SizedBox, Image} from '@components';
+import {Colors, Images, useTheme} from '@configs';
+import PropTypes from 'prop-types';
+
+export default function Header(props) {
+  const {colors} = useTheme();
+  const {
+    onScan,
+    onSearch,
+    onNotification,
+    notification,
+    maximumCount,
+    onProfile,
+    avatar,
+  } = props;
+  return (
+    <View style={styles.headerRow}>
+      <TouchableOpacity style={styles.headerIcon} onPress={onScan}>
+        <Icon color={Colors.white} name="qrcode-scan" size={16} />
+      </TouchableOpacity>
+      <SizedBox width={12} />
+      <View
+        style={[
+          styles.searchInput,
+          {
+            backgroundColor: colors.card,
+          },
+        ]}
+      />
+      <SizedBox width={12} />
+      <TouchableOpacity style={styles.headerIcon} onPress={onNotification}>
+        <Icon color={Colors.white} name="bell-outline" size={18} />
+        {notification > 0 && (
+          <View
+            style={[
+              styles.notificationBadge,
+              {
+                backgroundColor: colors.error,
+              },
+            ]}>
+            <Text
+              typography={notification > 9 ? 'overline' : 'caption'}
+              color="white"
+              weight="bold">
+              {notification > maximumCount ? maximumCount : notification}
+              {notification > maximumCount && '+'}
+            </Text>
+          </View>
+        )}
+      </TouchableOpacity>
+      <SizedBox width={12} />
+      <TouchableOpacity onPress={onProfile}>
+        <Image source={avatar} style={styles.headerIcon} />
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+Header.propTypes = {
+  onScan: PropTypes.func,
+  onSearch: PropTypes.func,
+  onNotification: PropTypes.func,
+  onProfile: PropTypes.func,
+  notification: PropTypes.number,
+  maximumCount: PropTypes.number,
+  avatar: PropTypes.any,
+};
+
+Header.defaultProps = {
+  onScan: () => {},
+  onSearch: () => {},
+  onNotification: () => {},
+  onProfile: () => {},
+  notification: 0,
+  maximumCount: 99,
+  avatar: Images.avatar1,
+};
+
+const styles = StyleSheet.create({
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  searchInput: {
+    flex: 1,
+    height: 32,
+    borderRadius: 16,
+  },
+  headerIcon: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.black + '40',
+  },
+  notificationBadge: {
+    minWidth: 16,
+    height: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    paddingHorizontal: 4,
+    top: -4,
+    right: -4,
+  },
+});

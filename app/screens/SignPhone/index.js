@@ -19,7 +19,7 @@ import styles from './styles';
 
 const PHONE_LENGTH = 15;
 const MIN_HEIGHT_FORM = 70;
-const MAX_HEIGHT_FORM = 250;
+const MAX_HEIGHT_FORM = 300;
 
 export default function SignPhone({navigation, route}) {
   const {colors} = useTheme();
@@ -119,8 +119,12 @@ export default function SignPhone({navigation, route}) {
       <LinearGradient
         colors={[colors.primary, colors.card]}
         style={Styles.flex}>
-        <View style={styles.imageContent}>
-          <Image source={Images.signin} style={Styles.flex} />
+        <View style={[styles.imageContent, {height: MAX_HEIGHT_FORM}]}>
+          <Image
+            source={Images.signin}
+            style={Styles.flex}
+            resizeMode="contain"
+          />
         </View>
         <Animated.View
           style={[

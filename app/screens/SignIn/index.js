@@ -176,7 +176,6 @@ export default function SignIn({navigation}) {
           placeholder="Mật khẩu"
           onChangeText={onChangePassword}
           keyboardType="number-pad"
-          size="small"
           secureTextEntry={!showPassword}
           onFocus={() => {
             setError(null);
