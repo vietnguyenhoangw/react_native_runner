@@ -16,7 +16,7 @@ import {useTheme} from '@configs';
 const AuthStack = createStackNavigator();
 
 export default function Auth() {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   const {t} = useTranslation();
 
   /**
@@ -40,7 +40,7 @@ export default function Auth() {
         gestureEnabled: false,
         headerLeft: null,
         headerStyle: {
-          backgroundColor: colors.primary,
+          backgroundColor: theme.colors.primary,
         },
         headerTitle: props => {
           return (

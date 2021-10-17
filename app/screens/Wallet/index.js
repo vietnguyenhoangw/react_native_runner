@@ -8,7 +8,7 @@ import {authActions} from '@actions';
 import styles from './styles';
 
 export default function Wallet({navigation}) {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   const dispatch = useDispatch();
 
   const onLogout = async () => {

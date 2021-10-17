@@ -5,7 +5,7 @@ import {Text, Button, Container, TextInput, SizedBox, Icon} from '@components';
 import {validPassword} from '@utils';
 
 export default function SignUpPassword({navigation, route}) {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   const passwordRef = useRef();
 
   const [password, setPassword] = useState('');
@@ -60,7 +60,7 @@ export default function SignUpPassword({navigation, route}) {
   };
 
   return (
-    <Container style={{backgroundColor: colors.card}}>
+    <Container style={{backgroundColor: theme.colors.card}}>
       <View style={[Styles.flex, Styles.padding24]}>
         <Text typography="h4" weight="bold">
           Tạo mật khẩu
@@ -87,7 +87,7 @@ export default function SignUpPassword({navigation, route}) {
               <Icon
                 name={showPassword ? 'eye' : 'eye-off'}
                 size={16}
-                color={colors.secondary}
+                color={theme.colors.secondary}
               />
             </TouchableOpacity>
           }
@@ -110,7 +110,7 @@ export default function SignUpPassword({navigation, route}) {
               <Icon
                 name={showPassword ? 'eye' : 'eye-off'}
                 size={16}
-                color={colors.secondary}
+                color={theme.colors.secondary}
               />
             </TouchableOpacity>
           }

@@ -1,32 +1,26 @@
 import {useSelector} from 'react-redux';
 import {useColorScheme} from 'react-native';
 import {Setting} from './settings';
-import {forceDarkSelect, themeSelect} from '@selectors';
+import {forceDarkSelect, themeSelect, fontSelect} from '@selectors';
+
 /**
- * export theme and colors for application
- * @returns theme,colors
+ * export theme for application
+ * @returns theme
  */
 export const useTheme = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const forceDark = useSelector(forceDarkSelect);
+  const fontStorage = useSelector(fontSelect);
+  const forceDarkStorage = useSelector(forceDarkSelect);
   const themeStorage = useSelector(themeSelect);
-  const listTheme = Setting.themeSupport.filter(
-    item => item.theme === themeStorage,
-  );
-  const theme = listTheme.length > 0 ? listTheme[0] : Setting.defaultTheme;
-  if (forceDark) {
-    return {theme: theme.dark, colors: theme.dark.colors};
-  }
-  return isDarkMode
-    ? {theme: theme.dark, colors: theme.dark.colors}
-    : {theme: theme.light, colors: theme.light.colors};
-};
 
-/**
- * export font for application
- * @returns font
- */
-export const useFont = () => {
-  const font = useSelector(state => state.application.font);
-  return font ?? Setting.defaultFont;
+  const font = fontStorage ?? Setting.defaultFont;
+  const theme = Setting.themeSupport.find(
+    item => item.theme === (themeStorage ?? Setting.defaultTheme),
+  );
+
+  if (forceDarkStorage || isDarkMode) {
+    return {theme: theme.dark, font};
+  }
+
+  return {theme: theme.light, font};
 };

@@ -6,14 +6,15 @@ import {Image} from '@components';
 import styles from './styles';
 
 export default function Splash() {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
 
   useEffect(() => {
     SplashScreen.hide();
   }, []);
 
   return (
-    <View style={[styles.container, {backgroundColor: colors.primaryLight}]}>
+    <View
+      style={[styles.container, {backgroundColor: theme.colors.primaryLight}]}>
       <View style={styles.contentLogo}>
         <View style={styles.logo}>
           <Image

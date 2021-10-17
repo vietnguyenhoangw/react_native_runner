@@ -22,7 +22,7 @@ const MIN_HEIGHT_FORM = 70;
 const MAX_HEIGHT_FORM = 300;
 
 export default function SignPhone({navigation, route}) {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   const marginTop = useRef(new Animated.Value(MAX_HEIGHT_FORM)).current;
   const onboard = useRef(useSelector(onBoardSelect));
   const focus = useRef(route.params?.focus);
@@ -115,9 +115,9 @@ export default function SignPhone({navigation, route}) {
   };
 
   return (
-    <Container style={{backgroundColor: colors.card}}>
+    <Container style={{backgroundColor: theme.colors.card}}>
       <LinearGradient
-        colors={[colors.primary, colors.card]}
+        colors={[theme.colors.primary, theme.colors.card]}
         style={Styles.flex}>
         <View style={[styles.imageContent, {height: MAX_HEIGHT_FORM}]}>
           <Image
@@ -129,7 +129,7 @@ export default function SignPhone({navigation, route}) {
         <Animated.View
           style={[
             styles.content,
-            {backgroundColor: colors.card, marginTop: marginTop},
+            {backgroundColor: theme.colors.card, marginTop: marginTop},
           ]}>
           <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View style={[Styles.flex, Styles.padding24]}>

@@ -18,7 +18,7 @@ import Navigator from '@navigator';
 import {authActions} from '@actions';
 
 export default function SignIn({navigation}) {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   const passwordRef = useRef();
   const user = useSelector(userSelect);
   const dispatch = useDispatch();
@@ -159,7 +159,7 @@ export default function SignIn({navigation}) {
   };
 
   return (
-    <Container style={{backgroundColor: colors.card}}>
+    <Container style={{backgroundColor: theme.colors.card}}>
       <View style={[Styles.flex, Styles.padding24]}>
         <Text typography="h4" weight="bold">
           Xin chào, {user.name}!
@@ -185,8 +185,7 @@ export default function SignIn({navigation}) {
             <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
               <Icon
                 name={showPassword ? 'eye' : 'eye-off'}
-                size={24}
-                color={colors.secondary}
+                color={theme.colors.secondary}
               />
             </TouchableOpacity>
           }

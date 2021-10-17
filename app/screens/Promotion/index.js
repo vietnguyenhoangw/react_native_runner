@@ -5,7 +5,7 @@ import {useTheme, Styles} from '@configs';
 import styles from './styles';
 
 export default function Promotion({navigation}) {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   useEffect(() => {}, []);
 
   return (

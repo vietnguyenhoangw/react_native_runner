@@ -36,7 +36,7 @@ const DEFAULT = [
 ];
 
 export default function OnBoard({navigation, route}) {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   const bottomSheetRef = useRef(null);
   const slides = route.params?.slides ?? DEFAULT;
   const dispatch = useDispatch();
@@ -44,12 +44,12 @@ export default function OnBoard({navigation, route}) {
 
   useEffect(() => {
     if (Platform.OS === 'android') {
-      StatusBar.setBackgroundColor(colors.primaryLight, true);
+      StatusBar.setBackgroundColor(theme.colors.primaryLight, true);
       return () => {
-        StatusBar.setBackgroundColor(colors.primary, true);
+        StatusBar.setBackgroundColor(theme.colors.primary, true);
       };
     }
-  }, [colors]);
+  }, [theme.colors]);
 
   /**
    * save onboard storage
@@ -78,8 +78,11 @@ export default function OnBoard({navigation, route}) {
   const buildNextButton = () => {
     return (
       <View
-        style={[styles.buttonCircle, {backgroundColor: colors.textSecondary}]}>
-        <Icon name="arrow-right" color={Colors.white} size={24} />
+        style={[
+          styles.buttonCircle,
+          {backgroundColor: theme.colors.textSecondary},
+        ]}>
+        <Icon name="arrow-right" color={Colors.white} />
       </View>
     );
   };
@@ -90,8 +93,9 @@ export default function OnBoard({navigation, route}) {
    */
   const buildDoneButton = () => {
     return (
-      <View style={[styles.buttonCircle, {backgroundColor: colors.primary}]}>
-        <Icon name="check" color={Colors.white} size={24} />
+      <View
+        style={[styles.buttonCircle, {backgroundColor: theme.colors.primary}]}>
+        <Icon name="check" color={Colors.white} />
       </View>
     );
   };
@@ -127,7 +131,7 @@ export default function OnBoard({navigation, route}) {
           <IconButton
             size="small"
             name="web"
-            style={{backgroundColor: colors.primaryLight}}
+            style={{backgroundColor: theme.colors.primaryLight}}
             onPress={() => bottomSheetRef.current?.present()}
           />
         </SafeAreaView>
@@ -144,12 +148,16 @@ export default function OnBoard({navigation, route}) {
 
   return (
     <LinearGradient
-      colors={[colors.primaryLight, colors.background, colors.background]}
+      colors={[
+        theme.colors.primaryLight,
+        theme.colors.background,
+        theme.colors.background,
+      ]}
       style={Styles.flex}>
       <AppIntroSlider
         data={slides}
-        activeDotStyle={{backgroundColor: colors.primary}}
-        dotStyle={{backgroundColor: colors.textSecondary}}
+        activeDotStyle={{backgroundColor: theme.colors.primary}}
+        dotStyle={{backgroundColor: theme.colors.textSecondary}}
         renderItem={buildItem}
         renderDoneButton={buildDoneButton}
         renderNextButton={buildNextButton}

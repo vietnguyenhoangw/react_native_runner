@@ -6,7 +6,7 @@ import {Colors, Images, useTheme} from '@configs';
 import PropTypes from 'prop-types';
 
 export default function Header(props) {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   const {
     onScan,
     onSearch,
@@ -26,7 +26,7 @@ export default function Header(props) {
         style={[
           styles.searchInput,
           {
-            backgroundColor: colors.card,
+            backgroundColor: theme.colors.card,
           },
         ]}
       />
@@ -38,7 +38,7 @@ export default function Header(props) {
             style={[
               styles.notificationBadge,
               {
-                backgroundColor: colors.error,
+                backgroundColor: theme.colors.error,
               },
             ]}>
             <Text

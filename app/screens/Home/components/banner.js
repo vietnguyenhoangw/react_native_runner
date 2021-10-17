@@ -7,7 +7,7 @@ import {Colors, Images, Styles, useTheme} from '@configs';
 import PropTypes from 'prop-types';
 
 function Banner(props) {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   const {width} = useWindowDimensions();
   const {data, onChange, onPress} = props;
   const [active, setActive] = useState(0);
@@ -54,7 +54,7 @@ function Banner(props) {
           dotStyle={[
             styles.dotActiveStyle,
             {
-              backgroundColor: colors.primary,
+              backgroundColor: theme.colors.primary,
             },
           ]}
           inactiveDotStyle={{
@@ -84,24 +84,19 @@ Banner.defaultProps = {
       color: '#ee4d2d',
     },
     {
-      image: Images.homeBanner2,
-      titleAction: 'Xem chi tiết',
-      color: '#ee4d2d',
-    },
-    {
       image: Images.homeBanner3,
       titleAction: 'Xem chi tiết',
       color: '#f18ead',
     },
     {
-      image: Images.homeBanner4,
-      titleAction: 'Xem chi tiết',
-      color: '#ee4d2d',
-    },
-    {
       image: Images.homeBanner5,
       titleAction: 'Xem chi tiết',
       color: '#eeabfc',
+    },
+    {
+      image: Images.homeBanner4,
+      titleAction: 'Xem chi tiết',
+      color: '#ee4d2d',
     },
     {
       image: Images.homeBanner6,
@@ -112,6 +107,11 @@ Banner.defaultProps = {
       image: Images.homeBanner7,
       titleAction: 'Xem chi tiết',
       color: '#f3a0b9',
+    },
+    {
+      image: Images.homeBanner2,
+      titleAction: 'Xem chi tiết',
+      color: '#ee4d2d',
     },
     {
       image: Images.homeBanner8,

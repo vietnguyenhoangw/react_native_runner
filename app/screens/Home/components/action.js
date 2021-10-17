@@ -6,7 +6,7 @@ import {Colors, Images, Styles, useTheme} from '@configs';
 import PropTypes from 'prop-types';
 
 export default function Action(props) {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   const {onCashIn, onCashOut, onQRCode, onTransfer, onAccount, minHeight} =
     props;
 
@@ -15,7 +15,7 @@ export default function Action(props) {
       style={[
         styles.container,
         {
-          backgroundColor: colors.card,
+          backgroundColor: theme.colors.card,
         },
       ]}>
       <View style={[styles.action, {height: minHeight}]}>
@@ -24,10 +24,10 @@ export default function Action(props) {
             style={[
               styles.item,
               {
-                backgroundColor: colors.primary,
+                backgroundColor: theme.colors.primary,
               },
             ]}>
-            <Icon name="cash-plus" size={24} color={Colors.white} />
+            <Icon name="cash-plus" color={Colors.white} />
           </View>
           <Text typography="subtitle" weight="bold">
             Nạp tiền
@@ -38,10 +38,10 @@ export default function Action(props) {
             style={[
               styles.item,
               {
-                backgroundColor: colors.primary,
+                backgroundColor: theme.colors.primary,
               },
             ]}>
-            <Icon name="cash-multiple" size={24} color={Colors.white} />
+            <Icon name="cash-multiple" color={Colors.white} />
           </View>
           <Text typography="subtitle" weight="bold">
             Rút tiền
@@ -52,10 +52,10 @@ export default function Action(props) {
             style={[
               styles.item,
               {
-                backgroundColor: colors.primary,
+                backgroundColor: theme.colors.primary,
               },
             ]}>
-            <Icon name="qrcode" size={24} color={Colors.white} />
+            <Icon name="qrcode" color={Colors.white} />
           </View>
           <Text typography="subtitle" weight="bold">
             Mã QR
@@ -66,10 +66,10 @@ export default function Action(props) {
             style={[
               styles.item,
               {
-                backgroundColor: colors.primary,
+                backgroundColor: theme.colors.primary,
               },
             ]}>
-            <Icon name="account-cash-outline" size={24} color={Colors.white} />
+            <Icon name="account-cash-outline" color={Colors.white} />
           </View>
           <Text typography="subtitle" weight="bold">
             Chuyển tiền

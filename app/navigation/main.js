@@ -4,20 +4,20 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useTranslation} from 'react-i18next';
 import {Home, Promotion, Transaction, Chat, Wallet} from '@screens';
 import {Text, getFontFamily, Icon} from '@components';
-import {Styles, useFont, useTheme} from '@configs';
+import {Styles, useTheme} from '@configs';
 
 const Tab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
 
 export default function Main() {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   const {t} = useTranslation();
   return (
     <MainStack.Navigator
       initialRouteName="BottomTab"
       screenOptions={{
         headerStyle: {
-          backgroundColor: colors.primary,
+          backgroundColor: theme.colors.primary,
         },
         headerTitle: props => {
           return (
@@ -40,15 +40,14 @@ export default function Main() {
 }
 
 function BottomTab() {
-  const {colors} = useTheme();
-  const font = useFont();
+  const {theme, font} = useTheme();
   const {t} = useTranslation();
   return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarInactiveTintColor: colors.textSecondary,
-        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: theme.colors.textSecondary,
+        tabBarActiveTintColor: theme.colors.primary,
         headerShown: false,
       }}
       tabBarLabelStyle={[
@@ -63,7 +62,7 @@ function BottomTab() {
         options={{
           title: t('home'),
           tabBarIcon: ({color}) => {
-            return <Icon color={color} name="home-outline" size={24} />;
+            return <Icon color={color} name="home-outline" />;
           },
         }}
       />
@@ -73,7 +72,7 @@ function BottomTab() {
         options={{
           title: t('promotion'),
           tabBarIcon: ({color}) => {
-            return <Icon color={color} name="tag-heart-outline" size={24} />;
+            return <Icon color={color} name="tag-heart-outline" />;
           },
         }}
       />
@@ -83,7 +82,7 @@ function BottomTab() {
         options={{
           title: t('transaction'),
           tabBarIcon: ({color}) => {
-            return <Icon color={color} name="history" size={24} />;
+            return <Icon color={color} name="history" />;
           },
         }}
       />
@@ -93,9 +92,7 @@ function BottomTab() {
         options={{
           title: t('chat'),
           tabBarIcon: ({color}) => {
-            return (
-              <Icon color={color} name="chat-processing-outline" size={24} />
-            );
+            return <Icon color={color} name="chat-processing-outline" />;
           },
         }}
       />
@@ -105,7 +102,7 @@ function BottomTab() {
         options={{
           title: t('wallet'),
           tabBarIcon: ({color}) => {
-            return <Icon color={color} name="wallet-outline" size={24} />;
+            return <Icon color={color} name="wallet-outline" />;
           },
         }}
       />

@@ -18,13 +18,13 @@ const HEIGHT_BANNER = 100;
 const HEIGHT_ACTION = HEIGHT_BANNER + 54;
 
 export default function Home({navigation}) {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   const translationY = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler(event => {
     translationY.value = event.contentOffset.y;
   });
 
-  const [color, setColor] = useState(colors.primary);
+  const [color, setColor] = useState(theme.colors.primary);
   const [refreshing, setRefreshing] = useState(false);
 
   /**
@@ -60,7 +60,7 @@ export default function Home({navigation}) {
   });
 
   return (
-    <View style={[Styles.flex, {backgroundColor: colors.background}]}>
+    <View style={[Styles.flex, {backgroundColor: theme.colors.background}]}>
       <LinearGradient
         colors={[
           color,
@@ -72,9 +72,9 @@ export default function Home({navigation}) {
           color + 'B3',
           color + 'A6',
           color + '99',
-          colors.card,
-          colors.card,
-          colors.background,
+          theme.colors.card,
+          theme.colors.card,
+          theme.colors.background,
         ]}>
         <SafeAreaView edges={['top']}>
           <Header notification={100} maximumCount={20} />
@@ -107,11 +107,11 @@ export default function Home({navigation}) {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            tintColor={colors.text}
+            tintColor={theme.colors.text}
             title="Cập nhật"
-            titleColor={colors.text}
-            colors={[colors.text, colors.textSecondary]}
-            progressBackgroundColor={colors.text}
+            titleColor={theme.colors.text}
+            colors={[theme.colors.text, theme.colors.textSecondary]}
+            progressBackgroundColor={theme.colors.text}
           />
         }>
         <View style={{height: 1000}}></View>

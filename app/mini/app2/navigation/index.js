@@ -8,7 +8,7 @@ import {Home} from '@mini//app2/screens';
 const RootStack = createStackNavigator();
 
 export default function App() {
-  const {theme, colors} = useTheme();
+  const {theme} = useTheme();
 
   return (
     <NavigationContainer theme={theme} independent={true}>

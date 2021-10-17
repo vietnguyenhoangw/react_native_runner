@@ -15,7 +15,7 @@ import Navigator from '@navigator';
 import {authActions} from '@actions';
 
 export default function SignUpPassword({navigation, route}) {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   const nameRef = useRef();
   const dispatch = useDispatch();
 
@@ -76,7 +76,7 @@ export default function SignUpPassword({navigation, route}) {
   };
 
   return (
-    <Container style={{backgroundColor: colors.card}}>
+    <Container style={{backgroundColor: theme.colors.card}}>
       <ScrollView
         style={Styles.flex}
         contentContainerStyle={Styles.padding24}

@@ -15,7 +15,7 @@ import {authActions} from '@actions';
 import styles from './styles';
 
 export default function SignOTP({navigation, route}) {
-  const {colors} = useTheme();
+  const {theme} = useTheme();
   const otpRef = useRef();
   const phone = route.params?.phone ?? '0999999999';
   const dispatch = useDispatch();
@@ -130,7 +130,7 @@ export default function SignOTP({navigation, route}) {
   };
 
   return (
-    <Container style={{backgroundColor: colors.card}}>
+    <Container style={{backgroundColor: theme.colors.card}}>
       <View style={[Styles.flex, Styles.padding24]}>
         <Text typography="h4" weight="bold">
           Nhập mã xác thực OTP
