@@ -8,7 +8,7 @@ export default function Empty({navigation}) {
   const {theme} = useTheme();
   useEffect(() => {}, []);
   return (
-    <Container style={{backgroundColor: colors.card}}>
+    <Container style={{backgroundColor: theme.colors.card}}>
       <Text>Empty</Text>
     </Container>
   );

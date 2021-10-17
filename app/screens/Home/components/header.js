@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity, Pressable} from 'react-native';
 import {View} from 'react-native';
 import {Text, Icon, SizedBox, Image} from '@components';
 import {Colors, Images, useTheme} from '@configs';
@@ -22,14 +22,17 @@ export default function Header(props) {
         <Icon color={Colors.white} name="qrcode-scan" size={16} />
       </TouchableOpacity>
       <SizedBox width={12} />
-      <View
-        style={[
-          styles.searchInput,
-          {
-            backgroundColor: theme.colors.card,
-          },
-        ]}
-      />
+      <Pressable style={styles.searchInput} onPress={onSearch}>
+        <Icon
+          name="magnify"
+          size={18}
+          color={Colors.white}
+          style={styles.searchIcon}
+        />
+        <Text typography="subtitle" color="white">
+          Tìm bất kể một cái gì đó?
+        </Text>
+      </Pressable>
       <SizedBox width={12} />
       <TouchableOpacity style={styles.headerIcon} onPress={onNotification}>
         <Icon color={Colors.white} name="bell-outline" size={18} />
@@ -71,7 +74,7 @@ Header.propTypes = {
 
 Header.defaultProps = {
   onScan: () => {},
-  onSearch: () => {},
+  onSearch: value => {},
   onNotification: () => {},
   onProfile: () => {},
   notification: 0,
@@ -90,6 +93,13 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 32,
     borderRadius: 16,
+    backgroundColor: Colors.black + '40',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  searchIcon: {
+    marginLeft: 8,
+    marginRight: 4,
   },
   headerIcon: {
     width: 32,

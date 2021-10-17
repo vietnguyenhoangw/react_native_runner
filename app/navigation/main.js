@@ -1,10 +1,13 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useTranslation} from 'react-i18next';
-import {Home, Promotion, Transaction, Chat, Wallet} from '@screens';
+import {Home, Promotion, Transaction, Chat, Wallet, Search} from '@screens';
 import {Text, getFontFamily, Icon} from '@components';
-import {Styles, useTheme} from '@configs';
+import {Styles, useTheme, Colors} from '@configs';
 
 const Tab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
@@ -32,6 +35,17 @@ export default function Main() {
         name="BottomTab"
         component={BottomTab}
         options={{
+          headerShown: false,
+        }}
+      />
+      <MainStack.Screen
+        name="Search"
+        component={Search}
+        options={{
+          presentation: 'transparentModal',
+          cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
+          cardStyle: {backgroundColor: Colors.black + '99'},
+          gestureEnabled: false,
           headerShown: false,
         }}
       />

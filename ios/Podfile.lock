@@ -62,8 +62,6 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.5.2):
     - GoogleUtilities/Logger
-  - hermes-engine (0.9.0)
-  - libevent (2.1.12)
   - libwebp (1.2.1):
     - libwebp/demux (= 1.2.1)
     - libwebp/mux (= 1.2.1)
@@ -90,12 +88,6 @@ PODS:
     - DoubleConversion
     - fmt (~> 6.2.1)
     - glog
-  - RCT-Folly/Futures (2021.06.28.00-v2):
-    - boost
-    - DoubleConversion
-    - fmt (~> 6.2.1)
-    - glog
-    - libevent
   - RCTRequired (0.66.0)
   - RCTTypeSafety (0.66.0):
     - FBLazyVector (= 0.66.0)
@@ -262,17 +254,6 @@ PODS:
     - React-logger (= 0.66.0)
     - React-perflogger (= 0.66.0)
     - React-runtimeexecutor (= 0.66.0)
-  - React-hermes (0.66.0):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2021.06.28.00-v2)
-    - RCT-Folly/Futures (= 2021.06.28.00-v2)
-    - React-cxxreact (= 0.66.0)
-    - React-jsi (= 0.66.0)
-    - React-jsiexecutor (= 0.66.0)
-    - React-jsinspector (= 0.66.0)
-    - React-perflogger (= 0.66.0)
   - React-jsi (0.66.0):
     - boost (= 1.76.0)
     - DoubleConversion
@@ -437,8 +418,6 @@ DEPENDENCIES:
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - hermes-engine (~> 0.9.0)
-  - libevent (~> 2.1.12)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -449,7 +428,6 @@ DEPENDENCIES:
   - React-Core/RCTWebSocket (from `../node_modules/react-native/`)
   - React-CoreModules (from `../node_modules/react-native/React/CoreModules`)
   - React-cxxreact (from `../node_modules/react-native/ReactCommon/cxxreact`)
-  - React-hermes (from `../node_modules/react-native/ReactCommon/hermes`)
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
@@ -493,8 +471,6 @@ SPEC REPOS:
     - fmt
     - GoogleDataTransport
     - GoogleUtilities
-    - hermes-engine
-    - libevent
     - libwebp
     - nanopb
     - PromisesObjC
@@ -530,8 +506,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/React/CoreModules"
   React-cxxreact:
     :path: "../node_modules/react-native/ReactCommon/cxxreact"
-  React-hermes:
-    :path: "../node_modules/react-native/ReactCommon/hermes"
   React-jsi:
     :path: "../node_modules/react-native/ReactCommon/jsi"
   React-jsiexecutor:
@@ -612,8 +586,6 @@ SPEC CHECKSUMS:
   glog: 5337263514dd6f09803962437687240c5dc39aa4
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
   GoogleUtilities: 8de2a97a17e15b6b98e38e8770e2d129a57c0040
-  hermes-engine: bf7577d12ac6ccf53ab8b5af3c6ccf0dd8458c5c
-  libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   libwebp: 98a37e597e40bfdb4c911fc98f2c53d0b12d05fc
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
@@ -625,7 +597,6 @@ SPEC CHECKSUMS:
   React-Core: 45e4b3c57b0b5fdbb24bc6a63a964870c0405955
   React-CoreModules: d7bb1ae3436eddd85a7eb6d5e928f8c1655d87db
   React-cxxreact: 60c850e9997b21ee302757c36a460efc944183e7
-  React-hermes: 80f8b14e571f240370dc55c2133783ee58f8e932
   React-jsi: 38d68cb1b53843703100830d530342b32f8e0878
   React-jsiexecutor: 6a05173dc0142abc582bd4edd2d23146b8cc218a
   React-jsinspector: be95ad424ba9f7b817aff22732eb9b1b810a000a
@@ -661,6 +632,6 @@ SPEC CHECKSUMS:
   SDWebImageWebPCoder: f93010f3f6c031e2f8fb3081ca4ee6966c539815
   Yoga: c11abbf5809216c91fcd62f5571078b83d9b6720
 
-PODFILE CHECKSUM: 8e28679d758485bf492e6dddade023b251f76f06
+PODFILE CHECKSUM: 7d8ea5278417d3f5b5a7da5450f7f876669b57f5
 
 COCOAPODS: 1.11.2

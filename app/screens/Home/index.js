@@ -1,5 +1,5 @@
-import React, {useState, useRef} from 'react';
-import {View, RefreshControl, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {View, RefreshControl} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Animated, {
   useSharedValue,
@@ -34,6 +34,13 @@ export default function Home({navigation}) {
     setRefreshing(true);
     await delay(1000);
     setRefreshing(false);
+  };
+
+  /**
+   * on refresh
+   */
+  const onSearch = () => {
+    navigation.push('Search');
   };
 
   const actionStyle = useAnimatedStyle(() => {
@@ -77,7 +84,7 @@ export default function Home({navigation}) {
           theme.colors.background,
         ]}>
         <SafeAreaView edges={['top']}>
-          <Header notification={100} maximumCount={20} />
+          <Header notification={100} maximumCount={20} onSearch={onSearch} />
         </SafeAreaView>
         <View>
           <View

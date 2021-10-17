@@ -97,7 +97,7 @@ export default function App() {
             options={{
               presentation: 'transparentModal',
               cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
-              cardStyle: {backgroundColor: Colors.modal},
+              cardStyle: {backgroundColor: Colors.black + '99'},
               gestureEnabled: false,
             }}
           />

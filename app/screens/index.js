@@ -10,10 +10,13 @@ import SignUpInfo from './SignUpInfo';
 import ForgotPassword from './ForgotPassword';
 
 import Home from './Home';
+import Search from './Search';
 import Promotion from './Promotion';
 import Transaction from './Transaction';
 import Chat from './Chat';
 import Wallet from './Wallet';
+
+import Empty from './Empty';
 
 export {
   Splash,
@@ -27,8 +30,10 @@ export {
   OnBoard,
   ForgotPassword,
   Home,
+  Search,
   Promotion,
   Transaction,
   Chat,
   Wallet,
+  Empty,
 };

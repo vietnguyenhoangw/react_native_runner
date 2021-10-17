@@ -85,7 +85,7 @@ Banner.defaultProps = {
     },
     {
       image: Images.homeBanner3,
-      titleAction: 'Xem chi tiết',
+      titleAction: 'Đặt ngay',
       color: '#f18ead',
     },
     {
@@ -95,7 +95,7 @@ Banner.defaultProps = {
     },
     {
       image: Images.homeBanner4,
-      titleAction: 'Xem chi tiết',
+      titleAction: 'Khám phá thêm',
       color: '#ee4d2d',
     },
     {

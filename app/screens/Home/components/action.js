@@ -1,14 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {View} from 'react-native';
+import {useTranslation} from 'react-i18next';
 import {Text, Icon, SizedBox, Image} from '@components';
 import {Colors, Images, Styles, useTheme} from '@configs';
 import PropTypes from 'prop-types';
 
 export default function Action(props) {
+  const {t, i18n} = useTranslation();
   const {theme} = useTheme();
-  const {onCashIn, onCashOut, onQRCode, onTransfer, onAccount, minHeight} =
-    props;
+  const [showBalance, setShowBalance] = useState(true);
+
+  const {
+    balance,
+    currency,
+    onCashIn,
+    onCashOut,
+    onQRCode,
+    onTransfer,
+    onAccount,
+    minHeight,
+  } = props;
+
+  const exportBalance = () => {
+    if (showBalance) {
+      return new Intl.NumberFormat(i18n.language, {
+        style: 'currency',
+        currency,
+      }).format(balance);
+    }
+    return '*****************';
+  };
 
   return (
     <View
@@ -20,57 +42,61 @@ export default function Action(props) {
       ]}>
       <View style={[styles.action, {height: minHeight}]}>
         <View style={Styles.flexCenter}>
-          <View
+          <TouchableOpacity
             style={[
               styles.item,
               {
                 backgroundColor: theme.colors.primary,
               },
-            ]}>
-            <Icon name="cash-plus" color={Colors.white} />
-          </View>
+            ]}
+            onPress={onCashIn}>
+            <Icon name="cash-plus" color={Colors.white} size={22} />
+          </TouchableOpacity>
           <Text typography="subtitle" weight="bold">
             Nạp tiền
           </Text>
         </View>
         <View style={Styles.flexCenter}>
-          <View
+          <TouchableOpacity
             style={[
               styles.item,
               {
                 backgroundColor: theme.colors.primary,
               },
-            ]}>
-            <Icon name="cash-multiple" color={Colors.white} />
-          </View>
+            ]}
+            onPress={onCashOut}>
+            <Icon name="cash-multiple" color={Colors.white} size={22} />
+          </TouchableOpacity>
           <Text typography="subtitle" weight="bold">
             Rút tiền
           </Text>
         </View>
         <View style={Styles.flexCenter}>
-          <View
+          <TouchableOpacity
             style={[
               styles.item,
               {
                 backgroundColor: theme.colors.primary,
               },
-            ]}>
-            <Icon name="qrcode" color={Colors.white} />
-          </View>
+            ]}
+            onPress={onQRCode}>
+            <Icon name="qrcode" color={Colors.white} size={22} />
+          </TouchableOpacity>
           <Text typography="subtitle" weight="bold">
             Mã QR
           </Text>
         </View>
         <View style={Styles.flexCenter}>
-          <View
+          <TouchableOpacity
             style={[
               styles.item,
               {
                 backgroundColor: theme.colors.primary,
               },
-            ]}>
-            <Icon name="account-cash-outline" color={Colors.white} />
-          </View>
+            ]}
+            onPress={onTransfer}>
+            <Icon name="account-cash-outline" color={Colors.white} size={22} />
+          </TouchableOpacity>
           <Text typography="subtitle" weight="bold">
             Chuyển tiền
           </Text>
@@ -87,23 +113,32 @@ export default function Action(props) {
       </View>
       <View style={styles.infoRow}>
         <View style={Styles.row}>
-          <TouchableOpacity style={styles.eyeButton}>
+          <TouchableOpacity
+            style={styles.eyeButton}
+            onPress={() => setShowBalance(!showBalance)}>
             <Icon name="eye-outline" />
           </TouchableOpacity>
-          <Text typography="h4" weight="bold">
-            125.000.000đ
+          <Text
+            typography="h4"
+            weight="bold"
+            style={!showBalance ? {height: 14} : {}}>
+            {exportBalance()}
           </Text>
         </View>
-        <View style={[Styles.row, styles.accountTextButtom]}>
+        <TouchableOpacity
+          style={[Styles.row, styles.accountTextButtom]}
+          onPress={onAccount}>
           <Text typography="subtitle">Thông tin tài khoản</Text>
           <Icon name="chevron-right" size={16} />
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
 }
 
 Action.propTypes = {
+  balance: PropTypes.number,
+  currency: PropTypes.string,
   onCashIn: PropTypes.func,
   onCashOut: PropTypes.func,
   onQRCode: PropTypes.func,
@@ -113,6 +148,8 @@ Action.propTypes = {
 };
 
 Action.defaultProps = {
+  balance: 125200000,
+  currency: 'VND',
   onCashIn: () => {},
   onCashOut: () => {},
   onQRCode: () => {},
@@ -139,7 +176,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 4,
+    marginBottom: 8,
   },
   infoRow: {
     flexDirection: 'row',
