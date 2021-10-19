@@ -10,7 +10,11 @@ export default function Search({navigation}) {
 
   const [keyword, setKeyword] = useState('');
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 500);
+  }, []);
 
   const onChangeText = value => {
     setKeyword(value);

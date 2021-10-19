@@ -1,15 +1,25 @@
 import * as actionTypes from '../actions/actionTypes';
+import {UserModel} from '@models';
 
 const initialState = {
   user: null,
   token: null,
-  register: [],
+  register: [
+    {
+      phone: '0964142239',
+      name: 'Huynh Dung',
+      gender: 'male',
+      email: '12520082@gm.uit.edu.vn',
+      password: '000000',
+      balance: 125200000,
+    },
+  ],
 };
 
 export default (state = initialState, action) => {
   switch (action?.type) {
     case actionTypes.REGISTER:
-      const user = action.user.toJson();
+      const user = new UserModel(action.user).toJson();
       return {
         ...state,
         register: state.register.concat(user),
@@ -23,10 +33,10 @@ export default (state = initialState, action) => {
       };
 
     case actionTypes.UPDATE_USER:
-      const update = {
+      const update = new UserModel({
         ...state.user,
         ...action.user,
-      };
+      }).toJson();
       return {
         ...state,
         register: state.register.map(item => {

@@ -57,7 +57,9 @@ export default function SignUpPassword({navigation, route}) {
     dispatch(
       authActions.onRegister({...route.params, gender, name, email}, result => {
         Navigator.showLoading(false);
-        navigation.replace('SignIn');
+        if (result.success) {
+          navigation.replace('SignIn');
+        }
       }),
     );
   };

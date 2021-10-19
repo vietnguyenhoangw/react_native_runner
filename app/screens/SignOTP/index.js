@@ -96,7 +96,7 @@ export default function SignOTP({navigation, route}) {
       authActions.onPhoneCheck({phone, otp}, response => {
         Navigator.showLoading(false);
         if (response.success) {
-          if (response.data.user) {
+          if (response.data) {
             navigation.replace('SignIn');
           } else {
             navigation.replace('SignUp', {phone});
