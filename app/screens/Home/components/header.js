@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, TouchableOpacity, Pressable} from 'react-native';
 import {View} from 'react-native';
 import {Text, Icon, SizedBox, Image} from '@components';
-import {Colors, Images, useTheme} from '@configs';
+import {Colors, Images, useTheme, Opacity} from '@configs';
 import PropTypes from 'prop-types';
 
 export default function Header(props) {
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 32,
     borderRadius: 16,
-    backgroundColor: Colors.black + '40',
+    backgroundColor: Colors.black + Opacity[25],
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.black + '40',
+    backgroundColor: Colors.black + Opacity[25],
   },
   notificationBadge: {
     minWidth: 16,

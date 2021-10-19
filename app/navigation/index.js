@@ -12,7 +12,7 @@ import {useSelector} from 'react-redux';
 import {languageSelect, tokenSelect, userSelect} from '@selectors';
 import Navigator from '@navigator';
 import {Splash, Loading, Modal, OnBoard} from '@screens';
-import {useTheme, Colors, Setting} from '@configs';
+import {useTheme, Colors, Setting, Opacity} from '@configs';
 import Main from './main';
 import Auth from './auth';
 
@@ -97,7 +97,7 @@ export default function App() {
             options={{
               presentation: 'transparentModal',
               cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
-              cardStyle: {backgroundColor: Colors.black + '99'},
+              cardStyle: {backgroundColor: Colors.black + Opacity[60]},
               gestureEnabled: false,
             }}
           />

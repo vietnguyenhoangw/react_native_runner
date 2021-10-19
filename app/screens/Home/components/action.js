@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, memo} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {Text, Icon, SizedBox, Image} from '@components';
-import {Colors, Images, Styles, useTheme} from '@configs';
+import {Text, Icon} from '@components';
+import {Colors, Styles, useTheme} from '@configs';
 import PropTypes from 'prop-types';
 
-export default function Action(props) {
+function Action(props) {
   const {t, i18n} = useTranslation();
   const {theme} = useTheme();
   const [showBalance, setShowBalance] = useState(true);
@@ -79,11 +79,11 @@ export default function Action(props) {
                 backgroundColor: theme.colors.primary,
               },
             ]}
-            onPress={onQRCode}>
-            <Icon name="qrcode" color={Colors.white} size={22} />
+            onPress={onTransfer}>
+            <Icon name="account-cash-outline" color={Colors.white} size={22} />
           </TouchableOpacity>
           <Text typography="subtitle" weight="bold">
-            Mã QR
+            Chuyển tiền
           </Text>
         </View>
         <View style={Styles.flexCenter}>
@@ -94,11 +94,11 @@ export default function Action(props) {
                 backgroundColor: theme.colors.primary,
               },
             ]}
-            onPress={onTransfer}>
-            <Icon name="account-cash-outline" color={Colors.white} size={22} />
+            onPress={onQRCode}>
+            <Icon name="qrcode" color={Colors.white} size={22} />
           </TouchableOpacity>
           <Text typography="subtitle" weight="bold">
-            Chuyển tiền
+            Mã QR
           </Text>
         </View>
       </View>
@@ -135,6 +135,8 @@ export default function Action(props) {
     </View>
   );
 }
+
+export default memo(Action);
 
 Action.propTypes = {
   balance: PropTypes.number,
@@ -182,8 +184,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingBottom: 8,
-    paddingTop: 4,
+    paddingTop: 2,
   },
   eyeButton: {
     paddingLeft: 12,

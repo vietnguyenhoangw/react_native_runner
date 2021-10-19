@@ -6,19 +6,23 @@ import Animated, {
   useAnimatedStyle,
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
+import {useSelector} from 'react-redux';
 import {SafeAreaView} from '@components';
 import {delay} from '@utils';
-import {Styles, useTheme} from '@configs';
+import {Styles, useTheme, Opacity} from '@configs';
+import {userSelect} from '@selectors';
 import Header from './components/header';
 import Banner from './components/banner';
 import Action from './components/action';
+import Category from './components/category';
 import styles from './styles';
 
 const HEIGHT_BANNER = 100;
-const HEIGHT_ACTION = HEIGHT_BANNER + 54;
+const HEIGHT_ACTION = HEIGHT_BANNER + 50;
 
 export default function Home({navigation}) {
   const {theme} = useTheme();
+  const user = useSelector(userSelect);
   const translationY = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler(event => {
     translationY.value = event.contentOffset.y;
@@ -71,14 +75,14 @@ export default function Home({navigation}) {
       <LinearGradient
         colors={[
           color,
-          color + 'F2',
-          color + 'E6',
-          color + 'D9',
-          color + 'CC',
-          color + 'BF',
-          color + 'B3',
-          color + 'A6',
-          color + '99',
+          color + Opacity[95],
+          color + Opacity[90],
+          color + Opacity[85],
+          color + Opacity[80],
+          color + Opacity[75],
+          color + Opacity[70],
+          color + Opacity[65],
+          color + Opacity[60],
           theme.colors.card,
           theme.colors.card,
           theme.colors.background,
@@ -103,7 +107,7 @@ export default function Home({navigation}) {
         </View>
         <Animated.View style={actionStyle}>
           <View style={styles.actionContainer}>
-            <Action minHeight={HEIGHT_BANNER} />
+            <Action minHeight={HEIGHT_BANNER} balance={user.balance} />
           </View>
         </Animated.View>
       </LinearGradient>
@@ -121,7 +125,9 @@ export default function Home({navigation}) {
             progressBackgroundColor={theme.colors.text}
           />
         }>
-        <View style={{height: 1000}}></View>
+        <View style={{height: 1000}}>
+          <Category />
+        </View>
       </Animated.ScrollView>
     </View>
   );

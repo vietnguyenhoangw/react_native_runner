@@ -3,7 +3,7 @@ import {StyleSheet, useWindowDimensions, TouchableOpacity} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {View} from 'react-native';
 import {Text, Icon, SizedBox, Image} from '@components';
-import {Colors, Images, Styles, useTheme} from '@configs';
+import {Colors, Images, Styles, useTheme, Opacity} from '@configs';
 import PropTypes from 'prop-types';
 
 function Banner(props) {
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     bottom: 4,
     right: 4,
     height: 24,
-    backgroundColor: Colors.black + '40',
+    backgroundColor: Colors.black + Opacity[25],
     paddingHorizontal: 8,
     borderRadius: 12,
     alignItems: 'center',

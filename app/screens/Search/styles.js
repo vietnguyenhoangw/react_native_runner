@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from '@configs';
+import {Colors, Opacity} from '@configs';
 
 export default StyleSheet.create({
   headerRow: {
@@ -12,7 +12,7 @@ export default StyleSheet.create({
     flex: 1,
     height: 32,
     borderRadius: 16,
-    backgroundColor: Colors.black + '40',
+    backgroundColor: Colors.black + Opacity[25],
     flexDirection: 'row',
     alignItems: 'center',
   },

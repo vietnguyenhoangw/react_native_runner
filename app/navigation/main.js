@@ -7,7 +7,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useTranslation} from 'react-i18next';
 import {Home, Promotion, Transaction, Chat, Wallet, Search} from '@screens';
 import {Text, getFontFamily, Icon} from '@components';
-import {Styles, useTheme, Colors} from '@configs';
+import {Styles, useTheme, Colors, Opacity} from '@configs';
 
 const Tab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
@@ -44,7 +44,7 @@ export default function Main() {
         options={{
           presentation: 'transparentModal',
           cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
-          cardStyle: {backgroundColor: Colors.black + '99'},
+          cardStyle: {backgroundColor: Colors.black + Opacity[60]},
           gestureEnabled: false,
           headerShown: false,
         }}
