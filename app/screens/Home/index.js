@@ -18,7 +18,9 @@ import Category from './components/category';
 import styles from './styles';
 
 const HEIGHT_BANNER = 100;
-const HEIGHT_ACTION = HEIGHT_BANNER + 50;
+const HEIGHT_ACTION = 154;
+const PADDING_TOP = 12;
+const SHADOW = 2;
 
 export default function Home({navigation}) {
   const {theme} = useTheme();
@@ -49,9 +51,9 @@ export default function Home({navigation}) {
 
   const actionStyle = useAnimatedStyle(() => {
     let height = HEIGHT_ACTION - translationY.value;
-    let marginTop = HEIGHT_BANNER + 12 - translationY.value;
-    if (height < HEIGHT_BANNER) {
-      height = HEIGHT_BANNER;
+    let marginTop = HEIGHT_BANNER + PADDING_TOP - translationY.value;
+    if (height < HEIGHT_BANNER + SHADOW) {
+      height = HEIGHT_BANNER + SHADOW;
     }
     if (marginTop < 0) {
       marginTop = 0;
@@ -59,8 +61,8 @@ export default function Home({navigation}) {
     if (height > HEIGHT_ACTION) {
       height = HEIGHT_ACTION;
     }
-    if (marginTop > HEIGHT_BANNER + 12) {
-      marginTop = HEIGHT_BANNER + 12;
+    if (marginTop > HEIGHT_BANNER + PADDING_TOP) {
+      marginTop = HEIGHT_BANNER + PADDING_TOP;
     }
 
     return {
@@ -105,8 +107,12 @@ export default function Home({navigation}) {
             />
           </View>
         </View>
-        <Animated.View style={actionStyle}>
-          <View style={styles.actionContainer}>
+        <Animated.View style={[{paddingBottom: SHADOW}, actionStyle]}>
+          <View
+            style={[
+              styles.actionContainer,
+              {shadowColor: theme.colors.text + Opacity[50]},
+            ]}>
             <Action minHeight={HEIGHT_BANNER} balance={user.balance} />
           </View>
         </Animated.View>

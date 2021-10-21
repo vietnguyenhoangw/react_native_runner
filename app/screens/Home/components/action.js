@@ -102,14 +102,16 @@ function Action(props) {
           </Text>
         </View>
       </View>
-      <View style={Styles.paddingHorizontal16}>
-        <Text
-          typography="overline"
-          numberOfLines={1}
-          ellipsizeMode="clip"
-          type="secondary">
-          {Array(100).join('- ')}
-        </Text>
+      <View>
+        <View style={styles.line}>
+          <Text
+            typography="overline"
+            numberOfLines={1}
+            ellipsizeMode="clip"
+            type="secondary">
+            {Array(100).join('- ')}
+          </Text>
+        </View>
       </View>
       <View style={styles.infoRow}>
         <View style={Styles.row}>
@@ -121,7 +123,7 @@ function Action(props) {
           <Text
             typography="h4"
             weight="bold"
-            style={!showBalance ? {height: 14} : {}}>
+            style={!showBalance ? styles.styleTextSecure : {}}>
             {exportBalance()}
           </Text>
         </View>
@@ -164,7 +166,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderRadius: 11,
-    overflow: 'hidden',
   },
   action: {
     flexDirection: 'row',
@@ -180,11 +181,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 8,
   },
+  line: {
+    position: 'absolute',
+    width: '100%',
+    paddingHorizontal: 16,
+  },
   infoRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 2,
+    paddingTop: 12,
   },
   eyeButton: {
     paddingLeft: 12,
@@ -195,4 +201,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 4,
   },
+  styleTextSecure: {height: 14},
 });
