@@ -8,6 +8,5 @@ export default StyleSheet.create({
   actionContainer: {
     flex: 1,
     paddingHorizontal: 16,
-    overflow: 'hidden',
   },
 });

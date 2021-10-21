@@ -17,7 +17,7 @@ function Action(props) {
     onCashIn,
     onCashOut,
     onQRCode,
-    onTransfer,
+    onScan,
     onAccount,
     minHeight,
   } = props;
@@ -79,11 +79,11 @@ function Action(props) {
                 backgroundColor: theme.colors.primary,
               },
             ]}
-            onPress={onTransfer}>
-            <Icon name="account-cash-outline" color={Colors.white} size={22} />
+            onPress={onScan}>
+            <Icon name="qrcode-scan" color={Colors.white} size={20} />
           </TouchableOpacity>
           <Text typography="subtitle" weight="bold">
-            Chuyển tiền
+            Quét mã
           </Text>
         </View>
         <View style={Styles.flexCenter}>
@@ -144,7 +144,7 @@ Action.propTypes = {
   onCashIn: PropTypes.func,
   onCashOut: PropTypes.func,
   onQRCode: PropTypes.func,
-  onTransfer: PropTypes.func,
+  onScan: PropTypes.func,
   onAccount: PropTypes.func,
   minHeight: PropTypes.number,
 };
@@ -155,7 +155,7 @@ Action.defaultProps = {
   onCashIn: () => {},
   onCashOut: () => {},
   onQRCode: () => {},
-  onTransfer: () => {},
+  onScan: () => {},
   onAccount: () => {},
   minHeight: 100,
 };

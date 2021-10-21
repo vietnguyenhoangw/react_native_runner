@@ -19,7 +19,7 @@ export default function Header(props) {
   return (
     <View style={styles.headerRow}>
       <TouchableOpacity style={styles.headerIcon} onPress={onScan}>
-        <Icon color={Colors.white} name="qrcode-scan" size={16} />
+        <Icon color={Colors.white} name="map-marker-radius-outline" size={18} />
       </TouchableOpacity>
       <SizedBox width={12} />
       <Pressable style={styles.searchInput} onPress={onSearch}>

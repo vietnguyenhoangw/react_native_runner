@@ -49,6 +49,11 @@ Category.propTypes = {
 Category.defaultProps = {
   data: [
     {
+      id: '11',
+      icon: 'account-cash-outline',
+      title: 'Chuyển nhận tiền',
+    },
+    {
       id: '1',
       icon: 'clipboard-text-outline',
       title: 'Thanh toán hóa đơn',
