@@ -37,7 +37,7 @@ function Action(props) {
       style={[
         styles.container,
         {
-          backgroundColor: theme.colors.card,
+          backgroundColor: theme.colors.background,
         },
       ]}>
       <View style={[styles.action, {height: minHeight}]}>
