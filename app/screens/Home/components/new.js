@@ -23,29 +23,24 @@ export default function New(props) {
           Tất cả
         </Button>
       </View>
-      {/* <View style={styles.row}>
+      <View style={styles.list}>
         {data.map(item => (
           <TouchableOpacity
             key={item.service_id}
             onPress={() => {}}
             style={styles.item}>
-            <View
-              style={[
-                styles.iconContainer,
-                {backgroundColor: theme.colors.primary + Opacity[15]},
-              ]}>
-              <Image source={item.icon} style={{width: 24, height: 24}} />
+            <Image source={Images.banner} style={styles.image} />
+            <View style={styles.itemContent}>
+              <Text typography="subtitle" type="secondary">
+                Đặt xe
+              </Text>
+              <Text typography="title" type="secondary">
+                Đặt xe
+              </Text>
             </View>
-            <Text
-              typography="caption"
-              style={styles.text}
-              numberOfLines={2}
-              ellipsizeMode="middle">
-              {item.title}
-            </Text>
           </TouchableOpacity>
         ))}
-      </View> */}
+      </View>
     </View>
   );
 }
@@ -110,7 +105,9 @@ New.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    marginTop: 8,
+  },
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -120,23 +117,22 @@ const styles = StyleSheet.create({
     borderTopWidth: 0.4,
     borderBottomWidth: 0.4,
   },
-  row: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    paddingTop: 8,
+  list: {
+    paddingHorizontal: 16,
   },
   item: {
-    width: '20%',
-    alignItems: 'center',
-    padding: 4,
+    flexDirection: 'row',
+    marginVertical: 8,
   },
-  iconContainer: {
-    width: 32,
-    height: 32,
-    borderRadius: 12,
-    marginBottom: 4,
-    alignItems: 'center',
-    justifyContent: 'center',
+  image: {
+    width: 110,
+    height: 110,
+    borderTopLeftRadius: 12,
+    borderBottomLeftRadius: 12,
   },
-  text: {textAlign: 'center'},
+  itemContent: {
+    flex: 1,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+  },
 });

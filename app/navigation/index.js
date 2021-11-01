@@ -19,6 +19,7 @@ import Auth from './auth';
 const RootStack = createStackNavigator();
 
 export default function App() {
+  const mounted = useRef(false);
   const language = useSelector(languageSelect);
   const token = useSelector(tokenSelect);
   const user = useRef(useSelector(userSelect));
@@ -40,18 +41,20 @@ export default function App() {
    * authenticate flow
    */
   useEffect(() => {
-    /* when authenticate success */
+    /* when authenticate login success */
     if (token) {
       Navigator.replace('Main');
     } else {
       /* when phone already login */
+      const delay = mounted.current ? 0 : 500;
       setTimeout(() => {
         if (user.current) {
           Navigator.replace('Auth', {screen: 'SignIn'});
         } else {
           Navigator.replace('Auth');
         }
-      }, 500);
+        mounted.current = true;
+      }, delay);
     }
   }, [token]);
 
