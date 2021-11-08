@@ -15,6 +15,8 @@ import Header from './components/header';
 import Banner from './components/banner';
 import Action from './components/action';
 import Category from './components/category';
+import Recommend from './components/recommend';
+import New from './components/new';
 import styles from './styles';
 
 const HEIGHT_BANNER = 100;
@@ -73,7 +75,7 @@ export default function Home({navigation}) {
   });
 
   return (
-    <View style={[Styles.flex, {backgroundColor: theme.colors.background}]}>
+    <View style={[Styles.flex, {backgroundColor: theme.colors.card}]}>
       <LinearGradient
         colors={[
           color,
@@ -87,7 +89,7 @@ export default function Home({navigation}) {
           color + Opacity[60],
           theme.colors.card,
           theme.colors.card,
-          theme.colors.background,
+          theme.colors.card,
         ]}>
         <SafeAreaView edges={['top']}>
           <Header notification={100} maximumCount={20} onSearch={onSearch} />
@@ -133,6 +135,8 @@ export default function Home({navigation}) {
         }>
         <View style={{height: 1000}}>
           <Category />
+          <Recommend />
+          <New />
         </View>
       </Animated.ScrollView>
     </View>

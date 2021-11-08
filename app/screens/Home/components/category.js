@@ -1,8 +1,8 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Pressable, FlatList} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import {View} from 'react-native';
-import {Text, Icon, SizedBox, Image} from '@components';
-import {Colors, Images, Opacity, useTheme} from '@configs';
+import {Text, Icon} from '@components';
+import {Opacity, useTheme} from '@configs';
 import PropTypes from 'prop-types';
 
 export default function Category(props) {
@@ -14,7 +14,7 @@ export default function Category(props) {
       <View style={styles.row}>
         {data.map(item => (
           <TouchableOpacity
-            key={item.id}
+            key={item.category_id}
             onPress={() => {}}
             style={styles.item}>
             <View
@@ -29,7 +29,7 @@ export default function Category(props) {
               />
             </View>
             <Text
-              typography="subtitle"
+              typography="caption"
               style={styles.title}
               numberOfLines={2}
               ellipsizeMode="middle">
@@ -49,52 +49,52 @@ Category.propTypes = {
 Category.defaultProps = {
   data: [
     {
-      id: '11',
+      category_id: 'transfer',
       icon: 'account-cash-outline',
       title: 'Chuyển nhận tiền',
     },
     {
-      id: '1',
+      category_id: 'bill',
       icon: 'clipboard-text-outline',
       title: 'Thanh toán hóa đơn',
     },
     {
-      id: '2',
+      category_id: 'mobile',
       icon: 'cellphone-wireless',
       title: 'Dịch vụ viễn thông',
     },
     {
-      id: '3',
+      category_id: 'financial-insurance',
       icon: 'shield-sun-outline',
       title: 'Tài chính\nBảo hiểm',
     },
     {
-      id: '4',
+      category_id: 'payment-partner',
       icon: 'bag-personal-outline',
       title: 'Nạp tiền đối tác',
     },
     {
-      id: '5',
+      category_id: 'travel',
       icon: 'airplane-takeoff',
       title: 'Du lịch',
     },
     {
-      id: '6',
+      category_id: 'link-partner',
       icon: 'link-variant-plus',
       title: 'Dịch vụ liên kết',
     },
     {
-      id: '7',
+      category_id: 'entertainment',
       icon: 'movie-filter-outline',
       title: 'Giải trí',
     },
     {
-      id: '8',
+      category_id: 'ecommerce',
       icon: 'shopping-outline',
       title: 'Thương mai điện tử',
     },
     {
-      id: '9',
+      category_id: 'other',
       icon: 'view-grid-plus-outline',
       title: 'Dịch vụ khác',
     },
