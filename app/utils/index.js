@@ -1,3 +1,4 @@
+import {Images} from '@configs';
 import {Animated} from 'react-native';
 
 const {multiply} = Animated;
@@ -87,104 +88,104 @@ export function getNational(code) {
       return {
         value: 'vi',
         title: 'Việt Nam',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/vn.png',
+        icon: Images.vi,
       };
     case 'ar':
       return {
         value: 'ar',
         title: 'Arabic',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/sa.png',
+        icon: Images.ar,
       };
 
     case 'da':
       return {
         value: 'da',
         title: 'Danish',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/dk.png',
+        icon: Images.da,
       };
 
     case 'de':
       return {
         value: 'de',
         title: 'German',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/de.png',
+        icon: Images.de,
       };
 
     case 'el':
       return {
         value: 'el',
         title: 'Greek',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/gr.png',
+        icon: Images.el,
       };
 
     case 'fr':
       return {
         value: 'fr',
         title: 'French',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/fr.png',
+        icon: Images.fr,
       };
 
     case 'he':
       return {
         value: 'he',
         title: 'Hebrew',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/il.png',
+        icon: Images.he,
       };
 
     case 'id':
       return {
         value: 'id',
         title: 'Indonesian',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/id.png',
+        icon: Images.id,
       };
 
     case 'ja':
       return {
         value: 'ja',
         title: 'Japanese',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/jp.png',
+        icon: Images.ja,
       };
 
     case 'ko':
       return {
         value: 'ko',
         title: 'Korean',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/kr.png',
+        icon: Images.ko,
       };
 
     case 'lo':
       return {
         value: 'lo',
         title: 'Lao',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/la.png',
+        icon: Images.lo,
       };
 
     case 'nl':
       return {
         value: 'nl',
         title: 'Dutch',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/nl.png',
+        icon: Images.nl,
       };
 
     case 'zh':
       return {
         value: 'zh',
         title: 'Chinese',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/cn.png',
+        icon: Images.zh,
       };
 
     case 'fa':
       return {
         value: 'fa',
         title: 'Persian',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/ir.png',
+        icon: Images.fa,
       };
 
     case 'km':
       return {
         value: 'km',
         title: 'Cambodian',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/kh.png',
+        icon: Images.km,
       };
 
     default:
@@ -192,7 +193,7 @@ export function getNational(code) {
       return {
         value: 'en',
         title: 'English',
-        icon: 'https://img.mservice.io/momo_app_v2/new_version/growth_activation/img/us.png',
+        icon: Images.en,
       };
   }
 }
