@@ -6,7 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start --reset-cache",
-    "all": "watchman watch-del-all && rm -rf package-lock.json && rm -rf node_modules/ && rm -fr $TMPDIR/metro* && npm install && cd ios && rm -rf Pods && rm -rf Podfile.lock && pod repo update && pod install && cd ..",
+    "all": "watchman watch-del-all && rm -rf package-lock.json && rm -rf node_modules/ && rm -fr $TMPDIR/metro* && npm install --legacy-peer-deps && cd ios && rm -rf Pods && rm -rf Podfile.lock && pod repo update && pod install && cd ..",
     "test": "jest",
     "lint": "eslint ."
   },
