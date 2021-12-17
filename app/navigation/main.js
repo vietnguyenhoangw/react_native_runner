@@ -7,7 +7,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useTranslation} from 'react-i18next';
 import {Home, Promotion, Transaction, Chat, Wallet, Search} from '@screens';
 import {Text, getFontFamily, Icon} from '@components';
-import {Styles, useTheme, Colors, Opacity} from '@configs';
+import {useTheme, Colors, Opacity} from '@configs';
 
 const Tab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
@@ -63,13 +63,12 @@ function BottomTab() {
         tabBarInactiveTintColor: theme.colors.textSecondary,
         tabBarActiveTintColor: theme.colors.primary,
         headerShown: false,
-      }}
-      tabBarLabelStyle={[
-        Styles.bottomTitle,
-        {
-          fontFamily: getFontFamily({fontFamily: font, fontWeight: '600'}),
+        tabBarLabelStyle: {
+          fontSize: 10,
+          fontFamily: getFontFamily({fontFamily: font}),
+          paddingBottom: 2,
         },
-      ]}>
+      }}>
       <Tab.Screen
         name="Home"
         component={Home}

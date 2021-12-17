@@ -68,7 +68,15 @@ export default function SignIn({navigation}) {
       component: (
         <PopupAlert
           title="Xác thực OTP"
-          message={`Chúng tôi sẽ gửi một mã xác thực đến SĐT ${user.phone} để xác thực khôi phục mật khẩu, Bạn có muốn tiếp tục ?`}
+          message={
+            <Text typography="h4">
+              Chúng tôi sẽ gửi một mã xác thực đến SĐT{' '}
+              <Text typography="h4" weight="bold">
+                {user.phone}
+              </Text>{' '}
+              để xác thực khôi phục mật khẩu, Bạn có muốn tiếp tục ?
+            </Text>
+          }
           primaryButton={{
             title: 'Đồng ý',
             onPress: onOTP,

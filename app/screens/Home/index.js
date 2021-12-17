@@ -16,6 +16,7 @@ import Banner from './components/banner';
 import Action from './components/action';
 import Category from './components/category';
 import Recommend from './components/recommend';
+import Favorite from './components/favorite';
 import New from './components/new';
 import styles from './styles';
 
@@ -74,6 +75,48 @@ export default function Home({navigation}) {
     };
   });
 
+  /**
+   * build banner slider
+   * @return {*}
+   */
+  const buildBanner = () => {
+    return (
+      <View>
+        <View
+          style={[
+            styles.bannerContainer,
+            {
+              height: HEIGHT_BANNER,
+            },
+          ]}>
+          <Banner
+            onChange={item => {
+              setColor(item.color);
+            }}
+          />
+        </View>
+      </View>
+    );
+  };
+
+  /**
+   * build action
+   * @return {*}
+   */
+  const buildAction = () => {
+    return (
+      <Animated.View style={[{paddingBottom: SHADOW}, actionStyle]}>
+        <View
+          style={[
+            styles.actionContainer,
+            {shadowColor: theme.colors.text + Opacity[50]},
+          ]}>
+          <Action minHeight={HEIGHT_BANNER} balance={user.balance} />
+        </View>
+      </Animated.View>
+    );
+  };
+
   return (
     <View style={[Styles.flex, {backgroundColor: theme.colors.card}]}>
       <LinearGradient
@@ -94,34 +137,13 @@ export default function Home({navigation}) {
         <SafeAreaView edges={['top']}>
           <Header notification={100} maximumCount={20} onSearch={onSearch} />
         </SafeAreaView>
-        <View>
-          <View
-            style={[
-              styles.bannerContainer,
-              {
-                height: HEIGHT_BANNER,
-              },
-            ]}>
-            <Banner
-              onChange={item => {
-                setColor(item.color);
-              }}
-            />
-          </View>
-        </View>
-        <Animated.View style={[{paddingBottom: SHADOW}, actionStyle]}>
-          <View
-            style={[
-              styles.actionContainer,
-              {shadowColor: theme.colors.text + Opacity[50]},
-            ]}>
-            <Action minHeight={HEIGHT_BANNER} balance={user.balance} />
-          </View>
-        </Animated.View>
+        {buildBanner()}
+        {buildAction()}
       </LinearGradient>
       <Animated.ScrollView
         onScroll={scrollHandler}
         scrollEventThrottle={8}
+        decelerationRate={0.5}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
@@ -134,8 +156,9 @@ export default function Home({navigation}) {
           />
         }>
         <View style={{height: 1000}}>
-          <Category />
+          <Favorite />
           <Recommend />
+          <Category />
           <New />
         </View>
       </Animated.ScrollView>

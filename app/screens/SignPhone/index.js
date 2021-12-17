@@ -18,7 +18,7 @@ import {onBoardSelect} from '@selectors';
 import styles from './styles';
 
 const PHONE_LENGTH = 15;
-const MIN_HEIGHT_FORM = 70;
+const MIN_HEIGHT_FORM = 100;
 const MAX_HEIGHT_FORM = 300;
 
 export default function SignPhone({navigation, route}) {
@@ -70,7 +70,15 @@ export default function SignPhone({navigation, route}) {
       component: (
         <PopupAlert
           title="Xác thực OTP"
-          message={`Chúng tôi sẽ gửi một mã xác thực đến SĐT ${phone} để xác thực đăng nhập, Bạn có muốn tiếp tục ?`}
+          message={
+            <Text typography="h4">
+              Chúng tôi sẽ gửi một mã xác thực đến SĐT{' '}
+              <Text typography="h4" weight="bold">
+                {phone}
+              </Text>{' '}
+              để xác thực đăng nhập, Bạn có muốn tiếp tục ?
+            </Text>
+          }
           primaryButton={{
             title: 'Đồng ý',
             onPress: onOTP,
@@ -119,11 +127,11 @@ export default function SignPhone({navigation, route}) {
       <LinearGradient
         colors={[theme.colors.primary, theme.colors.card]}
         style={Styles.flex}>
-        <View style={[styles.imageContent, {height: MAX_HEIGHT_FORM}]}>
+        <View style={[styles.imageContent, {height: MAX_HEIGHT_FORM + 24}]}>
           <Image
             source={Images.signin}
             style={Styles.flex}
-            resizeMode="contain"
+            resizeMode="cover"
           />
         </View>
         <Animated.View

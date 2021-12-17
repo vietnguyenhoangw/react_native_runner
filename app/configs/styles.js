@@ -77,8 +77,4 @@ export default StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
   },
-  //bottom label
-  bottomTitle: {
-    fontSize: 10,
-  },
 });

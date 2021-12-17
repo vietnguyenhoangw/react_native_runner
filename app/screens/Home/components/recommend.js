@@ -11,7 +11,7 @@ export default function Recommend(props) {
 
   return (
     <View style={styles.container}>
-      <View style={[styles.titleRow, {borderColor: theme.colors.border}]}>
+      <View style={styles.titleRow}>
         <Text typography="h4" weight="bold">
           Đề xuất cho bạn
         </Text>
@@ -116,14 +116,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderTopWidth: 0.4,
-    borderBottomWidth: 0.4,
+    paddingVertical: 12,
   },
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingTop: 8,
   },
   item: {
     width: '20%',

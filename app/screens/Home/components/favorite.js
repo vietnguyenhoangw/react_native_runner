@@ -1,11 +1,11 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {View} from 'react-native';
-import {Text, Icon, Button} from '@components';
-import {Opacity, useTheme} from '@configs';
+import {Text, Icon, Button, Image} from '@components';
+import {Opacity, useTheme, Images} from '@configs';
 import PropTypes from 'prop-types';
 
-export default function Category(props) {
+export default function Favorite(props) {
   const {theme} = useTheme();
   const {data} = props;
 
@@ -17,16 +17,16 @@ export default function Category(props) {
         </Text>
         <Button
           type="secondary"
-          leading={<Icon name="grid" size={16} />}
+          leading={<Icon name="playlist-edit" size={16} />}
           full={false}
           size="small">
-          Tất cả
+          Tuỳ chỉnh
         </Button>
       </View>
       <View style={styles.row}>
         {data.map(item => (
           <TouchableOpacity
-            key={item.category_id}
+            key={item.service_id}
             onPress={() => {}}
             style={styles.item}>
             <View
@@ -34,15 +34,11 @@ export default function Category(props) {
                 styles.iconContainer,
                 {backgroundColor: theme.colors.primary + Opacity[15]},
               ]}>
-              <Icon
-                name={item.icon}
-                size={22}
-                color={theme.colors.primaryLight}
-              />
+              <Image source={item.icon} style={styles.icon} />
             </View>
             <Text
               typography="caption"
-              style={styles.title}
+              style={styles.text}
               numberOfLines={2}
               ellipsizeMode="middle">
               {item.title}
@@ -54,61 +50,61 @@ export default function Category(props) {
   );
 }
 
-Category.propTypes = {
+Favorite.propTypes = {
   data: PropTypes.array,
 };
 
-Category.defaultProps = {
+Favorite.defaultProps = {
   data: [
     {
-      category_id: 'transfer',
-      icon: 'account-cash-outline',
-      title: 'Chuyển nhận tiền',
+      service_id: 'transfer',
+      icon: Images.serviceTransfer,
+      title: 'Chuyển tiền',
     },
     {
-      category_id: 'bill',
-      icon: 'clipboard-text-outline',
-      title: 'Thanh toán hóa đơn',
+      service_id: 'food',
+      icon: Images.serviceFood,
+      title: 'Đặt đồ ăn',
     },
     {
-      category_id: 'mobile',
-      icon: 'cellphone-wireless',
-      title: 'Dịch vụ viễn thông',
+      service_id: 'mobile',
+      icon: Images.serviceMobile,
+      title: 'Nạp tiền điện thoại',
     },
     {
-      category_id: 'financial-insurance',
-      icon: 'shield-sun-outline',
-      title: 'Tài chính\nBảo hiểm',
+      service_id: 'electric',
+      icon: Images.serviceElectric,
+      title: 'Thanh toán điện',
     },
     {
-      category_id: 'payment-partner',
-      icon: 'bag-personal-outline',
-      title: 'Nạp tiền đối tác',
+      service_id: 'airplane',
+      icon: Images.serviceAirplane,
+      title: 'Đặt vé máy bay',
     },
     {
-      category_id: 'travel',
-      icon: 'airplane-takeoff',
-      title: 'Du lịch',
+      service_id: 'hotel',
+      icon: Images.serviceHotel,
+      title: 'Đặt khách sạn',
     },
     {
-      category_id: 'link-partner',
-      icon: 'link-variant-plus',
-      title: 'Dịch vụ liên kết',
+      service_id: 'movie',
+      icon: Images.serviceMovie,
+      title: 'Đặt vé xem phim',
     },
     {
-      category_id: 'entertainment',
-      icon: 'movie-filter-outline',
-      title: 'Giải trí',
+      service_id: 'apartment',
+      icon: Images.serviceApartment,
+      title: 'Phí chung cư',
     },
     {
-      category_id: 'ecommerce',
-      icon: 'shopping-outline',
-      title: 'Thương mai điện tử',
+      service_id: 'delivery',
+      icon: Images.serviceDelivery,
+      title: 'Vận chuyển & giao hàng',
     },
     {
-      category_id: 'other',
-      icon: 'view-grid-plus-outline',
-      title: 'Xem thêm',
+      service_id: 'taxi',
+      icon: Images.serviceTaxi,
+      title: 'Đặt xe',
     },
   ],
 };
@@ -139,5 +135,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title: {textAlign: 'center'},
+  text: {textAlign: 'center'},
+  icon: {width: 24, height: 24},
 });

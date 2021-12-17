@@ -137,7 +137,10 @@ export default function SignOTP({navigation, route}) {
         </Text>
         <SizedBox height={2} />
         <Text typography="title" type="secondary">
-          Mã xác thực 4 số được gửi đến {phone}
+          Mã xác thực 4 số được gửi đến{' '}
+          <Text typography="title" weight="bold">
+            {phone}
+          </Text>
         </Text>
         <View style={styles.otpContainer}>
           <OTPInput
