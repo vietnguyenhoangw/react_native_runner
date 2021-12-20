@@ -21,9 +21,8 @@ import New from './components/new';
 import styles from './styles';
 
 const HEIGHT_BANNER = 100;
-const HEIGHT_ACTION = 154;
+const HEIGHT_ACTION = 150;
 const PADDING_TOP = 12;
-const SHADOW = 2;
 
 export default function Home({navigation}) {
   const {theme} = useTheme();
@@ -55,8 +54,8 @@ export default function Home({navigation}) {
   const actionStyle = useAnimatedStyle(() => {
     let height = HEIGHT_ACTION - translationY.value;
     let marginTop = HEIGHT_BANNER + PADDING_TOP - translationY.value;
-    if (height < HEIGHT_BANNER + SHADOW) {
-      height = HEIGHT_BANNER + SHADOW;
+    if (height < HEIGHT_BANNER) {
+      height = HEIGHT_BANNER;
     }
     if (marginTop < 0) {
       marginTop = 0;
@@ -72,6 +71,7 @@ export default function Home({navigation}) {
       height,
       marginTop,
       overflow: 'hidden',
+      paddingHorizontal: 16,
     };
   });
 
@@ -105,14 +105,8 @@ export default function Home({navigation}) {
    */
   const buildAction = () => {
     return (
-      <Animated.View style={[{paddingBottom: SHADOW}, actionStyle]}>
-        <View
-          style={[
-            styles.actionContainer,
-            {shadowColor: theme.colors.text + Opacity[50]},
-          ]}>
-          <Action minHeight={HEIGHT_BANNER} balance={user.balance} />
-        </View>
+      <Animated.View style={actionStyle}>
+        <Action minHeight={HEIGHT_BANNER} balance={user.balance} />
       </Animated.View>
     );
   };
@@ -155,12 +149,10 @@ export default function Home({navigation}) {
             progressBackgroundColor={theme.colors.text}
           />
         }>
-        <View style={{height: 1000}}>
-          <Favorite />
-          <Recommend />
-          <Category />
-          <New />
-        </View>
+        <Favorite />
+        <Recommend />
+        <Category />
+        <New />
       </Animated.ScrollView>
     </View>
   );

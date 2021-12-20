@@ -102,15 +102,17 @@ function Action(props) {
           </Text>
         </View>
       </View>
-      <View>
-        <View style={styles.line}>
-          <Text
-            typography="overline"
-            numberOfLines={1}
-            ellipsizeMode="clip"
-            type="secondary">
-            {Array(100).join('- ')}
-          </Text>
+      <View style={styles.line}>
+        <View style={{flex: 1, flexDirection: 'row', overflow: 'hidden'}}>
+          {Array.from(Array(150).keys()).map((item, index) => {
+            console.log('item', item);
+            return (
+              <View
+                key={item}
+                style={[styles.dot, {backgroundColor: theme.colors.text}]}
+              />
+            );
+          })}
         </View>
       </View>
       <View style={styles.infoRow}>
@@ -165,7 +167,8 @@ Action.defaultProps = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderRadius: 11,
+    borderRadius: 12,
+    overflow: 'hidden',
   },
   action: {
     flexDirection: 'row',
@@ -182,15 +185,18 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   line: {
-    position: 'absolute',
-    width: '100%',
     paddingHorizontal: 16,
+    height: 1,
+  },
+  dot: {
+    width: 2,
+    marginHorizontal: 1.5,
   },
   infoRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 12,
+    paddingTop: 8,
   },
   eyeButton: {
     paddingLeft: 12,

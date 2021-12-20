@@ -13,15 +13,8 @@ export default function Category(props) {
     <View style={styles.container}>
       <View style={styles.titleRow}>
         <Text typography="h4" weight="bold">
-          Dịch vụ yêu thích
+          Danh mục dịch vụ
         </Text>
-        <Button
-          type="secondary"
-          leading={<Icon name="grid" size={16} />}
-          full={false}
-          size="small">
-          Tất cả
-        </Button>
       </View>
       <View style={styles.row}>
         {data.map(item => (
