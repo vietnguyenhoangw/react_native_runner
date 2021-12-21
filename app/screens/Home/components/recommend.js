@@ -1,13 +1,31 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {View} from 'react-native';
-import {Text, Icon, Button, Image} from '@components';
+import {Text, Icon, Button, Image, CornerStone} from '@components';
 import {Opacity, useTheme, Images} from '@configs';
 import PropTypes from 'prop-types';
 
 export default function Recommend(props) {
   const {theme} = useTheme();
-  const {data} = props;
+  const {data, dataCornerStone, onPress, onPressCornerStone} = props;
+
+  /**
+   * render CornerStone
+   *
+   */
+  const renderCornerStone = () => {
+    if (dataCornerStone?.length > 0) {
+      return (
+        <View style={styles.cornerStone}>
+          <CornerStone
+            data={dataCornerStone}
+            onChange={item => {}}
+            onPress={item => onPressCornerStone(item)}
+          />
+        </View>
+      );
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -27,7 +45,7 @@ export default function Recommend(props) {
         {data.map(item => (
           <TouchableOpacity
             key={item.service_id}
-            onPress={() => {}}
+            onPress={() => onPress(item)}
             style={styles.item}>
             <View
               style={[
@@ -46,12 +64,16 @@ export default function Recommend(props) {
           </TouchableOpacity>
         ))}
       </View>
+      {renderCornerStone()}
     </View>
   );
 }
 
 Recommend.propTypes = {
   data: PropTypes.array,
+  dataCornerStone: PropTypes.array,
+  onPress: PropTypes.func,
+  onPressCornerStone: PropTypes.func,
 };
 
 Recommend.defaultProps = {
@@ -107,6 +129,34 @@ Recommend.defaultProps = {
       title: 'Đặt xe',
     },
   ],
+  dataCornerStone: [
+    {
+      image: Images.homeBanner7,
+      titleAction: 'Khám phá ngay',
+    },
+    {
+      image: Images.homeBanner6,
+      titleAction: 'Xem chi tiết',
+    },
+    {
+      image: Images.homeBanner2,
+      titleAction: 'Xem chi tiết',
+    },
+    {
+      image: Images.homeBanner9,
+      titleAction: 'Xem chi tiết',
+    },
+    {
+      image: Images.homeBanner8,
+      titleAction: 'Khám phá ngay',
+    },
+    {
+      image: Images.homeBanner10,
+      titleAction: 'Khám phá ngay',
+    },
+  ],
+  onPress: item => {},
+  onPressCornerStone: item => {},
 };
 
 const styles = StyleSheet.create({
@@ -137,4 +187,8 @@ const styles = StyleSheet.create({
   },
   text: {textAlign: 'center'},
   icon: {width: 24, height: 24},
+  cornerStone: {
+    height: 80,
+    marginTop: 8,
+  },
 });

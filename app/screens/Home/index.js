@@ -7,12 +7,11 @@ import Animated, {
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
 import {useSelector} from 'react-redux';
-import {SafeAreaView} from '@components';
+import {SafeAreaView, CornerStone} from '@components';
 import {delay} from '@utils';
-import {Styles, useTheme, Opacity} from '@configs';
+import {Styles, useTheme, Opacity, Images} from '@configs';
 import {userSelect} from '@selectors';
 import Header from './components/header';
-import Banner from './components/banner';
 import Action from './components/action';
 import Category from './components/category';
 import Recommend from './components/recommend';
@@ -89,7 +88,59 @@ export default function Home({navigation}) {
               height: HEIGHT_BANNER,
             },
           ]}>
-          <Banner
+          <CornerStone
+            data={[
+              {
+                image: Images.homeBanner1,
+                titleAction: 'Xem chi tiết',
+                color: '#ee4d2d',
+              },
+              {
+                image: Images.homeBanner3,
+                titleAction: 'Đặt ngay',
+                color: '#f18ead',
+              },
+              {
+                image: Images.homeBanner5,
+                titleAction: 'Xem chi tiết',
+                color: '#eeabfc',
+              },
+              {
+                image: Images.homeBanner4,
+                titleAction: 'Khám phá ngay',
+                color: '#ee4d2d',
+              },
+              {
+                image: Images.homeBanner6,
+                titleAction: 'Xem chi tiết',
+                color: '#e4dfe8',
+              },
+              {
+                image: Images.homeBanner7,
+                titleAction: 'Khám phá ngay',
+                color: '#f3a0b9',
+              },
+              {
+                image: Images.homeBanner2,
+                titleAction: 'Xem chi tiết',
+                color: '#ee4d2d',
+              },
+              {
+                image: Images.homeBanner8,
+                titleAction: 'Khám phá ngay',
+                color: '#f6b0b0',
+              },
+              {
+                image: Images.homeBanner9,
+                titleAction: 'Xem chi tiết',
+                color: '#faf098',
+              },
+              {
+                image: Images.homeBanner10,
+                titleAction: 'Khám phá ngay',
+                color: '#c32c45',
+              },
+            ]}
             onChange={item => {
               setColor(item.color);
             }}
