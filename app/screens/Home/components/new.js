@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {View} from 'react-native';
-import {Text, Icon, Button, Image} from '@components';
-import {Opacity, useTheme, Images} from '@configs';
+import {Text, Icon, Button, ProductItem} from '@components';
+import {useTheme, Images} from '@configs';
 import PropTypes from 'prop-types';
 
 export default function New(props) {
@@ -11,7 +11,7 @@ export default function New(props) {
 
   return (
     <View style={styles.container}>
-      <View style={[styles.titleRow, {borderColor: theme.colors.border}]}>
+      <View style={styles.titleRow}>
         <Text typography="h4" weight="bold">
           Có gì mới hôm nay
         </Text>
@@ -25,20 +25,19 @@ export default function New(props) {
       </View>
       <View style={styles.list}>
         {data.map(item => (
-          <TouchableOpacity
+          <ProductItem
             key={item.service_id}
-            onPress={() => {}}
-            style={styles.item}>
-            <Image source={Images.banner} style={styles.image} />
-            <View style={styles.itemContent}>
-              <Text typography="subtitle" type="secondary">
-                Đặt xe
-              </Text>
-              <Text typography="title" type="secondary">
-                Đặt xe
-              </Text>
-            </View>
-          </TouchableOpacity>
+            item={{
+              title: 'Trà sữa trân châu hoàng kim',
+              subtitle: 'The coffee house',
+              image: Images.avatar1,
+              rate: 4.5,
+              price: 9000,
+              favorite: false,
+              status: 'Giải 49%',
+            }}
+            style={styles.item}
+          />
         ))}
       </View>
     </View>
@@ -105,23 +104,18 @@ New.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 8,
-  },
+  container: {},
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderTopWidth: 0.4,
-    borderBottomWidth: 0.4,
   },
   list: {
     paddingHorizontal: 16,
   },
   item: {
-    flexDirection: 'row',
     marginVertical: 8,
   },
   image: {

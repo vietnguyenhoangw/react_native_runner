@@ -93,7 +93,7 @@ function BottomTab() {
         name="Transaction"
         component={Transaction}
         options={{
-          title: t('transaction'),
+          title: t('history'),
           tabBarIcon: ({color}) => {
             return <Icon color={color} name="history" />;
           },

@@ -103,9 +103,8 @@ function Action(props) {
         </View>
       </View>
       <View style={styles.line}>
-        <View style={{flex: 1, flexDirection: 'row', overflow: 'hidden'}}>
+        <View style={styles.lineContent}>
           {Array.from(Array(150).keys()).map((item, index) => {
-            console.log('item', item);
             return (
               <View
                 key={item}
@@ -139,8 +138,6 @@ function Action(props) {
     </View>
   );
 }
-
-export default memo(Action);
 
 Action.propTypes = {
   balance: PropTypes.number,
@@ -188,6 +185,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     height: 1,
   },
+  lineContent: {flex: 1, flexDirection: 'row', overflow: 'hidden'},
   dot: {
     width: 2,
     marginHorizontal: 1.5,
@@ -209,3 +207,5 @@ const styles = StyleSheet.create({
   },
   styleTextSecure: {height: 14},
 });
+
+export default memo(Action);
