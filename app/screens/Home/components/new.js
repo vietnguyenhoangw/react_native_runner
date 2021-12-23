@@ -13,7 +13,7 @@ export default function New(props) {
     <View style={styles.container}>
       <View style={styles.titleRow}>
         <Text typography="h4" weight="bold">
-          Có gì mới hôm nay
+          Hôm nay có gì mới
         </Text>
         <Button
           type="secondary"
@@ -34,7 +34,7 @@ export default function New(props) {
               rate: 4.5,
               price: 9000,
               favorite: false,
-              status: 'Giải 49%',
+              status: '-49%',
             }}
             style={styles.item}
           />

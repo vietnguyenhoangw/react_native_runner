@@ -1,7 +1,15 @@
 import {Images} from '@configs';
 import {Animated} from 'react-native';
+import i18n from 'i18next';
 
 const {multiply} = Animated;
+
+export function getCurrency(value) {
+  return new Intl.NumberFormat(i18n.language, {
+    style: 'currency',
+    currency: 'VND',
+  }).format(value);
+}
 
 export function forVerticalIOS({current, inverted, layouts: {screen}}) {
   const translateY = multiply(

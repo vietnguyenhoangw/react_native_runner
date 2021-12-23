@@ -4,6 +4,7 @@ import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {Text, Icon} from '@components';
 import {Colors, Styles, useTheme} from '@configs';
+import {getCurrency} from '@utils';
 import PropTypes from 'prop-types';
 
 function Action(props) {
@@ -11,23 +12,12 @@ function Action(props) {
   const {theme} = useTheme();
   const [showBalance, setShowBalance] = useState(true);
 
-  const {
-    balance,
-    currency,
-    onCashIn,
-    onCashOut,
-    onQRCode,
-    onScan,
-    onAccount,
-    minHeight,
-  } = props;
+  const {balance, onCashIn, onCashOut, onQRCode, onScan, onAccount, minHeight} =
+    props;
 
   const exportBalance = () => {
     if (showBalance) {
-      return new Intl.NumberFormat(i18n.language, {
-        style: 'currency',
-        currency,
-      }).format(balance);
+      return getCurrency(balance);
     }
     return '*****************';
   };
@@ -40,7 +30,7 @@ function Action(props) {
           backgroundColor: theme.colors.background,
         },
       ]}>
-      <View style={[styles.action, {height: minHeight}]}>
+      <View style={styles.action}>
         <View style={Styles.flexCenter}>
           <TouchableOpacity
             style={[
@@ -152,7 +142,6 @@ Action.propTypes = {
 
 Action.defaultProps = {
   balance: 125200000,
-  currency: 'VND',
   onCashIn: () => {},
   onCashOut: () => {},
   onQRCode: () => {},
@@ -163,15 +152,15 @@ Action.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     borderRadius: 12,
-    overflow: 'hidden',
+    flex: 1,
   },
   action: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 12,
+    padding: 8,
+    flex: 1,
   },
   item: {
     width: 36,
@@ -182,7 +171,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   line: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     height: 1,
   },
   lineContent: {flex: 1, flexDirection: 'row', overflow: 'hidden'},
@@ -194,7 +183,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 8,
+    paddingVertical: 8,
   },
   eyeButton: {
     paddingLeft: 12,

@@ -21,6 +21,7 @@ export default function Recommend(props) {
             data={dataCornerStone}
             onChange={item => {}}
             onPress={item => onPressCornerStone(item)}
+            style={{borderRadius: 8}}
           />
         </View>
       );

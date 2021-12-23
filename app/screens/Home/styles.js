@@ -6,4 +6,10 @@ export default StyleSheet.create({
     width: '100%',
     padding: 1,
   },
+  actionContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    paddingHorizontal: 16,
+  },
 });

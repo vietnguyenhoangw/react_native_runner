@@ -1,5 +1,11 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {View, Animated, Keyboard, TouchableWithoutFeedback} from 'react-native';
+import {
+  View,
+  Animated,
+  Keyboard,
+  TouchableWithoutFeedback,
+  Dimensions,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSelector} from 'react-redux';
 import {
@@ -17,9 +23,11 @@ import {validPhone, delay} from '@utils';
 import {onBoardSelect} from '@selectors';
 import styles from './styles';
 
+const {height} = Dimensions.get('window');
+
 const PHONE_LENGTH = 15;
-const MIN_HEIGHT_FORM = 100;
-const MAX_HEIGHT_FORM = 300;
+const MIN_HEIGHT_FORM = 0.1 * height;
+const MAX_HEIGHT_FORM = 0.35 * height;
 
 export default function SignPhone({navigation, route}) {
   const {theme} = useTheme();
