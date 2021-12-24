@@ -7,9 +7,7 @@ GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
 
 lane :release do
 
-    increment_build_number({
-        build_number: latest_testflight_build_number + 1
-    })
+    increment_build_number
 
     create_keychain(
         name: "name",
