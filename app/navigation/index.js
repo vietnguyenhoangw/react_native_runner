@@ -33,6 +33,7 @@ export default function App() {
       resources: Setting.resourcesLanguage,
       lng: Setting.defaultLanguage,
       fallbackLng: Setting.defaultLanguage,
+      compatibilityJSON: 'v3',
     });
     StatusBar.setBarStyle('light-content', true);
   }, []);
