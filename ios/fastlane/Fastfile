@@ -13,9 +13,10 @@ lane :release do
         key_content: "-----BEGIN PRIVATE KEY-----\nMIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg83LfvR3qs+U9lpQCrMgmRamP1nhS8/IBtAmERdRDZxqgCgYIKoZIzj0DAQehRANCAAROdQn3qpPr5PPHcRZ1x7sPiswUxj12pC/2GNiiD1ZcG2orbSlYrezWobZRo3pYAWwvLJypSCQn/m30H/dAg5CG\n-----END PRIVATE KEY-----"
     )
 
+    build_number = latest_testflight_build_number(api_key: api_key) + 1
+
     increment_build_number({
-        build_number: latest_testflight_build_number + 1,
-        api_key: key_id
+        build_number: build_number
     })
 
     create_keychain(
