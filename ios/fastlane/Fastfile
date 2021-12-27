@@ -10,12 +10,7 @@ lane :release do
     api_key = app_store_connect_api_key(
         key_id: "28FWF9S5YL",
         issuer_id: "2d0826cc-c60d-4d95-8dcb-9415470672d5",
-        key_content: "-----BEGIN PRIVATE KEY-----
-        MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg83LfvR3qs+U9lpQC
-        rMgmRamP1nhS8/IBtAmERdRDZxqgCgYIKoZIzj0DAQehRANCAAROdQn3qpPr5PPH
-        cRZ1x7sPiswUxj12pC/2GNiiD1ZcG2orbSlYrezWobZRo3pYAWwvLJypSCQn/m30
-        H/dAg5CG
-        -----END PRIVATE KEY-----"
+        key_content: "-----BEGIN PRIVATE KEY-----\nMIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg83LfvR3qs+U9lpQCrMgmRamP1nhS8/IBtAmERdRDZxqgCgYIKoZIzj0DAQehRANCAAROdQn3qpPr5PPHcRZ1x7sPiswUxj12pC/2GNiiD1ZcG2orbSlYrezWobZRo3pYAWwvLJypSCQn/m30H/dAg5CG\n-----END PRIVATE KEY-----"
     )
 
     increment_build_number({
