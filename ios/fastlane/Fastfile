@@ -54,6 +54,7 @@ lane :release do
         distribute_external: false,
         notify_external_testers: false,
         ipa: "./#{PROJECT_NAME}.ipa",
+        api_key: api_key
     )
 
 end
