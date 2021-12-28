@@ -4,13 +4,16 @@ APP_IDENTIFIER = ENV["APP_IDENTIFIER"]
 PROVISIONING_PROFILE = ENV["PROVISIONING_PROFILE"]
 CONNECT_APP_ID = ENV["CONNECT_APP_ID"]
 GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
+CONNECT_KEY_ID = ENV["CONNECT_KEY_ID"]
+CONNECT_ISSUER_ID = ENV["CONNECT_ISSUER_ID"]
+CONNECT_KEY_CONTENT = ENV["CONNECT_KEY_CONTENT"]
 
 lane :release do
 
     api_key = app_store_connect_api_key(
-        key_id: "28FWF9S5YL",
-        issuer_id: "2d0826cc-c60d-4d95-8dcb-9415470672d5",
-        key_content: "-----BEGIN PRIVATE KEY-----\nMIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg83LfvR3qs+U9lpQCrMgmRamP1nhS8/IBtAmERdRDZxqgCgYIKoZIzj0DAQehRANCAAROdQn3qpPr5PPHcRZ1x7sPiswUxj12pC/2GNiiD1ZcG2orbSlYrezWobZRo3pYAWwvLJypSCQn/m30H/dAg5CG\n-----END PRIVATE KEY-----"
+        key_id: CONNECT_KEY_ID,
+        issuer_id: CONNECT_ISSUER_ID,
+        key_content: CONNECT_KEY_CONTENT
     )
 
     build_number = latest_testflight_build_number(api_key: api_key) + 1
