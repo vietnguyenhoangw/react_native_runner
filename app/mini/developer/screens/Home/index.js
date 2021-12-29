@@ -1,7 +1,7 @@
 import React, {useEffect, useLayoutEffect} from 'react';
 import {View} from 'react-native';
 import Navigator from '@navigator';
-import {Text, IconButton} from '@components';
+import {Text, IconButton, Icon} from '@components';
 
 export default function Home({navigation}) {
   useEffect(() => {}, []);
@@ -10,24 +10,20 @@ export default function Home({navigation}) {
     navigation.setOptions({
       headerLeft: props => {
         return (
-          <IconButton
-            {...props}
-            type="secondary"
-            name="chevron-left"
-            onPress={() => Navigator.pop()}
-          />
+          <IconButton {...props} onPress={() => Navigator.pop()}>
+            <Icon name="arrow-left" />
+          </IconButton>
         );
       },
       headerRight: props => {
         return (
           <IconButton
             {...props}
-            type="secondary"
-            name="dots-horizontal"
             onPress={() => {
               navigation.push('About');
-            }}
-          />
+            }}>
+            <Icon name="dots-horizontal" />
+          </IconButton>
         );
       },
     });

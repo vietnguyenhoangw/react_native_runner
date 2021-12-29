@@ -53,7 +53,6 @@ export default function Auth() {
       }}>
       <AuthStack.Screen
         name="SignPhone"
-        headerTitle
         component={SignPhone}
         options={{headerShown: false}}
       />

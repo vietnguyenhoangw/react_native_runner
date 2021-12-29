@@ -7,7 +7,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useTranslation} from 'react-i18next';
 import {Home, Promotion, Transaction, Chat, Wallet, Search} from '@screens';
 import Developer from '@mini/developer/navigation';
-import {Text, getFontFamily, Icon} from '@components';
+import {getFontFamily, Icon} from '@components';
 import {useTheme, Colors, Opacity} from '@configs';
 
 const Tab = createBottomTabNavigator();
@@ -15,7 +15,6 @@ const MainStack = createStackNavigator();
 
 export default function Main() {
   const {theme} = useTheme();
-  const {t} = useTranslation();
   return (
     <MainStack.Navigator
       initialRouteName="BottomTab"
@@ -23,22 +22,9 @@ export default function Main() {
         headerStyle: {
           backgroundColor: theme.colors.primary,
         },
-        headerTitle: props => {
-          return (
-            <Text {...props} typography="h4" weight="bold" color="white">
-              {t(props.children)}
-            </Text>
-          );
-        },
-        headerTitleAlign: 'center',
+        headerShown: false,
       }}>
-      <MainStack.Screen
-        name="BottomTab"
-        component={BottomTab}
-        options={{
-          headerShown: false,
-        }}
-      />
+      <MainStack.Screen name="BottomTab" component={BottomTab} />
       <MainStack.Screen
         name="Search"
         component={Search}
@@ -47,16 +33,9 @@ export default function Main() {
           cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
           cardStyle: {backgroundColor: Colors.black + Opacity[60]},
           gestureEnabled: false,
-          headerShown: false,
         }}
       />
-      <MainStack.Screen
-        name="Developer"
-        component={Developer}
-        options={{
-          headerShown: false,
-        }}
-      />
+      <MainStack.Screen name="Developer" component={Developer} />
     </MainStack.Navigator>
   );
 }

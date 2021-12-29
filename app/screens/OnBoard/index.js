@@ -129,11 +129,10 @@ export default function OnBoard({navigation, route}) {
       <View style={styles.localization}>
         <SafeAreaView>
           <IconButton
-            size="small"
-            name="web"
             style={{backgroundColor: theme.colors.primaryLight}}
-            onPress={() => bottomSheetRef.current?.present()}
-          />
+            onPress={() => bottomSheetRef.current?.present()}>
+            <Icon name="web" color={Colors.white} />
+          </IconButton>
         </SafeAreaView>
         <BottomSheetPicker
           ref={bottomSheetRef}
