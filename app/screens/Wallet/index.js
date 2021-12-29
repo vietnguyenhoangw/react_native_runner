@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {Button, PopupAlert} from '@components';
+import {Button, PopupAlert, SizedBox} from '@components';
 import {useTheme, Styles} from '@configs';
 import Navigator from '@navigator';
 import {authActions} from '@actions';
@@ -11,7 +11,7 @@ export default function Wallet({navigation}) {
   const {theme} = useTheme();
   const dispatch = useDispatch();
 
-  const onLogout = async () => {
+  const onLogout = () => {
     Navigator.showPopup({
       component: (
         <PopupAlert
@@ -36,9 +36,15 @@ export default function Wallet({navigation}) {
     });
   };
 
+  const onDeveloper = () => {
+    navigation.push('Developer');
+  };
+
   return (
     <View style={[Styles.flexCenter, Styles.padding16]}>
       <Button onPress={onLogout}>SignOut</Button>
+      <SizedBox height={16} />
+      <Button onPress={onDeveloper}>Developers</Button>
     </View>
   );
 }

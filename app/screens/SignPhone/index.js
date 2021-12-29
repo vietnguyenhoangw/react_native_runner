@@ -26,7 +26,7 @@ import styles from './styles';
 const {height} = Dimensions.get('window');
 
 const PHONE_LENGTH = 15;
-const MIN_HEIGHT_FORM = 0.1 * height;
+const MIN_HEIGHT_FORM = 0.15 * height;
 const MAX_HEIGHT_FORM = 0.35 * height;
 
 export default function SignPhone({navigation, route}) {

@@ -6,6 +6,7 @@ import {
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useTranslation} from 'react-i18next';
 import {Home, Promotion, Transaction, Chat, Wallet, Search} from '@screens';
+import Developer from '@mini/developer/navigation';
 import {Text, getFontFamily, Icon} from '@components';
 import {useTheme, Colors, Opacity} from '@configs';
 
@@ -46,6 +47,13 @@ export default function Main() {
           cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
           cardStyle: {backgroundColor: Colors.black + Opacity[60]},
           gestureEnabled: false,
+          headerShown: false,
+        }}
+      />
+      <MainStack.Screen
+        name="Developer"
+        component={Developer}
+        options={{
           headerShown: false,
         }}
       />
