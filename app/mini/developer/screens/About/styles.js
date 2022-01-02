@@ -1,9 +1,10 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-  imageBackground: {
-    height: 140,
-    width: '100%',
-    position: 'absolute',
+  icon: {
+    width: 56,
+    height: 56,
+    borderRadius: 12,
+    padding: 8,
   },
 });

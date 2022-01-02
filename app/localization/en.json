@@ -18,5 +18,8 @@
   "onboard_title_3": "Hot deals",
   "onboard_message_3": "Lots of offers applied right on the bill & store",
   "developer": "Developer",
-  "about": "About"
+  "about": "About",
+  "design_system": "Design System",
+  "code": "Code",
+  "design_system_desc": "Design system of guidelines, components, and tools that support the best practices of user interface design. Helps teams quickly build beautiful products."
 }

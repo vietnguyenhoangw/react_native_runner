@@ -46,6 +46,9 @@ export default StyleSheet.create({
   padding24: {
     padding: 24,
   },
+  padding32: {
+    padding: 32,
+  },
   //paddingHorizontal
   paddingHorizontal4: {
     paddingHorizontal: 4,
@@ -77,4 +80,6 @@ export default StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
   },
+  //text
+  textCenter: {textAlign: 'center'},
 });

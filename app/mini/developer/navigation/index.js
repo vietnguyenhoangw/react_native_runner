@@ -4,7 +4,13 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {useTranslation} from 'react-i18next';
 import {Text, IconButton, Icon} from '@components';
 import {useTheme} from '@configs';
-import {Home, About} from '@mini/developer/screens';
+import {
+  Home,
+  About,
+  Text as TextScreen,
+  TextInput,
+  Code,
+} from '@mini/developer/screens';
 
 const RootStack = createStackNavigator();
 
@@ -41,11 +47,33 @@ export default function App() {
           }}
         />
         <RootStack.Screen
+          name="Text"
+          component={TextScreen}
+          options={{
+            title: 'Text',
+          }}
+        />
+        <RootStack.Screen
+          name="Text Input"
+          component={TextInput}
+          options={{
+            title: 'Text Input',
+          }}
+        />
+        <RootStack.Screen
           name="About"
           component={About}
           options={{
             presentation: 'transparentModal',
             title: 'about',
+          }}
+        />
+        <RootStack.Screen
+          name="Code"
+          component={Code}
+          options={{
+            presentation: 'transparentModal',
+            title: 'code',
           }}
         />
       </RootStack.Navigator>
