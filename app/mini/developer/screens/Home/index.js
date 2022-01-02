@@ -34,7 +34,7 @@ export default function Home({navigation}) {
     navigation.setOptions({
       headerLeft: props => {
         return (
-          <IconButton {...props} onPress={() => Navigator.pop()}>
+          <IconButton onPress={() => Navigator.pop()}>
             <Icon name="arrow-left" />
           </IconButton>
         );
@@ -42,7 +42,6 @@ export default function Home({navigation}) {
       headerRight: props => {
         return (
           <IconButton
-            {...props}
             onPress={() => {
               navigation.push('About');
             }}>

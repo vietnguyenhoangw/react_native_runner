@@ -11,7 +11,7 @@ export default function Code({route}) {
     if (loading) {
       return (
         <View style={[Styles.flexCenter, StyleSheet.absoluteFillObject]}>
-          <ActivityIndicator color={theme.colors.primary} size={'large'} />
+          <ActivityIndicator color={theme.colors.primary} size="large" />
         </View>
       );
     }

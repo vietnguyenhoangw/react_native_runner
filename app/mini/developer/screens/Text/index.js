@@ -1,4 +1,4 @@
-import React, {useLayoutEffect} from 'react';
+import React, {useLayoutEffect, useState, useMemo, useRef} from 'react';
 import {View, ScrollView} from 'react-native';
 import {
   Text,
@@ -7,47 +7,199 @@ import {
   Icon,
   InputPicker,
   IconButton,
+  TextInput,
+  BottomSheetPicker,
+  BottomSheetView,
+  Image,
 } from '@components';
-import {Styles, useTheme} from '@configs';
+import {Images, Styles, useTheme} from '@configs';
 import {useTranslation} from 'react-i18next';
 import styles from './styles';
+
+const TYPOGRAPHY = [
+  {title: 'h1', value: 'h1'},
+  {title: 'h2', value: 'h2'},
+  {title: 'h3', value: 'h3'},
+  {title: 'h4', value: 'h4'},
+  {title: 'title', value: 'title'},
+  {title: 'subtitle', value: 'subtitle'},
+  {title: 'caption', value: 'caption'},
+  {title: 'overline', value: 'overline'},
+];
+
+const WEIGHT = [
+  {title: 'thin', value: 'thin'},
+  {title: 'ultraLight', value: 'ultraLight'},
+  {title: 'light', value: 'light'},
+  {title: 'regular', value: 'regular'},
+  {title: 'medium', value: 'medium'},
+  {title: 'semibold', value: 'semibold'},
+  {title: 'bold', value: 'bold'},
+  {title: 'heavy', value: 'heavy'},
+  {title: 'black', value: 'black'},
+];
+
+const TYPE = [
+  {title: 'primary', value: 'primary'},
+  {title: 'secondary', value: 'secondary'},
+];
+
+const COLOR = [
+  {title: 'primary', value: 'primary'},
+  {title: 'secondary', value: 'secondary'},
+  {title: 'white', value: 'white'},
+  {title: 'error', value: 'error'},
+];
 
 export default function Index({navigation, route}) {
   const {theme} = useTheme();
   const {t} = useTranslation();
+  const typographyRef = useRef(null);
+  const weightRef = useRef(null);
+  const typeRef = useRef(null);
+  const colorRef = useRef(null);
+  const infoRef = useRef(null);
+
+  const [typography, setTypography] = useState('title');
+  const [weight, setWeight] = useState('regular');
+  const [type, setType] = useState('primary');
+  const [color, setColor] = useState(null);
+  const [style, setStyle] = useState(null);
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: props => {
+      headerRight: () => {
         return (
-          <IconButton
-            {...props}
-            onPress={() => {
-              navigation.push('Code', route.params);
-            }}>
-            <Icon name="file-code-outline" />
-          </IconButton>
+          <View style={Styles.row}>
+            <IconButton onPress={() => infoRef.current?.present()}>
+              <Icon name="information-outline" />
+            </IconButton>
+            <SizedBox width={8} />
+            <IconButton
+              onPress={() => {
+                navigation.push('Code', route.params);
+              }}>
+              <Icon name="file-code-outline" />
+            </IconButton>
+          </View>
         );
       },
     });
   }, [navigation, route.params]);
 
+  const styleObject = useMemo(() => {
+    try {
+      return JSON.parse(style);
+    } catch (error) {
+      return {};
+    }
+  }, [style]);
+
   return (
     <Container>
+      <BottomSheetPicker
+        ref={typographyRef}
+        title="Typography"
+        onSelect={item => setTypography(item.value)}
+        selected={{title: typography, value: typography}}
+        data={TYPOGRAPHY}
+      />
+      <BottomSheetPicker
+        ref={weightRef}
+        title="Weight"
+        onSelect={item => setWeight(item.value)}
+        selected={{title: weight, value: weight}}
+        data={WEIGHT}
+      />
+      <BottomSheetPicker
+        ref={typeRef}
+        title="Type"
+        onSelect={item => setType(item.value)}
+        selected={{title: type, value: type}}
+        data={TYPE}
+      />
+      <BottomSheetPicker
+        ref={colorRef}
+        title="Color"
+        onSelect={item => setColor(item.value)}
+        selected={{title: color, value: color}}
+        data={COLOR}
+      />
+      <BottomSheetView ref={infoRef}>
+        <View style={Styles.padding8}>
+          <Image
+            source={Images.text}
+            resizeMode="contain"
+            style={styles.example}
+          />
+        </View>
+      </BottomSheetView>
       <ScrollView
         style={[Styles.flex, {backgroundColor: theme.colors.card}]}
         contentContainerStyle={Styles.padding16}>
         <Text typography="h4" weight="bold">
-          Interactive demo
+          {t('interactive_demo')}
         </Text>
-        <SizedBox height={16} />
+        <SizedBox height={24} />
         <View style={Styles.rowCenter}>
-          <Text typography="title">Hello World</Text>
+          <Text
+            typography={typography}
+            type={type}
+            weight={weight}
+            color={color}
+            style={styleObject}>
+            Hello World
+          </Text>
         </View>
-        <SizedBox height={16} />
-        <InputPicker label="typography" value="title" />
+        <SizedBox height={24} />
+        <View style={Styles.row}>
+          <InputPicker
+            label="typography"
+            value={typography}
+            placeholder="Props typography"
+            onPress={() => typographyRef.current?.present()}
+            style={Styles.flex}
+          />
+          <SizedBox width={16} />
+          <InputPicker
+            label="weight"
+            value={weight}
+            placeholder="Props weight"
+            onPress={() => weightRef.current?.present()}
+            style={Styles.flex}
+          />
+        </View>
+        <SizedBox height={8} />
+        <View style={Styles.row}>
+          <InputPicker
+            label="type"
+            value={type}
+            placeholder="Props type"
+            onPress={() => typeRef.current?.present()}
+            style={Styles.flex}
+          />
+          <SizedBox width={16} />
+          <InputPicker
+            label="color"
+            value={color}
+            placeholder="Props color"
+            onPress={() => colorRef.current?.present()}
+            style={Styles.flex}
+          />
+        </View>
+        <SizedBox height={8} />
+        <TextInput
+          value={style}
+          size="small"
+          label="style"
+          placeholder='Example: {"color":"red"}'
+          onChangeText={value => {
+            const text = value.replace(/[“”]/g, '"');
+            setStyle(text);
+          }}
+        />
         <Text typography="h4" weight="bold">
-          Example
+          {t('example')}
         </Text>
         <SizedBox height={16} />
         <Text typography="h1" weight="thin">
