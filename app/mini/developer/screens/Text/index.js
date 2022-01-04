@@ -1,5 +1,5 @@
 import React, {useLayoutEffect, useState, useMemo, useRef} from 'react';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, Linking} from 'react-native';
 import {
   Text,
   SizedBox,
@@ -50,6 +50,8 @@ const COLOR = [
   {title: 'white', value: 'white'},
   {title: 'error', value: 'error'},
 ];
+
+const REFERENCE = 'https://reactnative.dev/docs/text#props';
 
 export default function Index({navigation, route}) {
   const {theme} = useTheme();
@@ -198,6 +200,21 @@ export default function Index({navigation, route}) {
             setStyle(text);
           }}
         />
+        <Text typography="h4" weight="bold">
+          {t('reference')}
+        </Text>
+        <SizedBox height={4} />
+        <Text
+          typography="title"
+          color="secondary"
+          onPress={() => {
+            try {
+              Linking.openURL(REFERENCE);
+            } catch (error) {}
+          }}>
+          {REFERENCE}
+        </Text>
+        <SizedBox height={16} />
         <Text typography="h4" weight="bold">
           {t('example')}
         </Text>

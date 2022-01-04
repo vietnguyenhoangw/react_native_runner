@@ -39,6 +39,8 @@ export const Images = {
   fa: require('@assets/images/fa.png'),
   km: require('@assets/images/km.png'),
   text: require('@assets/images/text.png'),
+  textinput: require('@assets/images/textinput.png'),
+  inputpicker: require('@assets/images/inputpicker.png'),
   serviceAirplane: require('@assets/images/service-airplane.png'),
   serviceElectric: require('@assets/images/service-electric.png'),
   serviceHotel: require('@assets/images/service-hotel.png'),

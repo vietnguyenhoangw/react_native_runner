@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect} from 'react';
+import React, {useLayoutEffect} from 'react';
 import {View, FlatList} from 'react-native';
 import Navigator from '@navigator';
 import {ListItem, IconButton, Icon, Divider} from '@components';
@@ -18,12 +18,24 @@ const DATA = [
     ),
   },
   {
-    id: 'Text Input',
-    title: 'Text Input',
+    id: 'TextInput',
+    title: 'TextInput',
     subtitle: 'Text fields let users enter and edit text',
+    uri: 'https://github.com/wem2017/react_native_components/blob/master/TextInput/index.js',
     icon: (
       <View style={Styles.flexCenter}>
         <Icon name="card-text-outline" />
+      </View>
+    ),
+  },
+  {
+    id: 'InputPicker',
+    title: 'InputPicker',
+    subtitle: 'InputPicker allow users to choose a specific value.',
+    uri: 'https://github.com/wem2017/react_native_components/blob/master/InputPicker/index.js',
+    icon: (
+      <View style={Styles.flexCenter}>
+        <Icon name="arrow-down-drop-circle-outline" />
       </View>
     ),
   },
@@ -69,7 +81,7 @@ export default function Home({navigation}) {
       size={32}
       title={item.title}
       subtitle={item.subtitle}
-      icon={item.icon}
+      leading={item.icon}
       onPress={() => onPress(item)}
     />
   );

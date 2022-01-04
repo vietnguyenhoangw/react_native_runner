@@ -1,5 +1,5 @@
 import React, {useLayoutEffect, useState, useMemo, useRef} from 'react';
-import {View, ScrollView, Linking, TouchableOpacity} from 'react-native';
+import {View, ScrollView, Linking} from 'react-native';
 import {
   Text,
   SizedBox,
@@ -17,6 +17,13 @@ import {Images, Styles, useTheme} from '@configs';
 import {useTranslation} from 'react-i18next';
 import styles from './styles';
 
+const INPUT = [
+  {title: 'option 1', value: 'option 1'},
+  {title: 'option 2', value: 'option 2'},
+  {title: 'option 3', value: 'option 3'},
+  {title: 'option 4', value: 'option 4'},
+];
+
 const SIZE = [
   {title: 'large', value: 'large'},
   {title: 'small', value: 'small'},
@@ -27,19 +34,18 @@ const REFERENCE = 'https://reactnative.dev/docs/textinput#props';
 export default function Index({navigation, route}) {
   const {theme} = useTheme();
   const {t} = useTranslation();
+
+  const inputRef = useRef(null);
   const sizeRef = useRef(null);
   const infoRef = useRef(null);
 
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState();
   const [size, setSize] = useState('large');
   const [label, setLabel] = useState('Label');
   const [placeholder, setPlaceholder] = useState('Placeholder');
   const [error, setError] = useState(null);
   const [info, setInfo] = useState(false);
   const [style, setStyle] = useState(null);
-
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -73,6 +79,13 @@ export default function Index({navigation, route}) {
   return (
     <Container>
       <BottomSheetPicker
+        ref={inputRef}
+        title="Select Option"
+        onSelect={item => setValue(item.value)}
+        selected={{title: value, value: value}}
+        data={INPUT}
+      />
+      <BottomSheetPicker
         ref={sizeRef}
         title="Size"
         onSelect={item => setSize(item.value)}
@@ -82,7 +95,7 @@ export default function Index({navigation, route}) {
       <BottomSheetView ref={infoRef}>
         <View style={Styles.padding8}>
           <Image
-            source={Images.textinput}
+            source={Images.inputpicker}
             resizeMode="contain"
             style={styles.example}
           />
@@ -96,14 +109,14 @@ export default function Index({navigation, route}) {
         </Text>
         <SizedBox height={24} />
         <View style={Styles.rowCenter}>
-          <TextInput
+          <InputPicker
             size={size}
             value={value}
             label={label}
             error={error}
             placeholder={placeholder}
-            onChangeText={setValue}
             info={info}
+            onPress={() => inputRef.current?.present()}
             style={styleObject}
           />
         </View>
@@ -172,44 +185,6 @@ export default function Index({navigation, route}) {
           }}>
           {REFERENCE}
         </Text>
-        <SizedBox height={16} />
-        <Text typography="h4" weight="bold">
-          {t('example')}
-        </Text>
-        <SizedBox height={16} />
-        <TextInput
-          size="small"
-          value={password}
-          label="Mật khẩu"
-          placeholder="Mật khẩu"
-          onChangeText={setPassword}
-          secureTextEntry={!showPassword}
-          trailing={
-            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-              <Icon
-                name={showPassword ? 'eye' : 'eye-off'}
-                color={theme.colors.secondary}
-              />
-            </TouchableOpacity>
-          }
-        />
-        <SizedBox height={4} />
-        <TextInput
-          value={password}
-          label="Mật khẩu"
-          placeholder="Mật khẩu"
-          onChangeText={setPassword}
-          secureTextEntry={!showPassword}
-          trailing={
-            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-              <Icon
-                type="MaterialIcons"
-                name={showPassword ? 'favorite' : 'favorite-outline'}
-                color={theme.colors.secondary}
-              />
-            </TouchableOpacity>
-          }
-        />
       </ScrollView>
     </Container>
   );

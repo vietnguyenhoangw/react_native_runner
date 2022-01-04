@@ -9,6 +9,7 @@ import {
   About,
   Text as TextScreen,
   TextInput,
+  InputPicker,
   Code,
 } from '@mini/developer/screens';
 
@@ -46,36 +47,11 @@ export default function App() {
             title: 'developer',
           }}
         />
-        <RootStack.Screen
-          name="Text"
-          component={TextScreen}
-          options={{
-            title: 'Text',
-          }}
-        />
-        <RootStack.Screen
-          name="Text Input"
-          component={TextInput}
-          options={{
-            title: 'Text Input',
-          }}
-        />
-        <RootStack.Screen
-          name="About"
-          component={About}
-          options={{
-            presentation: 'transparentModal',
-            title: 'about',
-          }}
-        />
-        <RootStack.Screen
-          name="Code"
-          component={Code}
-          options={{
-            presentation: 'transparentModal',
-            title: 'code',
-          }}
-        />
+        <RootStack.Screen name="Text" component={TextScreen} />
+        <RootStack.Screen name="TextInput" component={TextInput} />
+        <RootStack.Screen name="About" component={About} />
+        <RootStack.Screen name="Code" component={Code} />
+        <RootStack.Screen name="InputPicker" component={InputPicker} />
       </RootStack.Navigator>
     </NavigationContainer>
   );
