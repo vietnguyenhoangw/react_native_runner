@@ -32,6 +32,9 @@ jobs:
           PROVISIONING_PROFILE: "${{ secrets.PROVISIONING_PROFILE }}"
           CONNECT_APP_ID: "${{ secrets.CONNECT_APP_ID }}"
           GIT_AUTHORIZATION: "${{ secrets.GIT_AUTHORIZATION }}"
+          CONNECT_KEY_ID: "${{ secrets.CONNECT_KEY_ID }}"
+          CONNECT_ISSUER_ID: "${{ secrets.CONNECT_ISSUER_ID }}"
+          CONNECT_KEY_CONTENT: "${{ secrets.CONNECT_KEY_CONTENT }}"
         
         run: cd ios/fastlane && fastlane release
         
