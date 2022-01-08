@@ -62,7 +62,7 @@ export default function Index({navigation, route}) {
   const colorRef = useRef(null);
   const infoRef = useRef(null);
 
-  const [typography, setTypography] = useState('title');
+  const [typography, setTypography] = useState('h1');
   const [weight, setWeight] = useState('regular');
   const [type, setType] = useState('primary');
   const [color, setColor] = useState(null);
@@ -154,6 +154,10 @@ export default function Index({navigation, route}) {
           </Text>
         </View>
         <SizedBox height={24} />
+        <Text typography="h4" weight="bold">
+          {t('props')}
+        </Text>
+        <SizedBox height={16} />
         <View style={Styles.row}>
           <InputPicker
             label="typography"
@@ -171,7 +175,7 @@ export default function Index({navigation, route}) {
             style={Styles.flex}
           />
         </View>
-        <SizedBox height={8} />
+        <SizedBox height={4} />
         <View style={Styles.row}>
           <InputPicker
             label="type"
@@ -189,7 +193,7 @@ export default function Index({navigation, route}) {
             style={Styles.flex}
           />
         </View>
-        <SizedBox height={8} />
+        <SizedBox height={4} />
         <TextInput
           value={style}
           size="small"
@@ -218,7 +222,7 @@ export default function Index({navigation, route}) {
         <Text typography="h4" weight="bold">
           {t('example')}
         </Text>
-        <SizedBox height={16} />
+        <SizedBox height={4} />
         <Text typography="h1" weight="thin">
           H1
         </Text>

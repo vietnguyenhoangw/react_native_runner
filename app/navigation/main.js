@@ -6,7 +6,7 @@ import {
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useTranslation} from 'react-i18next';
 import {Home, Promotion, Transaction, Chat, Wallet, Search} from '@screens';
-import Developer from '@mini/developer/navigation';
+import Developer from '@mini/developer';
 import {getFontFamily, Icon} from '@components';
 import {useTheme, Colors, Opacity} from '@configs';
 

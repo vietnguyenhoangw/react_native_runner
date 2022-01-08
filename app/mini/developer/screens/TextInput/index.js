@@ -1,5 +1,11 @@
 import React, {useLayoutEffect, useState, useMemo, useRef} from 'react';
-import {View, ScrollView, Linking, TouchableOpacity} from 'react-native';
+import {
+  View,
+  ScrollView,
+  Linking,
+  TouchableOpacity,
+  Switch,
+} from 'react-native';
 import {
   Text,
   SizedBox,
@@ -11,7 +17,6 @@ import {
   BottomSheetPicker,
   BottomSheetView,
   Image,
-  CheckBox,
 } from '@components';
 import {Images, Styles, useTheme} from '@configs';
 import {useTranslation} from 'react-i18next';
@@ -35,7 +40,7 @@ export default function Index({navigation, route}) {
   const [label, setLabel] = useState('Label');
   const [placeholder, setPlaceholder] = useState('Placeholder');
   const [error, setError] = useState(null);
-  const [info, setInfo] = useState(false);
+  const [info, setInfo] = useState(true);
   const [style, setStyle] = useState(null);
 
   const [password, setPassword] = useState('');
@@ -104,9 +109,13 @@ export default function Index({navigation, route}) {
             placeholder={placeholder}
             onChangeText={setValue}
             info={info}
+            onPressInfo={() => infoRef.current?.present()}
             style={styleObject}
           />
         </View>
+        <Text typography="h4" weight="bold">
+          {t('props')}
+        </Text>
         <SizedBox height={16} />
         <InputPicker
           label="size"
@@ -150,12 +159,12 @@ export default function Index({navigation, route}) {
             setStyle(text);
           }}
         />
-        <View style={Styles.row}>
+        <View style={Styles.rowSpace}>
           <Text typography="title" weight="bold">
             info
           </Text>
           <SizedBox width={24} />
-          <CheckBox value={info} onPress={() => setInfo(!info)} />
+          <Switch onValueChange={val => setInfo(val)} value={info} />
         </View>
         <SizedBox height={16} />
         <Text typography="h4" weight="bold">
@@ -184,6 +193,7 @@ export default function Index({navigation, route}) {
           placeholder="Mật khẩu"
           onChangeText={setPassword}
           secureTextEntry={!showPassword}
+          info={true}
           trailing={
             <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
               <Icon
@@ -200,6 +210,7 @@ export default function Index({navigation, route}) {
           placeholder="Mật khẩu"
           onChangeText={setPassword}
           secureTextEntry={!showPassword}
+          info={true}
           trailing={
             <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
               <Icon

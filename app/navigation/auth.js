@@ -11,7 +11,7 @@ import {
   ForgotPassword,
 } from '@screens';
 import {Text} from '@components';
-import {useTheme} from '@configs';
+import {useTheme, Colors} from '@configs';
 
 const AuthStack = createStackNavigator();
 

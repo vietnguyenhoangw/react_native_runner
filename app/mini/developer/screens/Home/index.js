@@ -3,7 +3,6 @@ import {View, FlatList} from 'react-native';
 import Navigator from '@navigator';
 import {ListItem, IconButton, Icon, Divider} from '@components';
 import {Styles} from '@configs';
-import styles from './styles';
 
 const DATA = [
   {
@@ -36,6 +35,28 @@ const DATA = [
     icon: (
       <View style={Styles.flexCenter}>
         <Icon name="arrow-down-drop-circle-outline" />
+      </View>
+    ),
+  },
+  {
+    id: 'Button',
+    title: 'Button',
+    subtitle: 'Button component that should render nicely on any platform.',
+    uri: 'https://github.com/wem2017/react_native_components/blob/master/Button/index.js',
+    icon: (
+      <View style={Styles.flexCenter}>
+        <Icon name="gesture-tap-button" />
+      </View>
+    ),
+  },
+  {
+    id: 'CheckBox',
+    title: 'CheckBox',
+    subtitle: 'CheckBox allow the user to select one or more items from a set.',
+    uri: 'https://github.com/wem2017/react_native_components/blob/master/CheckBox/index.js',
+    icon: (
+      <View style={Styles.flexCenter}>
+        <Icon name="checkbox-marked-outline" />
       </View>
     ),
   },

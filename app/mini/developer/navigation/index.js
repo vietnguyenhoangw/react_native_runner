@@ -11,6 +11,8 @@ import {
   TextInput,
   InputPicker,
   Code,
+  Button,
+  CheckBox,
 } from '@mini/developer/screens';
 
 const RootStack = createStackNavigator();
@@ -52,6 +54,8 @@ export default function App() {
         <RootStack.Screen name="About" component={About} />
         <RootStack.Screen name="Code" component={Code} />
         <RootStack.Screen name="InputPicker" component={InputPicker} />
+        <RootStack.Screen name="Button" component={Button} />
+        <RootStack.Screen name="CheckBox" component={CheckBox} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

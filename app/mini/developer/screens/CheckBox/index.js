@@ -11,37 +11,28 @@ import {
   BottomSheetPicker,
   BottomSheetView,
   Image,
+  CheckBox,
 } from '@components';
 import {Images, Styles, useTheme} from '@configs';
 import {useTranslation} from 'react-i18next';
 import styles from './styles';
 
-const INPUT = [
-  {title: 'option 1', value: 'option 1'},
-  {title: 'option 2', value: 'option 2'},
-  {title: 'option 3', value: 'option 3'},
-  {title: 'option 4', value: 'option 4'},
-];
-
-const SIZE = [
-  {title: 'large', value: 'large'},
-  {title: 'small', value: 'small'},
+const SHAPE = [
+  {title: 'circle', value: 'circle'},
+  {title: 'rectangle', value: 'rectangle'},
 ];
 
 export default function Index({navigation, route}) {
   const {theme} = useTheme();
   const {t} = useTranslation();
-
-  const inputRef = useRef(null);
-  const sizeRef = useRef(null);
+  const shapeRef = useRef(null);
   const infoRef = useRef(null);
 
-  const [value, setValue] = useState();
-  const [size, setSize] = useState('large');
-  const [label, setLabel] = useState('Label');
-  const [placeholder, setPlaceholder] = useState('Placeholder');
-  const [error, setError] = useState(null);
-  const [info, setInfo] = useState(true);
+  const [value, setValue] = useState(true);
+  const [disabled, setDisabled] = useState(false);
+  const [size, setSize] = useState(24);
+  const [shape, setShape] = useState('circle');
+
   const [style, setStyle] = useState(null);
 
   useLayoutEffect(() => {
@@ -68,7 +59,7 @@ export default function Index({navigation, route}) {
   const styleObject = useMemo(() => {
     try {
       return JSON.parse(style);
-    } catch (e) {
+    } catch (error) {
       return {};
     }
   }, [style]);
@@ -76,23 +67,16 @@ export default function Index({navigation, route}) {
   return (
     <Container>
       <BottomSheetPicker
-        ref={inputRef}
-        title="Select Option"
-        onSelect={item => setValue(item.value)}
-        selected={{title: value, value: value}}
-        data={INPUT}
-      />
-      <BottomSheetPicker
-        ref={sizeRef}
-        title="Size"
-        onSelect={item => setSize(item.value)}
-        selected={{title: size, value: size}}
-        data={SIZE}
+        ref={shapeRef}
+        title="Shape"
+        onSelect={item => setShape(item.value)}
+        selected={{title: shape, value: shape}}
+        data={SHAPE}
       />
       <BottomSheetView ref={infoRef}>
         <View style={Styles.padding8}>
           <Image
-            source={Images.inputpicker}
+            source={Images.checkbox}
             resizeMode="contain"
             style={styles.example}
           />
@@ -106,59 +90,33 @@ export default function Index({navigation, route}) {
         </Text>
         <SizedBox height={24} />
         <View style={Styles.rowCenter}>
-          <InputPicker
-            size={size}
+          <CheckBox
             value={value}
-            label={label}
-            error={error}
-            placeholder={placeholder}
-            info={info}
-            onPressInfo={() => infoRef.current?.present()}
-            onPress={() => inputRef.current?.present()}
+            disabled={disabled}
+            size={size}
+            shape={shape}
             style={styleObject}
+            onPress={() => setValue(!value)}
           />
         </View>
+        <SizedBox height={24} />
         <Text typography="h4" weight="bold">
           {t('props')}
         </Text>
         <SizedBox height={16} />
         <InputPicker
-          label="size"
-          value={size}
-          placeholder="Props size"
-          onPress={() => sizeRef.current?.present()}
+          label="shape"
+          value={shape}
+          placeholder="Props shape"
+          onPress={() => shapeRef.current?.present()}
           style={Styles.flex}
-        />
-        <SizedBox height={4} />
-        <TextInput
-          size="small"
-          value={label}
-          label="label"
-          placeholder="Input label"
-          onChangeText={setLabel}
-        />
-        <SizedBox height={4} />
-        <TextInput
-          size="small"
-          value={placeholder}
-          label="placeholder"
-          placeholder="Input placeholder"
-          onChangeText={setPlaceholder}
-        />
-        <SizedBox height={4} />
-        <TextInput
-          size="small"
-          value={error}
-          label="error"
-          placeholder="Input error"
-          onChangeText={setError}
         />
         <SizedBox height={4} />
         <TextInput
           value={style}
           size="small"
           label="style"
-          placeholder='Example: {"backgroundColor":"red"}'
+          placeholder='Example: {"color":"red"}'
           onChangeText={val => {
             const text = val.replace(/[“”]/g, '"');
             setStyle(text);
@@ -169,28 +127,39 @@ export default function Index({navigation, route}) {
             info
           </Text>
           <SizedBox width={24} />
-          <Switch onValueChange={val => setInfo(val)} value={info} />
+          <Switch onValueChange={val => setDisabled(val)} value={disabled} />
         </View>
         <SizedBox height={16} />
         <Text typography="h4" weight="bold">
           {t('example')}
         </Text>
-        <SizedBox height={16} />
-        <InputPicker
-          label="Label"
-          placeholder="Placeholder"
-          info={true}
-          onPress={() => {}}
-          style={Styles.flex}
-        />
-        <InputPicker
-          size="large"
-          label="Label"
-          placeholder="Placeholder"
-          info={true}
-          onPress={() => {}}
-          style={Styles.flex}
-        />
+        <SizedBox height={4} />
+        <View style={Styles.row}>
+          <CheckBox value={true} onPress={() => {}} />
+          <SizedBox width={16} />
+          <CheckBox value={true} onPress={() => {}} shape="rectangle" />
+          <SizedBox width={16} />
+          <CheckBox value={false} onPress={() => {}} />
+          <SizedBox width={16} />
+          <CheckBox value={false} onPress={() => {}} shape="rectangle" />
+          <SizedBox width={16} />
+          <CheckBox value={false} onPress={() => {}} size={36} />
+          <SizedBox width={16} />
+          <CheckBox
+            value={true}
+            onPress={() => {}}
+            shape="rectangle"
+            size={36}
+          />
+          <SizedBox width={16} />
+          <CheckBox
+            value={true}
+            onPress={() => {}}
+            shape="rectangle"
+            size={36}
+            disabled={true}
+          />
+        </View>
       </ScrollView>
     </Container>
   );
