@@ -7,7 +7,7 @@ import Animated, {
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
 import {useSelector} from 'react-redux';
-import {SafeAreaView, CornerStone} from '@components';
+import {SafeAreaView, Carousel} from '@components';
 import {delay} from '@utils';
 import {Styles, useTheme, Opacity, Images} from '@configs';
 import {userSelect} from '@selectors';
@@ -71,7 +71,7 @@ export default function Home({navigation}) {
   const buildBanner = () => {
     return (
       <View style={[styles.bannerContainer, {height: HEIGHT_BANNER}]}>
-        <CornerStone
+        <Carousel
           data={[
             {
               image: Images.homeBanner1,

@@ -60,6 +60,42 @@ const DATA = [
       </View>
     ),
   },
+  {
+    id: 'Carousel',
+    title: 'Carousel',
+    subtitle:
+      'A slideshow component for cycling through elements—images or slides of text—like a carousel.',
+    uri: 'https://github.com/wem2017/react_native_components/blob/master/Carousel/index.js',
+    icon: (
+      <View style={Styles.flexCenter}>
+        <Icon name="view-carousel-outline" />
+      </View>
+    ),
+  },
+  {
+    id: 'Divider',
+    title: 'Divider',
+    subtitle:
+      'A divider is a thin line that groups content in lists and layouts.',
+    uri: 'https://github.com/wem2017/react_native_components/blob/master/Divider/index.js',
+    icon: (
+      <View style={Styles.flexCenter}>
+        <Icon name="view-headline" />
+      </View>
+    ),
+  },
+  {
+    id: 'Icon',
+    title: 'Icon',
+    subtitle:
+      'System icons symbolize common actions, files, devices, and directories.',
+    uri: 'https://github.com/wem2017/react_native_components/blob/master/Icon/index.js',
+    icon: (
+      <View style={Styles.flexCenter}>
+        <Icon name="shape-outline" />
+      </View>
+    ),
+  },
 ];
 
 export default function Home({navigation}) {

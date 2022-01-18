@@ -1,26 +1,26 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {View} from 'react-native';
-import {Text, Icon, Button, Image, CornerStone} from '@components';
+import {Text, Icon, Button, Image, Carousel} from '@components';
 import {Opacity, useTheme, Images} from '@configs';
 import PropTypes from 'prop-types';
 
 export default function Recommend(props) {
   const {theme} = useTheme();
-  const {data, dataCornerStone, onPress, onPressCornerStone} = props;
+  const {data, dataCarousel, onPress, onPressCarousel} = props;
 
   /**
-   * render CornerStone
+   * render Carousel
    *
    */
-  const renderCornerStone = () => {
-    if (dataCornerStone?.length > 0) {
+  const renderCarousel = () => {
+    if (dataCarousel?.length > 0) {
       return (
-        <View style={styles.cornerStone}>
-          <CornerStone
-            data={dataCornerStone}
+        <View style={styles.carousel}>
+          <Carousel
+            data={dataCarousel}
             onChange={item => {}}
-            onPress={item => onPressCornerStone(item)}
+            onPress={item => onPressCarousel(item)}
             style={{borderRadius: 8}}
           />
         </View>
@@ -65,16 +65,16 @@ export default function Recommend(props) {
           </TouchableOpacity>
         ))}
       </View>
-      {renderCornerStone()}
+      {renderCarousel()}
     </View>
   );
 }
 
 Recommend.propTypes = {
   data: PropTypes.array,
-  dataCornerStone: PropTypes.array,
+  dataCarousel: PropTypes.array,
   onPress: PropTypes.func,
-  onPressCornerStone: PropTypes.func,
+  onPressCarousel: PropTypes.func,
 };
 
 Recommend.defaultProps = {
@@ -130,7 +130,7 @@ Recommend.defaultProps = {
       title: 'Đặt xe',
     },
   ],
-  dataCornerStone: [
+  dataCarousel: [
     {
       image: Images.homeBanner7,
       titleAction: 'Khám phá ngay',
@@ -157,7 +157,7 @@ Recommend.defaultProps = {
     },
   ],
   onPress: item => {},
-  onPressCornerStone: item => {},
+  onPressCarousel: item => {},
 };
 
 const styles = StyleSheet.create({
@@ -188,8 +188,9 @@ const styles = StyleSheet.create({
   },
   text: {textAlign: 'center'},
   icon: {width: 24, height: 24},
-  cornerStone: {
+  carousel: {
     height: 80,
     marginTop: 8,
+    paddingHorizontal: 16,
   },
 });

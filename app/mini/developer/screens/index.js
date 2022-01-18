@@ -6,5 +6,20 @@ import Code from './Code';
 import InputPicker from './InputPicker';
 import Button from './Button';
 import CheckBox from './CheckBox';
+import Carousel from './Carousel';
+import Divider from './Divider';
+import Icon from './Icon';
 
-export {Home, About, Text, TextInput, Code, InputPicker, Button, CheckBox};
+export {
+  Home,
+  About,
+  Text,
+  TextInput,
+  Code,
+  InputPicker,
+  Button,
+  CheckBox,
+  Carousel,
+  Divider,
+  Icon,
+};

@@ -13,6 +13,9 @@ import {
   Code,
   Button,
   CheckBox,
+  Carousel,
+  Divider,
+  Icon as IconScreen,
 } from '@mini/developer/screens';
 
 const RootStack = createStackNavigator();
@@ -56,6 +59,9 @@ export default function App() {
         <RootStack.Screen name="InputPicker" component={InputPicker} />
         <RootStack.Screen name="Button" component={Button} />
         <RootStack.Screen name="CheckBox" component={CheckBox} />
+        <RootStack.Screen name="Carousel" component={Carousel} />
+        <RootStack.Screen name="Divider" component={Divider} />
+        <RootStack.Screen name="Icon" component={IconScreen} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

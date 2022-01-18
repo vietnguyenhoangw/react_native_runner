@@ -5,6 +5,7 @@ export default StyleSheet.create({
     position: 'absolute',
     width: '100%',
     padding: 1,
+    paddingHorizontal: 16,
   },
   actionContainer: {
     position: 'absolute',
