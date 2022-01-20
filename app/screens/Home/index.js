@@ -172,7 +172,6 @@ export default function Home({navigation}) {
       <Animated.ScrollView
         onScroll={scrollHandler}
         scrollEventThrottle={8}
-        decelerationRate={0.5}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
