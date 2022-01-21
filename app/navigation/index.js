@@ -1,9 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {
-  createStackNavigator,
-  CardStyleInterpolators,
-} from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useSelector} from 'react-redux';
 import {tokenSelect, userSelect} from '@selectors';
 import Navigator from '@navigator';
@@ -12,7 +9,7 @@ import {useTheme, Colors, Opacity} from '@configs';
 import Main from './main';
 import Auth from './auth';
 
-const RootStack = createStackNavigator();
+const RootStack = createNativeStackNavigator();
 
 export default function App() {
   const mounted = useRef(false);
@@ -65,8 +62,8 @@ export default function App() {
           component={Modal}
           options={{
             presentation: 'transparentModal',
-            cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
-            cardStyle: {backgroundColor: Colors.black + Opacity[60]},
+            animation: 'fade',
+            contentStyle: {backgroundColor: Colors.black + Opacity[60]},
             gestureEnabled: false,
           }}
         />

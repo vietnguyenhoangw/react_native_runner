@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  createStackNavigator,
-  CardStyleInterpolators,
-} from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useTranslation} from 'react-i18next';
 import {Home, Promotion, Transaction, Chat, Wallet, Search} from '@screens';
@@ -11,7 +8,7 @@ import {getFontFamily, Icon} from '@components';
 import {useTheme, Colors, Opacity} from '@configs';
 
 const Tab = createBottomTabNavigator();
-const MainStack = createStackNavigator();
+const MainStack = createNativeStackNavigator();
 
 export default function Main() {
   const {theme} = useTheme();
@@ -30,8 +27,8 @@ export default function Main() {
         component={Search}
         options={{
           presentation: 'transparentModal',
-          cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
-          cardStyle: {backgroundColor: Colors.black + Opacity[60]},
+          animation: 'fade',
+          contentStyle: {backgroundColor: Colors.black + Opacity[60]},
           gestureEnabled: false,
         }}
       />
