@@ -101,6 +101,13 @@ const DATA = [
 export default function Home({navigation}) {
   useLayoutEffect(() => {
     navigation.setOptions({
+      headerLeft: props => {
+        return (
+          <IconButton onPress={() => Navigator.pop()}>
+            <Icon name="arrow-left" />
+          </IconButton>
+        );
+      },
       headerRight: props => {
         return (
           <IconButton

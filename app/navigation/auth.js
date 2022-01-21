@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {BackHandler} from 'react-native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import {useTranslation} from 'react-i18next';
 import {
   SignPhone,
@@ -11,9 +11,9 @@ import {
   ForgotPassword,
 } from '@screens';
 import {Text} from '@components';
-import {useTheme, Colors} from '@configs';
+import {useTheme} from '@configs';
 
-const AuthStack = createNativeStackNavigator();
+const AuthStack = createStackNavigator();
 
 export default function Auth() {
   const {theme} = useTheme();
@@ -38,7 +38,7 @@ export default function Auth() {
       initialRouteName="SignPhone"
       screenOptions={{
         gestureEnabled: false,
-        headerBackVisible: false,
+        headerLeft: null,
         headerStyle: {
           backgroundColor: theme.colors.primary,
         },

@@ -11,9 +11,14 @@ export default function AppContainer() {
    */
   useEffect(() => {
     if (Platform.OS === 'android') {
-      StatusBar.setBackgroundColor(theme.colors.primary, true);
+      StatusBar.setBackgroundColor(theme.colors.card, true);
     }
     StatusBar.setBarStyle(theme.dark ? 'light-content' : 'dark-content', true);
+    return () => {
+      if (Platform.OS === 'android') {
+        StatusBar.setBackgroundColor(theme.colors.primary, true);
+      }
+    };
   }, [theme]);
 
   return <Navigation />;

@@ -20,6 +20,7 @@ export const Colors = {
   brown: '#795548',
   grey: '#9e9e9e',
   bluegrey: '#607d8b',
+  modal: '#00000080',
   //red
   red50: '#ffebee',
   red100: '#ffcdd2',
