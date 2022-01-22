@@ -5,6 +5,8 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
   useAnimatedScrollHandler,
+  interpolate,
+  withTiming,
 } from 'react-native-reanimated';
 import {useSelector} from 'react-redux';
 import {SafeAreaView, Carousel} from '@components';
@@ -50,14 +52,15 @@ export default function Home({navigation}) {
   };
 
   const actionStyle = useAnimatedStyle(() => {
-    const HEIGHT = HEIGHT_BANNER + 12 + HEIGHT_ACTION;
-    let height = HEIGHT - translationY.value;
-    if (height < HEIGHT_ACTION) {
-      height = HEIGHT_ACTION;
-    }
-    if (height > HEIGHT) {
-      height = HEIGHT;
-    }
+    const defaultHeight = HEIGHT_BANNER + 12 + HEIGHT_ACTION;
+    const height = withTiming(
+      interpolate(
+        translationY.value,
+        [-10, 0, 250, 255],
+        [247, defaultHeight, 135, 135],
+      ),
+      {duration: 10},
+    );
     return {
       height,
       position: 'relative',

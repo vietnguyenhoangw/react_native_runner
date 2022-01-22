@@ -367,7 +367,7 @@ PODS:
     - React-jsi (= 0.67.1)
     - React-logger (= 0.67.1)
     - React-perflogger (= 0.67.1)
-  - RNCAsyncStorage (1.15.15):
+  - RNCAsyncStorage (1.15.16):
     - React-Core
   - RNCClipboard (1.8.5):
     - React-Core
@@ -384,9 +384,9 @@ PODS:
     - Firebase/Messaging (= 8.11.0)
     - React-Core
     - RNFBApp
-  - RNGestureHandler (2.1.0):
+  - RNGestureHandler (2.2.0):
     - React-Core
-  - RNReanimated (2.2.4):
+  - RNReanimated (2.3.1):
     - DoubleConversion
     - FBLazyVector
     - FBReactNativeSpec
@@ -412,7 +412,6 @@ PODS:
     - React-RCTNetwork
     - React-RCTSettings
     - React-RCTText
-    - React-RCTVibration
     - ReactCommon/turbomodule/core
     - Yoga
   - RNScreens (3.10.2):
@@ -651,14 +650,14 @@ SPEC CHECKSUMS:
   React-RCTVibration: 19c012d1202df46bafbe49268a346f6b3edadfdd
   React-runtimeexecutor: 2c92a8bddd1a3e72c7513d1e74235c2d9c84875c
   ReactCommon: 2e816fad39f65f2a94a5999d5be463a6b620dcf6
-  RNCAsyncStorage: 0bef6a21517c0254bd6bd59a3672963abfa0d18e
+  RNCAsyncStorage: 6ed7eefcf176fee8cd7039a44ca56f0247a650bb
   RNCClipboard: cc054ad1e8a33d2a74cd13e565588b4ca928d8fd
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNFastImage: 1f2cab428712a4baaf78d6169eaec7f622556dd7
   RNFBApp: 0d0ffe0e3aacdf9fcad35f90b79bd8a3d3a99844
   RNFBMessaging: 2a9dffb32f76274f86123644c62902e9ddc2a9ec
-  RNGestureHandler: e5c7cab5f214503dcefd6b2b0cefb050e1f51c4a
-  RNReanimated: e28dfaa950064b674fde0a9b736e62b9dff500a7
+  RNGestureHandler: bf572f552ea324acd5b5464b8d30755b2d8c1de6
+  RNReanimated: 1326679461fa5d2399d54c18ca1432ba3e816b9e
   RNScreens: d6da2b9e29cf523832c2542f47bf1287318b1868
   RNShare: 3185c074441b7e8897014d95ba982434a0a024a1
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
