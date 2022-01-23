@@ -96,6 +96,18 @@ const DATA = [
       </View>
     ),
   },
+  {
+    id: 'Image',
+    title: 'Image',
+    subtitle:
+      'Imagery communicates and differentiates a product through visuals.',
+    uri: 'https://github.com/wem2017/react_native_components/blob/master/Image/index.js',
+    icon: (
+      <View style={Styles.flexCenter}>
+        <Icon name="image-outline" />
+      </View>
+    ),
+  },
 ];
 
 export default function Home({navigation}) {

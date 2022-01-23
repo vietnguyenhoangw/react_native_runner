@@ -35,9 +35,9 @@ const REFERENCE = 'https://reactnative.dev/docs/touchableopacity#props';
 export default function Index({navigation, route}) {
   const {theme} = useTheme();
   const {t} = useTranslation();
-  const typeRef = useRef(null);
-  const sizeRef = useRef(null);
-  const infoRef = useRef(null);
+  const typeRef = useRef();
+  const sizeRef = useRef();
+  const infoRef = useRef();
 
   const [type, setType] = useState('primary');
   const [size, setSize] = useState('large');
@@ -45,8 +45,8 @@ export default function Index({navigation, route}) {
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
   const [children, setChildren] = useState('Title');
-  const [style, setStyle] = useState(null);
-  const [textStyle, setTextStyle] = useState(null);
+  const [style, setStyle] = useState();
+  const [textStyle, setTextStyle] = useState();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -56,7 +56,6 @@ export default function Index({navigation, route}) {
             <IconButton onPress={() => infoRef.current?.present()}>
               <Icon name="information-outline" />
             </IconButton>
-            <SizedBox width={8} />
             <IconButton
               onPress={() => {
                 navigation.push('Code', route.params);
@@ -221,7 +220,7 @@ export default function Index({navigation, route}) {
         <Text typography="h4" weight="bold">
           {t('example')}
         </Text>
-        <SizedBox height={16} />
+        <SizedBox height={8} />
         <Button
           type="primary"
           loading={true}

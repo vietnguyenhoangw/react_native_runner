@@ -32,17 +32,17 @@ export default function Index({navigation, route}) {
   const {theme} = useTheme();
   const {t} = useTranslation();
 
-  const inputRef = useRef(null);
-  const sizeRef = useRef(null);
-  const infoRef = useRef(null);
+  const inputRef = useRef();
+  const sizeRef = useRef();
+  const infoRef = useRef();
 
   const [value, setValue] = useState();
   const [size, setSize] = useState('large');
   const [label, setLabel] = useState('Label');
   const [placeholder, setPlaceholder] = useState('Placeholder');
-  const [error, setError] = useState(null);
+  const [error, setError] = useState();
   const [info, setInfo] = useState(true);
-  const [style, setStyle] = useState(null);
+  const [style, setStyle] = useState();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -52,7 +52,6 @@ export default function Index({navigation, route}) {
             <IconButton onPress={() => infoRef.current?.present()}>
               <Icon name="information-outline" />
             </IconButton>
-            <SizedBox width={8} />
             <IconButton
               onPress={() => {
                 navigation.push('Code', route.params);

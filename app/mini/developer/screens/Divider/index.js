@@ -18,7 +18,7 @@ import styles from './styles';
 export default function Index({navigation, route}) {
   const {theme} = useTheme();
   const {t} = useTranslation();
-  const infoRef = useRef(null);
+  const infoRef = useRef();
 
   const [thickness, setThickness] = useState(1);
   const [color, setColor] = useState();
@@ -31,7 +31,6 @@ export default function Index({navigation, route}) {
             <IconButton onPress={() => infoRef.current?.present()}>
               <Icon name="information-outline" />
             </IconButton>
-            <SizedBox width={8} />
             <IconButton
               onPress={() => {
                 navigation.push('Code', route.params);
@@ -97,7 +96,7 @@ export default function Index({navigation, route}) {
         <Text typography="h4" weight="bold">
           {t('example')}
         </Text>
-        <SizedBox height={16} />
+        <SizedBox height={8} />
         <Divider thickness={1} />
         <SizedBox height={8} />
         <Divider thickness={2} />

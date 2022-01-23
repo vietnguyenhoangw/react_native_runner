@@ -37,7 +37,7 @@ const DEFAULT = [
 
 export default function OnBoard({navigation, route}) {
   const {theme} = useTheme();
-  const bottomSheetRef = useRef(null);
+  const bottomSheetRef = useRef();
   const slides = route.params?.slides ?? DEFAULT;
   const dispatch = useDispatch();
   const {t, i18n} = useTranslation();

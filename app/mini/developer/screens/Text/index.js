@@ -56,17 +56,17 @@ const REFERENCE = 'https://reactnative.dev/docs/text#props';
 export default function Index({navigation, route}) {
   const {theme} = useTheme();
   const {t} = useTranslation();
-  const typographyRef = useRef(null);
-  const weightRef = useRef(null);
-  const typeRef = useRef(null);
-  const colorRef = useRef(null);
-  const infoRef = useRef(null);
+  const typographyRef = useRef();
+  const weightRef = useRef();
+  const typeRef = useRef();
+  const colorRef = useRef();
+  const infoRef = useRef();
 
   const [typography, setTypography] = useState('h1');
   const [weight, setWeight] = useState('regular');
   const [type, setType] = useState('primary');
-  const [color, setColor] = useState(null);
-  const [style, setStyle] = useState(null);
+  const [color, setColor] = useState();
+  const [style, setStyle] = useState();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -76,7 +76,6 @@ export default function Index({navigation, route}) {
             <IconButton onPress={() => infoRef.current?.present()}>
               <Icon name="information-outline" />
             </IconButton>
-            <SizedBox width={8} />
             <IconButton
               onPress={() => {
                 navigation.push('Code', route.params);
@@ -222,7 +221,7 @@ export default function Index({navigation, route}) {
         <Text typography="h4" weight="bold">
           {t('example')}
         </Text>
-        <SizedBox height={4} />
+        <SizedBox height={8} />
         <Text typography="h1" weight="thin">
           H1
         </Text>

@@ -21,6 +21,7 @@ export default function Code({route}) {
       <WebView
         style={Styles.flex}
         originWhitelist={['*']}
+        startInLoadingState={true}
         source={{
           uri: route.params?.uri ?? 'google.com',
         }}

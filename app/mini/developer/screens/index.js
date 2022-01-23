@@ -9,6 +9,7 @@ import CheckBox from './CheckBox';
 import Carousel from './Carousel';
 import Divider from './Divider';
 import Icon from './Icon';
+import Image from './Image';
 
 export {
   Home,
@@ -22,4 +23,5 @@ export {
   Carousel,
   Divider,
   Icon,
+  Image,
 };

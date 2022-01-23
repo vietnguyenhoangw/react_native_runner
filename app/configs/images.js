@@ -45,6 +45,7 @@ export const Images = {
   carousel: require('@assets/images/carousel.png'),
   divider: require('@assets/images/divider.png'),
   icon: require('@assets/images/icon.png'),
+  image: require('@assets/images/image.png'),
   serviceAirplane: require('@assets/images/service-airplane.png'),
   serviceElectric: require('@assets/images/service-electric.png'),
   serviceHotel: require('@assets/images/service-hotel.png'),

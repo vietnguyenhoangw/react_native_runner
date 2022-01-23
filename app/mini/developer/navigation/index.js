@@ -16,6 +16,7 @@ import {
   Carousel,
   Divider,
   Icon as IconScreen,
+  Image,
 } from '@mini/developer/screens';
 
 const RootStack = createStackNavigator();
@@ -62,6 +63,7 @@ export default function App() {
         <RootStack.Screen name="Carousel" component={Carousel} />
         <RootStack.Screen name="Divider" component={Divider} />
         <RootStack.Screen name="Icon" component={IconScreen} />
+        <RootStack.Screen name="Image" component={Image} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

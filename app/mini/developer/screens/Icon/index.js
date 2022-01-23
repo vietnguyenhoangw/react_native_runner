@@ -37,13 +37,14 @@ const REFERENCE = 'https://github.com/oblador/react-native-vector-icons';
 export default function Index({navigation, route}) {
   const {theme} = useTheme();
   const {t} = useTranslation();
-  const typeRef = useRef(null);
-  const infoRef = useRef(null);
+  const typeRef = useRef();
+  const infoRef = useRef();
+
   const [name, setName] = useState('shape-outline');
   const [type, setType] = useState('MaterialCommunityIcons');
-  const [color, setColor] = useState(null);
+  const [color, setColor] = useState();
   const [size, setSize] = useState(24);
-  const [style, setStyle] = useState(null);
+  const [style, setStyle] = useState();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -53,7 +54,6 @@ export default function Index({navigation, route}) {
             <IconButton onPress={() => infoRef.current?.present()}>
               <Icon name="information-outline" />
             </IconButton>
-            <SizedBox width={8} />
             <IconButton
               onPress={() => {
                 navigation.push('Code', route.params);
@@ -180,7 +180,7 @@ export default function Index({navigation, route}) {
         <Text typography="h4" weight="bold">
           {t('example')}
         </Text>
-        <SizedBox height={4} />
+        <SizedBox height={8} />
         <View style={Styles.rowCenter}>
           <Icon name="chevron-up" />
           <SizedBox width={4} />

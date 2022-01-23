@@ -25,15 +25,14 @@ const SHAPE = [
 export default function Index({navigation, route}) {
   const {theme} = useTheme();
   const {t} = useTranslation();
-  const shapeRef = useRef(null);
-  const infoRef = useRef(null);
+  const shapeRef = useRef();
+  const infoRef = useRef();
 
   const [value, setValue] = useState(true);
   const [disabled, setDisabled] = useState(false);
   const [size, setSize] = useState(24);
   const [shape, setShape] = useState('circle');
-
-  const [style, setStyle] = useState(null);
+  const [style, setStyle] = useState();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -43,7 +42,6 @@ export default function Index({navigation, route}) {
             <IconButton onPress={() => infoRef.current?.present()}>
               <Icon name="information-outline" />
             </IconButton>
-            <SizedBox width={8} />
             <IconButton
               onPress={() => {
                 navigation.push('Code', route.params);
@@ -124,16 +122,25 @@ export default function Index({navigation, route}) {
         />
         <View style={Styles.rowSpace}>
           <Text typography="title" weight="bold">
-            info
+            disabled
           </Text>
           <SizedBox width={24} />
           <Switch onValueChange={val => setDisabled(val)} value={disabled} />
         </View>
         <SizedBox height={16} />
+        <View style={Styles.rowSpace}>
+          <Text typography="title" weight="bold">
+            size
+          </Text>
+          <Text typography="title" weight="bold">
+            slider
+          </Text>
+        </View>
+        <SizedBox height={16} />
         <Text typography="h4" weight="bold">
           {t('example')}
         </Text>
-        <SizedBox height={4} />
+        <SizedBox height={8} />
         <View style={Styles.row}>
           <CheckBox value={true} onPress={() => {}} />
           <SizedBox width={16} />
