@@ -209,14 +209,6 @@ export default function Index({navigation, route}) {
                   <ActivityIndicator color={theme.colors.primary} />
                 </View>
               }
-              error={
-                <View style={Styles.flexCenter}>
-                  <Icon name="error-outline" type="MaterialIcons" />
-                  <Text typography="subtitle" type="secondary">
-                    Can't load image
-                  </Text>
-                </View>
-              }
               source={{
                 uri: `https://source.unsplash.com/random?t=${time}`,
                 cache: 'web',

@@ -130,7 +130,8 @@ export default function OnBoard({navigation, route}) {
         <SafeAreaView>
           <IconButton
             style={{backgroundColor: theme.colors.primaryLight}}
-            onPress={() => bottomSheetRef.current?.present()}>
+            onPress={() => bottomSheetRef.current?.present()}
+            size="small">
             <Icon name="web" color={Colors.white} />
           </IconButton>
         </SafeAreaView>

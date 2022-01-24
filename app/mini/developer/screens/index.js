@@ -10,6 +10,7 @@ import Carousel from './Carousel';
 import Divider from './Divider';
 import Icon from './Icon';
 import Image from './Image';
+import IconButton from './IconButton';
 
 export {
   Home,
@@ -24,4 +25,5 @@ export {
   Divider,
   Icon,
   Image,
+  IconButton,
 };

@@ -97,6 +97,18 @@ const DATA = [
     ),
   },
   {
+    id: 'IconButton',
+    title: 'IconButton',
+    subtitle:
+      'Icon buttons allow users to take actions, and make choices, with a single tap.',
+    uri: 'https://github.com/wem2017/react_native_components/blob/master/IconButton/index.js',
+    icon: (
+      <View style={Styles.flexCenter}>
+        <Icon name="gesture-tap-button" />
+      </View>
+    ),
+  },
+  {
     id: 'Image',
     title: 'Image',
     subtitle:
