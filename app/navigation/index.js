@@ -8,7 +8,7 @@ import {useSelector} from 'react-redux';
 import {tokenSelect, userSelect} from '@selectors';
 import Navigator from '@navigator';
 import {Splash, Loading, Modal, OnBoard} from '@screens';
-import {useTheme, Colors, Opacity} from '@configs';
+import {useTheme, Colors} from '@configs';
 import Main from './main';
 import Auth from './auth';
 

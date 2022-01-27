@@ -8,7 +8,7 @@ import {useTranslation} from 'react-i18next';
 import {Home, Promotion, Transaction, Chat, Wallet, Search} from '@screens';
 import Developer from '@mini/developer';
 import {getFontFamily, Icon} from '@components';
-import {useTheme, Colors, Opacity} from '@configs';
+import {useTheme, Colors} from '@configs';
 
 const Tab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
