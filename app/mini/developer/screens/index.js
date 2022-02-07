@@ -11,6 +11,7 @@ import Divider from './Divider';
 import Icon from './Icon';
 import Image from './Image';
 import IconButton from './IconButton';
+import ListItem from './ListItem';
 
 export {
   Home,
@@ -26,4 +27,5 @@ export {
   Icon,
   Image,
   IconButton,
+  ListItem,
 };

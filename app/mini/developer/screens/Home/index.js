@@ -120,6 +120,18 @@ const DATA = [
       </View>
     ),
   },
+  {
+    id: 'ListItem',
+    title: 'ListItem',
+    subtitle:
+      'ListItem lets you preview the list component, its variations, and configuration options.',
+    uri: 'https://github.com/wem2017/react_native_components/blob/master/Image/index.js',
+    icon: (
+      <View style={Styles.flexCenter}>
+        <Icon name="format-list-bulleted-type" />
+      </View>
+    ),
+  },
 ];
 
 export default function Home({navigation}) {

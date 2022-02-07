@@ -18,6 +18,7 @@ import {
   Icon as IconScreen,
   Image,
   IconButton as IconButtonScreen,
+  ListItem,
 } from '@mini/developer/screens';
 
 const RootStack = createStackNavigator();
@@ -66,6 +67,7 @@ export default function App() {
         <RootStack.Screen name="Icon" component={IconScreen} />
         <RootStack.Screen name="Image" component={Image} />
         <RootStack.Screen name="IconButton" component={IconButtonScreen} />
+        <RootStack.Screen name="ListItem" component={ListItem} />
       </RootStack.Navigator>
     </NavigationContainer>
   );
