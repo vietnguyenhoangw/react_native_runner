@@ -1,4 +1,10 @@
-import React, {useLayoutEffect, useState, useMemo, useRef} from 'react';
+import React, {
+  useLayoutEffect,
+  useState,
+  useMemo,
+  useRef,
+  useEffect,
+} from 'react';
 import {View, ScrollView, Linking} from 'react-native';
 import {
   Text,
@@ -11,44 +17,18 @@ import {
   BottomSheetPicker,
   BottomSheetView,
   Image,
+  ListItem,
 } from '@components';
 import {Images, Styles, useTheme} from '@configs';
 import {useTranslation} from 'react-i18next';
 import styles from './styles';
 
-const TYPOGRAPHY = [
-  {title: 'h1', value: 'h1'},
-  {title: 'h2', value: 'h2'},
-  {title: 'h3', value: 'h3'},
-  {title: 'h4', value: 'h4'},
-  {title: 'title', value: 'title'},
-  {title: 'subtitle', value: 'subtitle'},
-  {title: 'caption', value: 'caption'},
-  {title: 'overline', value: 'overline'},
-];
-
-const WEIGHT = [
-  {title: 'thin', value: 'thin'},
-  {title: 'ultraLight', value: 'ultraLight'},
-  {title: 'light', value: 'light'},
-  {title: 'regular', value: 'regular'},
-  {title: 'medium', value: 'medium'},
-  {title: 'semibold', value: 'semibold'},
-  {title: 'bold', value: 'bold'},
-  {title: 'heavy', value: 'heavy'},
-  {title: 'black', value: 'black'},
-];
-
-const TYPE = [
-  {title: 'primary', value: 'primary'},
-  {title: 'secondary', value: 'secondary'},
-];
-
-const COLOR = [
-  {title: 'primary', value: 'primary'},
-  {title: 'secondary', value: 'secondary'},
-  {title: 'white', value: 'white'},
-  {title: 'error', value: 'error'},
+const SIZE = [
+  {title: 16, value: 16},
+  {title: 24, value: 24},
+  {title: 32, value: 32},
+  {title: 40, value: 40},
+  {title: 46, value: 46},
 ];
 
 const REFERENCE = 'https://reactnative.dev/docs/text#props';
@@ -56,16 +36,12 @@ const REFERENCE = 'https://reactnative.dev/docs/text#props';
 export default function Index({navigation, route}) {
   const {theme} = useTheme();
   const {t} = useTranslation();
-  const typographyRef = useRef();
-  const weightRef = useRef();
-  const typeRef = useRef();
-  const colorRef = useRef();
+  const sizeRef = useRef();
   const infoRef = useRef();
 
-  const [typography, setTypography] = useState('h1');
-  const [weight, setWeight] = useState('regular');
-  const [type, setType] = useState('primary');
-  const [color, setColor] = useState();
+  const [size, setSize] = useState(24);
+  const [title, setTitle] = useState('Title');
+  const [subtitle, setSubTitle] = useState('Sub title');
   const [style, setStyle] = useState();
 
   useLayoutEffect(() => {
@@ -99,32 +75,11 @@ export default function Index({navigation, route}) {
   return (
     <Container>
       <BottomSheetPicker
-        ref={typographyRef}
+        ref={sizeRef}
         title="Typography"
-        onSelect={item => setTypography(item.value)}
-        selected={{title: typography, value: typography}}
-        data={TYPOGRAPHY}
-      />
-      <BottomSheetPicker
-        ref={weightRef}
-        title="Weight"
-        onSelect={item => setWeight(item.value)}
-        selected={{title: weight, value: weight}}
-        data={WEIGHT}
-      />
-      <BottomSheetPicker
-        ref={typeRef}
-        title="Type"
-        onSelect={item => setType(item.value)}
-        selected={{title: type, value: type}}
-        data={TYPE}
-      />
-      <BottomSheetPicker
-        ref={colorRef}
-        title="Color"
-        onSelect={item => setColor(item.value)}
-        selected={{title: color, value: color}}
-        data={COLOR}
+        onSelect={item => setSize(item.value)}
+        selected={{title: size, value: size}}
+        data={SIZE}
       />
       <BottomSheetView ref={infoRef}>
         <View style={Styles.padding8}>
@@ -143,55 +98,28 @@ export default function Index({navigation, route}) {
         </Text>
         <SizedBox height={24} />
         <View style={Styles.rowCenter}>
-          <Text
-            typography={typography}
-            type={type}
-            weight={weight}
-            color={color}
-            style={styleObject}>
-            Hello World
-          </Text>
+          <ListItem
+            size={size}
+            title={title}
+            subtitle={subtitle}
+            leading={null}
+            trailing={null}
+            onPress={() => {}}
+            style={styleObject}
+          />
         </View>
         <SizedBox height={24} />
         <Text typography="h4" weight="bold">
           {t('props')}
         </Text>
         <SizedBox height={16} />
-        <View style={Styles.row}>
-          <InputPicker
-            label="typography"
-            value={typography}
-            placeholder="Props typography"
-            onPress={() => typographyRef.current?.present()}
-            style={Styles.flex}
-          />
-          <SizedBox width={16} />
-          <InputPicker
-            label="weight"
-            value={weight}
-            placeholder="Props weight"
-            onPress={() => weightRef.current?.present()}
-            style={Styles.flex}
-          />
-        </View>
-        <SizedBox height={4} />
-        <View style={Styles.row}>
-          <InputPicker
-            label="type"
-            value={type}
-            placeholder="Props type"
-            onPress={() => typeRef.current?.present()}
-            style={Styles.flex}
-          />
-          <SizedBox width={16} />
-          <InputPicker
-            label="color"
-            value={color}
-            placeholder="Props color"
-            onPress={() => colorRef.current?.present()}
-            style={Styles.flex}
-          />
-        </View>
+        <InputPicker
+          label="size"
+          value={size}
+          placeholder="Props size"
+          onPress={() => sizeRef.current?.present()}
+          style={Styles.flex}
+        />
         <SizedBox height={4} />
         <TextInput
           value={style}
@@ -222,229 +150,6 @@ export default function Index({navigation, route}) {
           {t('example')}
         </Text>
         <SizedBox height={8} />
-        <Text typography="h1" weight="thin">
-          H1
-        </Text>
-        <Text typography="h1" weight="ultraLight">
-          H1
-        </Text>
-        <Text typography="h1" weight="light">
-          H1
-        </Text>
-        <Text typography="h1" weight="regular">
-          H1
-        </Text>
-        <Text typography="h1" weight="medium">
-          H1
-        </Text>
-        <Text typography="h1" weight="semibold">
-          H1
-        </Text>
-        <Text typography="h1" weight="bold">
-          H1
-        </Text>
-        <Text typography="h1" weight="heavy">
-          H1
-        </Text>
-        <Text typography="h1" weight="black">
-          H1
-        </Text>
-        <SizedBox height={8} />
-        <Text typography="h2" weight="thin">
-          H2
-        </Text>
-        <Text typography="h2" weight="ultraLight">
-          H2
-        </Text>
-        <Text typography="h2" weight="light">
-          H2
-        </Text>
-        <Text typography="h2" weight="regular">
-          H2
-        </Text>
-        <Text typography="h2" weight="medium">
-          H2
-        </Text>
-        <Text typography="h2" weight="semibold">
-          H2
-        </Text>
-        <Text typography="h2" weight="bold">
-          H2
-        </Text>
-        <Text typography="h2" weight="heavy">
-          H2
-        </Text>
-        <Text typography="h2" weight="black">
-          H2
-        </Text>
-        <SizedBox height={8} />
-        <Text typography="h3" weight="thin">
-          H3
-        </Text>
-        <Text typography="h3" weight="ultraLight">
-          H3
-        </Text>
-        <Text typography="h3" weight="light">
-          H3
-        </Text>
-        <Text typography="h3" weight="regular">
-          H3
-        </Text>
-        <Text typography="h3" weight="medium">
-          H3
-        </Text>
-        <Text typography="h3" weight="semibold">
-          H3
-        </Text>
-        <Text typography="h3" weight="bold">
-          H3
-        </Text>
-        <Text typography="h3" weight="heavy">
-          H3
-        </Text>
-        <Text typography="h3" weight="black">
-          H3
-        </Text>
-        <SizedBox height={8} />
-        <Text typography="h4" weight="thin">
-          H4
-        </Text>
-        <Text typography="h4" weight="ultraLight">
-          H4
-        </Text>
-        <Text typography="h4" weight="light">
-          H4
-        </Text>
-        <Text typography="h4" weight="regular">
-          H4
-        </Text>
-        <Text typography="h4" weight="medium">
-          H4
-        </Text>
-        <Text typography="h4" weight="semibold">
-          H4
-        </Text>
-        <Text typography="h4" weight="bold">
-          H4
-        </Text>
-        <Text typography="h4" weight="heavy">
-          H4
-        </Text>
-        <Text typography="h4" weight="black">
-          H4
-        </Text>
-        <SizedBox height={8} />
-        <Text typography="title" weight="thin">
-          Title
-        </Text>
-        <Text typography="title" weight="ultraLight">
-          Title
-        </Text>
-        <Text typography="title" weight="light">
-          Title
-        </Text>
-        <Text typography="title" weight="regular">
-          Title
-        </Text>
-        <Text typography="title" weight="medium">
-          Title
-        </Text>
-        <Text typography="title" weight="semibold">
-          Title
-        </Text>
-        <Text typography="title" weight="bold">
-          Title
-        </Text>
-        <Text typography="title" weight="heavy">
-          Title
-        </Text>
-        <Text typography="title" weight="black">
-          Title
-        </Text>
-        <SizedBox height={8} />
-        <Text typography="subtitle" weight="thin">
-          Subtitle
-        </Text>
-        <Text typography="subtitle" weight="ultraLight">
-          Subtitle
-        </Text>
-        <Text typography="subtitle" weight="light">
-          Subtitle
-        </Text>
-        <Text typography="subtitle" weight="regular">
-          Subtitle
-        </Text>
-        <Text typography="subtitle" weight="medium">
-          Subtitle
-        </Text>
-        <Text typography="subtitle" weight="semibold">
-          Subtitle
-        </Text>
-        <Text typography="subtitle" weight="bold">
-          Subtitle
-        </Text>
-        <Text typography="subtitle" weight="heavy">
-          Subtitle
-        </Text>
-        <Text typography="subtitle" weight="black">
-          Subtitle
-        </Text>
-        <SizedBox height={8} />
-        <Text typography="caption" weight="thin">
-          Caption
-        </Text>
-        <Text typography="caption" weight="ultraLight">
-          Caption
-        </Text>
-        <Text typography="caption" weight="light">
-          Caption
-        </Text>
-        <Text typography="caption" weight="regular">
-          Caption
-        </Text>
-        <Text typography="caption" weight="medium">
-          Caption
-        </Text>
-        <Text typography="caption" weight="semibold">
-          Caption
-        </Text>
-        <Text typography="caption" weight="bold">
-          Caption
-        </Text>
-        <Text typography="caption" weight="heavy">
-          Caption
-        </Text>
-        <Text typography="caption" weight="black">
-          Caption
-        </Text>
-        <SizedBox height={8} />
-        <Text typography="overline" weight="thin">
-          Overline
-        </Text>
-        <Text typography="overline" weight="ultraLight">
-          Overline
-        </Text>
-        <Text typography="overline" weight="light">
-          Overline
-        </Text>
-        <Text typography="overline" weight="regular">
-          Overline
-        </Text>
-        <Text typography="overline" weight="medium">
-          Overline
-        </Text>
-        <Text typography="overline" weight="semibold">
-          Overline
-        </Text>
-        <Text typography="overline" weight="bold">
-          Overline
-        </Text>
-        <Text typography="overline" weight="heavy">
-          Overline
-        </Text>
-        <Text typography="overline" weight="black">
-          Overline
-        </Text>
       </ScrollView>
     </Container>
   );
